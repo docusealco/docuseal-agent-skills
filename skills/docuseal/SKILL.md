@@ -3,11 +3,12 @@ name: docuseal
 description: Manage DocuSeal document templates and e-signatures.
 license: MIT
 metadata:
-   version: "1.0.0"
+   version: "1.0.1"
    author: "DocuSeal"
    clawdbot:
       emoji: "📝"
       homepage: "https://docuseal.com"
+      credential: DOCUSEAL_MCP_TOKEN
       requires:
          env:
             - DOCUSEAL_URL
@@ -96,3 +97,4 @@ Search signed or pending documents by submitter name, email, phone, or template 
 - `DOCUSEAL_URL` and `DOCUSEAL_MCP_TOKEN` environment variables must be set
 - MCP must be enabled in account settings before use
 - Token is shown only once at creation — store it securely
+- When using `--file="$(base64 -i ...)"`, the base64 content may appear in shell history and process lists — use `HISTCONTROL=ignorespace` or pipe from a file to avoid exposure
