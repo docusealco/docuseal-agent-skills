@@ -8,7 +8,7 @@ metadata:
    clawdbot:
       emoji: "📝"
       homepage: "https://docuseal.com"
-      requiress:
+      requires:
          env:
             - DOCUSEAL_URL
             - DOCUSEAL_MCP_TOKEN
@@ -32,19 +32,19 @@ Manage document templates and e-signatures via the DocuSeal MCP endpoint.
 
 All requests use JSON-RPC 2.0 over HTTP POST to `$DOCUSEAL_URL/mcp`.
 
-## Usage with scripts/mcp.js
+## Usage with scripts/cli.js
 
 Requires Node.js 18+. No dependencies.
 
 ```bash
-node scripts/mcp.js init
-node scripts/mcp.js ping
-node scripts/mcp.js tools
-node scripts/mcp.js search-templates --q="contract" --limit=5
-node scripts/mcp.js create-template --url="https://example.com/document.pdf" --name="My Template"
-node scripts/mcp.js create-template --file="$(base64 -i doc.pdf)" --filename="doc.pdf" --name="My Template"
-node scripts/mcp.js send-documents --template-id=1 --emails="signer@example.com,another@example.com"
-node scripts/mcp.js search-documents --q="john@example.com" --limit=5
+node scripts/cli.js init
+node scripts/cli.js ping
+node scripts/cli.js tools
+node scripts/cli.js search-templates --q="contract" --limit=5
+node scripts/cli.js create-template --url="https://example.com/document.pdf" --name="My Template"
+node scripts/cli.js create-template --file="$(base64 -i doc.pdf)" --filename="doc.pdf" --name="My Template"
+node scripts/cli.js send-documents --template-id=1 --emails="signer@example.com,another@example.com"
+node scripts/cli.js search-documents --q="john@example.com" --limit=5
 ```
 
 ## Commands Reference

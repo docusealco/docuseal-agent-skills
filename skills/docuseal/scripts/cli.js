@@ -93,7 +93,7 @@ const [command, ...rest] = process.argv.slice(2)
 const args = parseArgs(rest)
 
 if (!command || !commands[command]) {
-  console.log(`Usage: node scripts/mcp.mjs <command> [--options]
+  console.log(`Usage: node scripts/cli.js <command> [--options]
 
 Commands:
   init                                              Initialize MCP connection
