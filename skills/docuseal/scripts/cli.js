@@ -66,9 +66,7 @@ const commands = {
   'create-template': ({ named }) => {
     return callTool('create_template', {
       url: named.url,
-      name: named.name,
-      file: named.file,
-      filename: named.filename
+      name: named.name
     })
   },
 
@@ -101,7 +99,6 @@ Commands:
   tools                                             List available tools
   search-templates --q=<query> [--limit=10]         Search templates by name
   create-template --url=<url> [--name=<name>]       Create template from PDF URL
-  create-template --file=<base64> --filename=<name> Create template from base64
   send-documents --template-id=<id> --emails=<a,b>  Send template for signing
   search-documents --q=<query> [--limit=10]         Search documents`)
   process.exit(command ? 1 : 0)

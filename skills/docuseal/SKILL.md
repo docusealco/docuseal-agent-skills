@@ -3,7 +3,7 @@ name: docuseal
 description: Manage DocuSeal document templates and e-signatures.
 license: MIT
 metadata:
-   version: "1.0.1"
+   version: "1.0.2"
    author: "DocuSeal"
    clawdbot:
       emoji: "📝"
@@ -42,7 +42,6 @@ node scripts/cli.js init
 node scripts/cli.js tools
 node scripts/cli.js search-templates --q="contract" --limit=5
 node scripts/cli.js create-template --url="https://example.com/document.pdf" --name="My Template"
-node scripts/cli.js create-template --file="$(base64 -i doc.pdf)" --filename="doc.pdf" --name="My Template"
 node scripts/cli.js send-documents --template-id=1 --emails="signer@example.com,another@example.com"
 node scripts/cli.js search-documents --q="john@example.com" --limit=5
 ```
@@ -60,16 +59,12 @@ Search document templates by name.
 
 ### create-template
 
-Create a template from a PDF. Provide a URL or base64-encoded file content.
+Create a template from a PDF URL.
 
 | Option | Type | Required | Description |
 |---|---|---|---|
-| `--url` | string | no | URL of the document file to upload |
-| `--file` | string | no | Base64-encoded file content |
-| `--filename` | string | no | Filename with extension (required with `--file`) |
+| `--url` | string | yes | URL of the document file to upload |
 | `--name` | string | no | Template name (defaults to filename) |
-
-Either `--url` or `--file` + `--filename` must be provided.
 
 ### send-documents
 
@@ -96,4 +91,3 @@ Search signed or pending documents by submitter name, email, phone, or template 
 - `DOCUSEAL_URL` and `DOCUSEAL_MCP_TOKEN` environment variables must be set
 - MCP must be enabled in account settings before use
 - Token is shown only once at creation — store it securely
-- When using `--file="$(base64 -i ...)"`, the base64 content may appear in shell history and process lists — use `HISTCONTROL=ignorespace` or pipe from a file to avoid exposure
