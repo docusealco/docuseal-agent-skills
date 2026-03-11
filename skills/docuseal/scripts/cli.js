@@ -53,7 +53,7 @@ function callTool (name, args) {
 
 const commands = {
   init: () => rpc('initialize'),
-  ping: () => rpc('ping'),
+
   tools: () => rpc('tools/list'),
 
   'search-templates': ({ named }) => {
@@ -97,7 +97,7 @@ if (!command || !commands[command]) {
 
 Commands:
   init                                              Initialize MCP connection
-  ping                                              Ping the server
+
   tools                                             List available tools
   search-templates --q=<query> [--limit=10]         Search templates by name
   create-template --url=<url> [--name=<name>]       Create template from PDF URL

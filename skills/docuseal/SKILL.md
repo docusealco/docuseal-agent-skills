@@ -39,7 +39,6 @@ Requires Node.js 18+. No dependencies.
 
 ```bash
 node scripts/cli.js init
-node scripts/cli.js ping
 node scripts/cli.js tools
 node scripts/cli.js search-templates --q="contract" --limit=5
 node scripts/cli.js create-template --url="https://example.com/document.pdf" --name="My Template"
