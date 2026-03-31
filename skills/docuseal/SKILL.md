@@ -1,93 +1,108 @@
 ---
 name: docuseal
-description: Manage DocuSeal document templates and e-signatures.
+description: >
+  Manage DocuSeal e-signature workflows from the terminal via the DocuSeal CLI -
+  create templates from PDF/DOCX/HTML, send documents for signing, track submissions,
+  and update submitters. Use when the user wants to run DocuSeal commands in the shell,
+  scripts, or CI/CD pipelines. Always load this skill before running `docuseal` commands.
 license: MIT
 metadata:
-   version: "1.0.2"
-   author: "DocuSeal"
-   clawdbot:
-      emoji: "📝"
-      homepage: "https://docuseal.com"
-      credential: DOCUSEAL_MCP_TOKEN
-      requires:
-         env:
-            - DOCUSEAL_URL
-            - DOCUSEAL_MCP_TOKEN
+  author: DocuSeal
+  version: "1.0.3"
+  homepage: https://docuseal.com
+  source: https://github.com/docuseal/docuseal-cli
+  openclaw:
+    emoji: "📝"
+    requires:
+      env:
+        - DOCUSEAL_API_KEY
+        - DOCUSEAL_SERVER
+      bins:
+        - docuseal
+      primaryEnv: DOCUSEAL_API_KEY
+    install:
+      - id: npm
+        kind: npm
+        package: docuseal
+        bins:
+          - docuseal
+        label: Install DocuSeal CLI (npm)
 ---
 
-# DocuSeal App Skill
+## Agent Protocol
 
-Manage document templates and e-signatures via the DocuSeal MCP endpoint.
+**Rules for agents:**
+- Supply ALL required flags — the CLI will not prompt for missing parameters.
+- Output is always JSON.
+- Use `-d key=value` (bracket notation) or `-d '{"..": ".."}'` (JSON) for body and array parameters.
 
-## Setup
+## Authentication
 
-1. Enable MCP in DocuSeal settings (Settings > MCP)
-2. Create an MCP token
-3. Set environment variables:
-   ```bash
-   export DOCUSEAL_URL="https://your-docuseal-instance.com"
-   export DOCUSEAL_MCP_TOKEN="your-mcp-token"
-   ```
+Set environment variables:
+- `DOCUSEAL_API_KEY` — API key (required). Get yours at https://console.docuseal.com/api
+- `DOCUSEAL_SERVER` — `global` (default), `europe`, or full URL for self-hosted (e.g. `https://docuseal.yourdomain.com`)
 
-## Protocol
+## Available Commands
 
-All requests use JSON-RPC 2.0 over HTTP POST to `$DOCUSEAL_URL/mcp`.
+| Command Group | What it does |
+|---|---|
+| `templates` | list, retrieve, update, archive, create-pdf, create-docx, create-html, clone, merge, update-documents |
+| `submissions` | list, retrieve, archive, create, send-emails, create-pdf, create-docx, create-html, documents |
+| `submitters` | list, retrieve, update |
 
-## Usage with scripts/cli.js
+Read the matching reference file for detailed flags and examples.
 
-Requires Node.js 18+. No dependencies.
+## Common Mistakes
 
+| # | Mistake | Fix |
+|---|---|---|
+| 1 | **Forgetting `-d template_id=<id>` on `submissions create`** | `--template-id` is a flag; submitters and other body params go via `-d` |
+| 2 | **Passing a plain file path as a URL** | `--file` accepts a local path; for remote files use `-d "documents[0][file]=https://..."` |
+| 3 | **Expecting array params as comma-separated** | Arrays use bracket notation: `-d "template_ids[]=1"` `-d "template_ids[]=2"` |
+| 4 | **Using `templates create-pdf` without a Pro plan** | Commands marked _(Pro)_ require a DocuSeal Pro subscription |
+| 5 | **Sending to multiple recipients with `submissions create`** | Use `submissions send-emails --emails a@b.com,c@d.com` for bulk; `submissions create` is per-submitter |
+
+## Common Patterns
+
+**List templates:**
 ```bash
-node scripts/cli.js init
-node scripts/cli.js tools
-node scripts/cli.js search-templates --q="contract" --limit=5
-node scripts/cli.js create-template --url="https://example.com/document.pdf" --name="My Template"
-node scripts/cli.js send-documents --template-id=1 --emails="signer@example.com,another@example.com"
-node scripts/cli.js search-documents --q="john@example.com" --limit=5
+docuseal templates list --q "NDA" --limit 20
 ```
 
-## Commands Reference
+**Create a template from a PDF and send for signing:**
+```bash
+docuseal templates create-pdf --file contract.pdf --name "NDA"
+docuseal submissions send-emails --template-id 1001 --emails signer@example.com
+```
 
-### search-templates
+**Create a submission with pre-filled fields (bracket notation):**
+```bash
+docuseal submissions create --template-id 1001 \
+  -d "submitters[0][email]=john@acme.com" \
+  -d "submitters[0][values][Company Name]=Acme Corp"
+```
 
-Search document templates by name.
+**Create a submission with pre-filled fields (JSON):**
+```bash
+docuseal submissions create --template-id 1001 \
+  -d '{"submitters": [{"email": "john@acme.com", "values": {"Company Name": "Acme Corp"}}]}'
+```
 
-| Option | Type | Required | Description |
-|---|---|---|---|
-| `--q` | string | yes | Search query to filter templates by name |
-| `--limit` | integer | no | The number of templates to return (default 10) |
+**Check signing status:**
+```bash
+docuseal submissions list --template-id 1001 --status pending
+```
 
-### create-template
+**Update a submitter:**
+```bash
+docuseal submitters update 201 --email new@acme.com --send-email
+```
 
-Create a template from a PDF URL.
+## When to Load References
 
-| Option | Type | Required | Description |
-|---|---|---|---|
-| `--url` | string | yes | URL of the document file to upload |
-| `--name` | string | no | Template name (defaults to filename) |
-
-### send-documents
-
-Send a document template for signing to specified submitters.
-
-| Option | Type | Required | Description |
-|---|---|---|---|
-| `--template-id` | integer | yes | Template identifier |
-| `--emails` | string | yes | Comma-separated list of submitter email addresses |
-
-### search-documents
-
-Search signed or pending documents by submitter name, email, phone, or template name.
-
-| Option | Type | Required | Description |
-|---|---|---|---|
-| `--q` | string | yes | Search by submitter name, email, phone, or template name |
-| `--limit` | integer | no | The number of results to return (default 10) |
-
-## Notes
-
-- Requires Node.js 18+ (uses built-in `fetch`, no dependencies)
-- All responses follow JSON-RPC 2.0 format
-- `DOCUSEAL_URL` and `DOCUSEAL_MCP_TOKEN` environment variables must be set
-- MCP must be enabled in account settings before use
-- Token is shown only once at creation — store it securely
+- **Creating or managing templates** → [references/templates.md](references/templates.md)
+- **Sending documents for signing or tracking status** → [references/submissions.md](references/submissions.md)
+- **Using dynamic content variables in DOCX** → [references/docx-variables.md](references/docx-variables.md)
+- **Embedding field tags in PDF/DOCX** → [references/field-tags.md](references/field-tags.md)
+- **Writing HTML templates with field tags** → [references/html-fields.md](references/html-fields.md)
+- **Listing or updating signers** → [references/submitters.md](references/submitters.md)
