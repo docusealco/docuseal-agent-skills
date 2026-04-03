@@ -1,0 +1,15 @@
+{
+  "name": "docuseal",
+  "displayName": "DocuSeal",
+  "description": "Manage document templates and e-signatures via the DocuSeal CLI — create templates from PDF/DOCX/HTML, send documents for signing, track submissions, and manage submitters.",
+  "version": "1.0.0",
+  "skills": "./skills/",
+  "author": {
+    "name": "DocuSeal",
+    "url": "https://www.docuseal.com"
+  },
+  "homepage": "https://www.docuseal.com",
+  "repository": "https://github.com/docusealco/docuseal-agent-skills",
+  "license": "MIT",
+  "keywords": ["e-signature", "docuseal", "pdf", "documents", "signing"]
+}
