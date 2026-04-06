@@ -8,9 +8,25 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.3"
+  version: "1.0.4"
   homepage: https://www.docuseal.com
   source: https://github.com/docusealco/docuseal-agent-skills
+  openclaw:
+    emoji: "📝"
+    requires:
+      env:
+        - DOCUSEAL_API_KEY
+        - DOCUSEAL_SERVER
+      bins:
+        - docuseal
+      primaryEnv: DOCUSEAL_API_KEY
+    install:
+      - id: npm
+        kind: npm
+        package: docuseal
+        bins:
+          - docuseal
+        label: Install DocuSeal CLI (npm)
 inputs:
   - name: DOCUSEAL_API_KEY
     description: DocuSeal API key for managing templates and submissions. Get yours at https://console.docuseal.com/api
@@ -19,12 +35,12 @@ inputs:
     description: "Server environment: global (default), europe, or full URL for self-hosted (e.g. https://docuseal.yourdomain.com)"
     required: false
 references:
-  - templates.md
-  - submissions.md
-  - submitters.md
-  - field-tags.md
-  - html-fields.md
-  - docx-variables.md
+  - references/templates.md
+  - references/submissions.md
+  - references/submitters.md
+  - references/field-tags.md
+  - references/html-fields.md
+  - references/docx-variables.md
 ---
 
 ## Agent Protocol
