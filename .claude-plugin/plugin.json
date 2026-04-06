@@ -1,6 +1,6 @@
 {
   "name": "docuseal",
-  "description": "Manage document templates and e-signatures via the DocuSeal CLI — create templates from PDF/DOCX/HTML, send documents for signing, track submissions, and manage submitters.",
+  "description": "Manage e-signature templates, submissions, and submitters with DocuSeal.",
   "version": "1.0.0",
   "skills": "./skills/",
   "author": {
