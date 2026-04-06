@@ -1,5 +1,5 @@
 ---
-name: docuseal
+name: docuseal-cli
 description: >
   Manage DocuSeal e-signature workflows from the terminal via the DocuSeal CLI -
   create templates from PDF/DOCX/HTML, send documents for signing, track submissions,

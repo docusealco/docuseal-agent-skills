@@ -9,7 +9,7 @@ A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https
 
 | Skill | Description | Source |
 |-------|-------------|--------|
-| [docuseal](skills/docuseal) | Manage document templates and e-signatures via the DocuSeal CLI | Authored here |
+| [docuseal-cli](skills/docuseal-cli) | Manage e-signature templates, submissions, and submitters with DocuSeal | Authored here |
 
 ## Installation
 
