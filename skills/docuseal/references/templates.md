@@ -74,6 +74,8 @@ docuseal templates archive 1001
 
 Create a template from a PDF file.
 
+See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax in PDF and DOCX documents.
+
 | Option | Description |
 |---|---|
 | `--file <path>` | Path to local PDF file |
@@ -120,6 +122,8 @@ docuseal templates create-pdf --file form.pdf \
 
 Create a template from a Word DOCX file.
 
+See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax in PDF and DOCX documents.
+
 | Option | Description |
 |---|---|
 | `--file <path>` | Path to local DOCX file |
@@ -149,6 +153,8 @@ docuseal templates create-docx --file template.docx \
 ## `docuseal templates create-html` _(Pro)_
 
 Create a template from HTML.
+
+See [HTML Field Tags](html-fields.md) for supported tags, attributes, and `style` guidance.
 
 | Option | Description |
 |---|---|

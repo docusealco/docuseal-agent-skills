@@ -145,6 +145,8 @@ docuseal submissions send-emails \
 
 Create a submission directly from a PDF file (no pre-existing template needed).
 
+See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax in PDF and DOCX documents.
+
 | Option | Description |
 |---|---|
 | `--file <path>` | Path to local PDF file |
@@ -208,6 +210,8 @@ docuseal submissions create-pdf \
 
 Create a submission directly from a DOCX file.
 
+See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax. See [DOCX Variables](docx-variables.md) for DOCX-specific variables, loops, and conditional content.
+
 | Option | Description |
 |---|---|
 | `--file <path>` | Path to local DOCX file |
@@ -249,6 +253,8 @@ docuseal submissions create-docx \
 ## `docuseal submissions create-html` _(Pro)_
 
 Create a submission directly from HTML.
+
+See [HTML Field Tags](html-fields.md) for supported tags, attributes, and `style` guidance.
 
 | Option | Description |
 |---|---|
