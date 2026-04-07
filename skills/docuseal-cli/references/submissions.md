@@ -200,7 +200,7 @@ docuseal submissions create-pdf \
   -d "documents[0][file]=./doc.pdf" \
   -d "submitters[0][email]=john@acme.com"
 docuseal submissions create-pdf \
-  -d "documents[0][file]=https://example.com/doc.pdf" \
+  -d "documents[0][file]=https://..." \
   -d "submitters[0][email]=john@acme.com"
 ```
 
@@ -244,7 +244,7 @@ docuseal submissions create-docx \
   -d "documents[0][file]=./doc.docx" \
   -d "submitters[0][email]=john@acme.com"
 docuseal submissions create-docx \
-  -d "documents[0][file]=https://example.com/doc.docx" \
+  -d "documents[0][file]=https://..." \
   -d "submitters[0][email]=john@acme.com"
 ```
 

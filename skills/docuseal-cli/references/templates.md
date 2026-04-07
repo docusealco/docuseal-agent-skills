@@ -109,7 +109,7 @@ docuseal templates create-pdf \
   -d "documents[0][file]=./contract.pdf" \
   --name "NDA"
 docuseal templates create-pdf \
-  -d "documents[0][file]=https://example.com/contract.pdf" \
+  -d "documents[0][file]=https://..." \
   --name "NDA"
 docuseal templates create-pdf --file form.pdf \
   -d "documents[0][fields][0][name]=Name" \
@@ -141,7 +141,7 @@ docuseal templates create-docx \
   -d "documents[0][file]=./template.docx" \
   --name "Contract"
 docuseal templates create-docx \
-  -d "documents[0][file]=https://example.com/template.docx" \
+  -d "documents[0][file]=https://..." \
   --name "Contract"
 docuseal templates create-docx --file template.docx \
   -d "documents[0][fields][0][name]=Name" \
@@ -255,8 +255,8 @@ Update documents within an existing template.
 docuseal templates update-documents 1001 \
   -d "documents[0][file]=./contract.pdf"
 docuseal templates update-documents 1001 \
-  -d "documents[0][file]=https://example.com/doc.pdf"
+  -d "documents[0][file]=https://..."
 docuseal templates update-documents 1001 \
-  -d "documents[0][file]=https://example.com/doc.pdf" \
+  -d "documents[0][file]=https://..." \
   -d "documents[0][name]=New Doc"
 ```

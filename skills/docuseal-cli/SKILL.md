@@ -8,7 +8,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.5"
+  version: "1.0.6"
   homepage: https://www.docuseal.com
   source: https://github.com/docusealco/docuseal-agent-skills
   openclaw:
