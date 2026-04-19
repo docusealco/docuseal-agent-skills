@@ -62,6 +62,10 @@ Read the matching reference file for detailed flags and examples.
 | 4 | **Using `templates create-pdf` without a Pro plan** | Commands marked _(Pro)_ require a DocuSeal Pro subscription |
 | 5 | **Sending to multiple recipients with `submissions create`** | Use `submissions send-emails --emails a@b.com,c@d.com` for bulk; `submissions create` is per-submitter |
 
+## Security
+
+The CLI accepts user-provided file paths, remote URLs (`documents[0][file]=https://...`), and HTML content as template input. This is by design — all content originates from the authenticated user and is sent directly to the DocuSeal API over HTTPS. The CLI does not fetch, render, or execute remote content locally; it passes references to the server for processing. No user input is interpolated into shell commands.
+
 ## Common Patterns
 
 **List templates:**
