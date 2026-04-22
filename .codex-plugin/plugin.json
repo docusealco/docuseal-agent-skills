@@ -1,7 +1,7 @@
 {
   "name": "docuseal",
   "displayName": "DocuSeal",
-  "description": "Manage e-signature templates, submissions, and submitters with DocuSeal.",
+  "description": "Add DocuSeal document signing to your app with embed components, REST API, SDKs, and webhooks.",
   "version": "1.0.0",
   "skills": "./skills/",
   "author": {
