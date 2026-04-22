@@ -10,6 +10,7 @@ A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https
 | Skill | Description | Source |
 |-------|-------------|--------|
 | [docuseal-cli](skills/docuseal-cli) | Manage e-signature templates, submissions, and submitters with DocuSeal | Authored here |
+| [docuseal-code](skills/docuseal-code) | DocuSeal development reference — embed UI components, REST API, webhooks, and SDK examples | Authored here |
 
 ## Installation
 
