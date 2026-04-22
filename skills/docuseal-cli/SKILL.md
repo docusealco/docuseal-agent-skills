@@ -10,7 +10,7 @@ metadata:
   author: DocuSeal
   version: "1.0.6"
   homepage: https://www.docuseal.com
-  source: https://github.com/docusealco/docuseal-agent-skills
+  source: https://github.com/docusealco/docuseal-cli
   openclaw:
     emoji: "📝"
     requires:

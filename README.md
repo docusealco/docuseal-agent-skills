@@ -9,8 +9,8 @@ A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https
 
 | Skill | Description | Source |
 |-------|-------------|--------|
-| [docuseal-cli](skills/docuseal-cli) | Manage e-signature templates, submissions, and submitters with DocuSeal | Authored here |
-| [docuseal-code](skills/docuseal-code) | DocuSeal development reference — embed UI components, REST API, webhooks, and SDK examples | Authored here |
+| [docuseal-cli](skills/docuseal-cli) | Manage e-signature templates, submissions, and submitters with DocuSeal | Synced from [docusealco/docuseal-cli](https://github.com/docusealco/docuseal-cli) |
+| [docuseal-code](skills/docuseal-code) | DocuSeal development reference. Embed UI components, REST API, webhooks, and SDK examples | Authored here |
 
 ## Installation
 
@@ -30,7 +30,7 @@ Platform-specific manifests:
 | OpenAI Codex | [`.codex-plugin/`](.codex-plugin/) |
 | Cursor | [`.cursor-plugin/`](.cursor-plugin/) |
 
-## Prerequisites
+## Prerequisites (docuseal-cli)
 
 1. Install the [DocuSeal CLI](https://github.com/docuseal/docuseal-cli): `npm install -g docuseal`
 2. Set your API key:
