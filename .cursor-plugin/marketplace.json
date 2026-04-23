@@ -1,0 +1,16 @@
+{
+  "name": "docuseal-agent-skills",
+  "owner": {
+    "name": "DocuSeal",
+    "email": "support@docuseal.com"
+  },
+  "plugins": [
+    {
+      "name": "docuseal",
+      "source": "./",
+      "description": "Add DocuSeal document signing to your app with embed components, REST API, SDKs, and webhooks.",
+      "version": "1.0.0",
+      "keywords": ["e-signature", "docuseal", "pdf", "documents", "signing"]
+    }
+  ]
+}
