@@ -10,7 +10,7 @@ The API endpoint provides the ability to retrieve a list of available submission
 |---|---|---|---|---|
 | `template_id` | query | `integer` | no | The template ID allows you to receive only the submissions created from that specific template. |
 | `status` | query | `string` | no | Filter submissions by status. |
-| `q` | query | `string` | no | Filter submissions based on submitters name, email or phone partial match. |
+| `q` | query | `string` | no | Filter submissions based on submitter's name, email or phone partial match. |
 | `slug` | query | `string` | no | Filter submissions by unique slug. |
 | `template_folder` | query | `string` | no | Filter submissions by template folder name. |
 | `archived` | query | `boolean` | no | Returns only archived submissions when `true` and only active submissions when `false`. |

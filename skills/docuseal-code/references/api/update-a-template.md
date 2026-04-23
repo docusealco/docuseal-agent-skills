@@ -14,7 +14,7 @@ The API endpoint provides the functionality to move a document template to a dif
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | no | The name of the template Example: `New Document Name` |
+| `name` | `string` | no | The name of the template. Example: `New Document Name` |
 | `folder_name` | `string` | no | The folder's name to which the template should be moved. Example: `New Folder` |
 | `roles` | `array[]` | no | An array of submitter role names to update the template with. Example: `["Agent", "Customer"]` |
 | `archived` | `boolean` | no | Set `false` to unarchive template. |

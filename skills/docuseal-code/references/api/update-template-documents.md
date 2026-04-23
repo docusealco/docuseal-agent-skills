@@ -10,7 +10,7 @@ The API endpoint allows you to add, remove or replace documents in the template 
 
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
-| `id` | path | `integer` | yes | The unique identifier of the documents template. |
+| `id` | path | `integer` | yes | The unique identifier of the document template. |
 
 ## Request Body
 

@@ -10,12 +10,12 @@ The API endpoint provides the ability to retrieve a list of available document t
 |---|---|---|---|---|
 | `q` | query | `string` | no | Filter templates based on the name partial match. |
 | `slug` | query | `string` | no | Filter templates by unique slug. |
-| `external_id` | query | `string` | no | The unique applications-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external id. |
+| `external_id` | query | `string` | no | The unique application-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external ID. |
 | `folder` | query | `string` | no | Filter templates by folder name. |
 | `archived` | query | `boolean` | no | Get only archived templates instead of active ones. |
 | `limit` | query | `integer` | no | The number of templates to return. Default value is 10. Maximum value is 100. |
-| `after` | query | `integer` | no | The unique identifier of the template to start the list from. It allows you to receive only templates with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates. |
-| `before` | query | `integer` | no | The unique identifier of the template to end the list with. It allows you to receive only templates with id less than the specified value. |
+| `after` | query | `integer` | no | The unique identifier of the template to start the list from. It allows you to receive only templates with an ID greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates. |
+| `before` | query | `integer` | no | The unique identifier of the template to end the list with. It allows you to receive only templates with an ID less than the specified value. |
 
 ## Code Examples
 

@@ -8,7 +8,7 @@ The API endpoint allows you to clone an existing template into a new template.
 
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
-| `id` | path | `integer` | yes | The unique identifier of the documents template. |
+| `id` | path | `integer` | yes | The unique identifier of the document template. |
 
 ## Request Body
 

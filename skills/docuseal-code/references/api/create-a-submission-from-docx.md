@@ -3,7 +3,7 @@
 `POST /submissions/docx`
 **Pro / Cloud Sandbox plan required.**
 
-The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use `[[variable_name]]` text tags to define dynamic content variables in the document. See [https://www.docuseal.com/examples/demo\_template.docx](https://www.docuseal.com/examples/demo_template.docx) for the specific text variable syntax, including dynamic content tables and list. You can also use the `{{signature}}` field syntax to define fillable fields, as in a PDF.
+The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use `[[variable_name]]` text tags to define dynamic content variables in the document. See [https://www.docuseal.com/examples/demo\_template.docx](https://www.docuseal.com/examples/demo_template.docx) for the specific text variable syntax, including dynamic content tables and lists. You can also use the `{{signature}}` field syntax to define fillable fields, as in a PDF.
 
 
 ## Request Body
@@ -20,7 +20,7 @@ The API endpoint provides functionality to create a one-off submission request f
 | `reply_to` | `string` | no | Specify Reply-To address to use in the notification emails. |
 | `expire_at` | `string` | no | Specify the expiration date and time after which the submission becomes unavailable for signature. Example: `2024-09-01 12:00:00 UTC` |
 | `template_ids` | `array[]` | no | An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates. |
-| `documents` | `array[]` | yes | - |
+| `documents` | `array[]` | yes | An array of DOCX documents to create a submission. |
 | `documents[].name` | `string` | yes | Name of the document. |
 | `documents[].file` | `string` | yes | Base64-encoded content of the PDF or DOCX file or downloadable file URL. Example: `base64` |
 | `documents[].position` | `integer` | no | Document position in the submission. If not specified, the document will be added in the order it appears in the documents array. |
@@ -48,14 +48,14 @@ The API endpoint provides functionality to create a one-off submission request f
 | `submitters[].fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `submitters[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `submitters[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `submitters[].fields[].validation` | `object` | no | - |
-| `submitters[].fields[].preferences` | `object` | no | - |
+| `submitters[].fields[].validation` | `object` | no | Field validation rules. |
+| `submitters[].fields[].preferences` | `object` | no | Field display preferences. |
 | `submitters[].roles` | `array[]` | no | A list of roles for the submitter. Use this param to merge multiple roles into one submitter. |
-| `message` | `object` | no | - |
+| `message` | `object` | no | Custom signature request email message. |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 | `merge_documents` | `boolean` | no | Set `true` to merge the documents into a single PDF file. Default: `false` |
-| `remove_tags` | `boolean` | no | Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing. Default: `true` |
+| `remove_tags` | `boolean` | no | Pass `false` to disable the removal of {{text}} tags from the document. This can be used along with transparent text tags for faster and more robust document processing. Default: `true` |
 
 ## Code Examples
 

@@ -13,10 +13,10 @@ The API endpoint provides the ability to retrieve a list of submitters.
 | `slug` | query | `string` | no | Filter submitters by unique slug. |
 | `completed_after` | query | `string` | no | The date and time string value to filter submitters that completed the submission after the specified date and time. |
 | `completed_before` | query | `string` | no | The date and time string value to filter submitters that completed the submission before the specified date and time. |
-| `external_id` | query | `string` | no | The unique applications-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external id. |
+| `external_id` | query | `string` | no | The unique application-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external ID. |
 | `limit` | query | `integer` | no | The number of submitters to return. Default value is 10. Maximum value is 100. |
-| `after` | query | `integer` | no | The unique identifier of the submitter to start the list from. It allows you to receive only submitters with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters. |
-| `before` | query | `integer` | no | The unique identifier of the submitter to end the list with. It allows you to receive only submitters with id less than the specified value. |
+| `after` | query | `integer` | no | The unique identifier of the submitter to start the list from. It allows you to receive only submitters with an ID greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters. |
+| `before` | query | `integer` | no | The unique identifier of the submitter to end the list with. It allows you to receive only submitters with an ID less than the specified value. |
 
 ## Code Examples
 

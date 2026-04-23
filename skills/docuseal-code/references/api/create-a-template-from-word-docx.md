@@ -3,20 +3,20 @@
 `POST /templates/docx`
 **Pro / Cloud Sandbox plan required.**
 
-The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use `{{Field Name;role=Signer1;type=date}}` text tags to define fillable fields in the document. See [https://www.docuseal.com/examples/fieldtags.docx](https://www.docuseal.com/examples/fieldtags.docx) for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.
+The API endpoint provides the functionality to create a fillable document template for an existing Microsoft Word document. Use `{{Field Name;role=Signer1;type=date}}` text tags to define fillable fields in the document. See [https://www.docuseal.com/examples/fieldtags.docx](https://www.docuseal.com/examples/fieldtags.docx) for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.
 
 
 ## Request Body
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `name` | `string` | no | Name of the template Example: `Test DOCX` |
+| `name` | `string` | no | Name of the template. Example: `Test DOCX` |
 | `external_id` | `string` | no | Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new document. Example: `unique-key` |
 | `folder_name` | `string` | no | The folder's name in which the template should be created. |
 | `shared_link` | `boolean` | no | Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template. Default: `true` |
-| `documents` | `array[]` | yes | - |
+| `documents` | `array[]` | yes | An array of DOCX documents to create a template. |
 | `documents[].name` | `string` | yes | Name of the document. |
-| `documents[].file` | `string` | yes | Base64-encoded content of the DOCX file or downloadable file URL Example: `base64` |
+| `documents[].file` | `string` | yes | Base64-encoded content of the DOCX file or downloadable file URL. Example: `base64` |
 | `documents[].dynamic` | `boolean` | no | Set to `true` to make the document dynamic. When enabled, the DOCX document content can be edited or use [[variables]] in the template editor. Default: `false` |
 | `documents[].fields` | `array[]` | no | Fields are optional if you use {{...}} text tags to define fields in the document. |
 | `documents[].fields[].name` | `string` | no | Name of the field. |
@@ -25,10 +25,10 @@ The API endpoint provides the functionality to create a fillable document templa
 | `documents[].fields[].required` | `boolean` | no | Indicates if the field is required. |
 | `documents[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `documents[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `documents[].fields[].areas` | `array[]` | no | - |
+| `documents[].fields[].areas` | `array[]` | no | List of areas where the field is located in the document. |
 | `documents[].fields[].options` | `array[]` | no | An array of option values for 'select' field type. Example: `["Option A", "Option B"]` |
-| `documents[].fields[].validation` | `object` | no | - |
-| `documents[].fields[].preferences` | `object` | no | - |
+| `documents[].fields[].validation` | `object` | no | Field validation rules. |
+| `documents[].fields[].preferences` | `object` | no | Field display preferences. |
 
 ## Code Examples
 
