@@ -49,7 +49,7 @@ export default {
 | `token` | `object` | yes | — | JSON Web Token (JWT HS256) with a payload signed using the API key. **Ensure that the JWT token is generated on the backend to prevent unauthorized access to your documents**. See nested properties below. |
 | `host` | `string` | no | — | DocuSeal host domain name. Only use this attribute if you are using the on-premises DocuSeal installation or docuseal.eu Cloud. Example: `yourdomain.com` |
 | `custom-button` | `object` | no | — | Custom button will be displayed on the top right corner of the form builder. See nested properties below. |
-| `only-defined-fields` | `boolean` | no | `false` | Allow to add fields only defined in the `:fields` prop. |
+| `only-defined-fields` | `boolean` | no | — | Allow to add fields only defined in the `:fields` prop. |
 | `with-send-button` | `boolean` | no | `true` | Show the "Recipients" button. |
 | `roles` | `array` | no | — | Submitter role names to be used by default in the form. |
 | `field-types` | `array` (enum) | no | — | Field type names to be used in the form builder. All field types are used by default. Values: `heading`, `text`, `signature`, `initials`, `date`, `datenow`, `number`, `image`, `checkbox`, `multiple`, `file`, `radio`, `select`, `cells`, `stamp`, `payment`, `phone`, `verification`, `kba`, `strikethrough`. |
@@ -60,17 +60,17 @@ export default {
 | `email-message` | `object` | no | — | Email subject and body for the signature request. See nested properties below. |
 | `with-title` | `boolean` | no | `true` | Set `false` to remove document title from the builder. |
 | `with-upload-button` | `boolean` | no | `true` | Show the "Upload" button. |
-| `with-add-page-button` | `boolean` | no | `false` | Show the "Add Blank Page" button. |
+| `with-add-page-button` | `boolean` | no | — | Show the "Add Blank Page" button. |
 | `with-sign-yourself-button` | `boolean` | no | `true` | Show the "Sign Yourself" button. |
 | `with-documents-list` | `boolean` | no | `true` | Set `false` to not show the documents list on the left. Documents list is displayed by default. |
-| `with-dynamic-documents` | `boolean` | no | `false` | Set `true` to allow converting DOCX files to editable dynamic documents. |
+| `with-dynamic-documents` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `with-fields-list` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
-| `with-fields-detection` | `boolean` | no | `false` | Display a button to automatically detect and add fields to the document with AI. |
-| `with-field-placeholder` | `boolean` | no | `false` | Set `true` to display field name placeholders instead of the field type icons. |
+| `with-fields-detection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `with-field-placeholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `with-signature-id` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
 | `autosave` | `boolean` | no | `true` | Set `false` to disable form changes autosaving. |
-| `preview` | `boolean` | no | `false` | Show template in preview mode without ability to edit it. |
-| `input-mode` | `boolean` | no | `false` | Open template in data input mode to prefill fields with default values. |
+| `preview` | `boolean` | no | — | Show template in preview mode without ability to edit it. |
+| `input-mode` | `boolean` | no | — | Open template in data input mode to prefill fields with default values. |
 | `language` | `string` | no | `en` | UI language, 'en', 'es', 'de', 'fr', 'pt', 'nl', 'he', 'ar' languages are available. |
 | `i18n` | `object` | no | `{}` | Object that contains i18n keys to replace the default UI text with custom values. See [template\_builder/i18n.js](https://github.com/docusealco/docuseal/blob/master/app/javascript/template_builder/i18n.js) for available i18n keys. |
 | `background-color` | `string` | no | — | The form builder background color. Only HEX color codes are supported. Example: `#ffffff` |

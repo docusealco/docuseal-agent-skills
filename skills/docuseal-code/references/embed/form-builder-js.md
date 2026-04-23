@@ -42,17 +42,17 @@ This component allows you to seamlessly integrate an entire document creation an
 | `email-body` | `string` | no | — | Email body for the signature request. Required if `email-subject` specified |
 | `data-with-send-button` | `boolean` | no | `true` | Show the "Recipients" button. |
 | `data-with-upload-button` | `boolean` | no | `true` | Show the "Upload" button. |
-| `data-with-add-page-button` | `boolean` | no | `false` | Show the "Add Blank Page" button. |
+| `data-with-add-page-button` | `boolean` | no | — | Show the "Add Blank Page" button. |
 | `data-with-sign-yourself-button` | `boolean` | no | `true` | Show the "Sign Yourself" button. |
 | `data-with-documents-list` | `boolean` | no | `true` | Set `false` to not show the documents list on the left. Documents list is displayed by default. |
-| `data-with-dynamic-documents` | `boolean` | no | `false` | Set `true` to allow converting DOCX files to editable dynamic documents. |
+| `data-with-dynamic-documents` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `data-with-fields-list` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
-| `data-with-fields-detection` | `boolean` | no | `false` | Display a button to automatically detect and add fields to the document with AI. |
-| `data-with-field-placeholder` | `boolean` | no | `false` | Set `true` to display field name placeholders instead of the field type icons. |
+| `data-with-fields-detection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `data-with-field-placeholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `data-with-signature-id` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
-| `data-preview` | `boolean` | no | `false` | Show template in preview mode without ability to edit it. |
-| `data-input-mode` | `boolean` | no | `false` | Open template in data input mode to prefill fields with default values. |
-| `data-only-defined-fields` | `boolean` | no | `false` | Allow to add fields only defined in the `data-fields` attribute. |
+| `data-preview` | `boolean` | no | — | Show template in preview mode without ability to edit it. |
+| `data-input-mode` | `boolean` | no | — | Open template in data input mode to prefill fields with default values. |
+| `data-only-defined-fields` | `boolean` | no | — | Allow to add fields only defined in the `data-fields` attribute. |
 | `data-autosave` | `boolean` | no | `true` | Set `false` to disable form changes autosaving. |
 | `data-i18n` | `string` | no | `{}` | JSON encoded string that contains i18n keys to replace the default UI text with custom values. See [template\_builder/i18n.js](https://github.com/docusealco/docuseal/blob/master/app/javascript/template_builder/i18n.js) for available i18n keys. |
 | `data-language` | `string` | no | `en` | UI language, 'en', 'es', 'de', 'fr', 'pt', 'nl', 'he', 'ar' languages are available. |

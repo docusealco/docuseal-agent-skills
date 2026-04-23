@@ -19,7 +19,7 @@ The API endpoint provides the functionality to create one-off submission request
 | `reply_to` | `string` | no | Specify Reply-To address to use in the notification emails. |
 | `expire_at` | `string` | no | Specify the expiration date and time after which the submission becomes unavailable for signature. Example: `2024-09-01 12:00:00 UTC` |
 | `template_ids` | `array[]` | no | An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates. |
-| `documents` | `array[]` | yes |  |
+| `documents` | `array[]` | yes | - |
 | `documents[].name` | `string` | yes | Name of the document. |
 | `documents[].file` | `string` | yes | Base64-encoded content of the PDF file or downloadable file URL. Example: `base64` |
 | `documents[].fields` | `array[]` | no | Fields are optional if you use {{...}} text tags to define fields in the document. |
@@ -29,8 +29,7 @@ The API endpoint provides the functionality to create one-off submission request
 | `documents[].fields[].required` | `boolean` | no | Indicates if the field is required. |
 | `documents[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `documents[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `documents[].fields[].areas` | `array[]` | no |  |
-
+| `documents[].fields[].areas` | `array[]` | no | - |
 | `documents[].fields[].options` | `array[]` | no | An array of option values for 'select' field type. Example: `["Option A", "Option B"]` |
 | `documents[].position` | `integer` | no | Document position in the submission. If not specified, the document will be added in the order it appears in the documents array. |
 | `submitters` | `array[]` | yes | The list of submitters for the submission. |
@@ -57,12 +56,10 @@ The API endpoint provides the functionality to create one-off submission request
 | `submitters[].fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `submitters[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `submitters[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `submitters[].fields[].validation` | `object` | no |  |
-
-| `submitters[].fields[].preferences` | `object` | no |  |
-
+| `submitters[].fields[].validation` | `object` | no | - |
+| `submitters[].fields[].preferences` | `object` | no | - |
 | `submitters[].roles` | `array[]` | no | A list of roles for the submitter. Use this param to merge multiple roles into one submitter. |
-| `message` | `object` | no |  |
+| `message` | `object` | no | - |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 | `flatten` | `boolean` | no | Remove PDF form fields from the documents. Default: `false` |
