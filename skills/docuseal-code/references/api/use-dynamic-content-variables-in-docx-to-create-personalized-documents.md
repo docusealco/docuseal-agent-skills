@@ -1,9 +1,5 @@
 # Use dynamic content variables in DOCX to create personalized documents
 
-1. [Dynamic content variables](https://www.docuseal.com#dynamic-content-variables)
-2. [Embedded field text tags](https://www.docuseal.com#embedded-field-text-tags)
-3. [Send DOCX to the API](https://www.docuseal.com#send-pdf-to-the-api)
-
 Prerequisites:
 
 **Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
@@ -188,7 +184,7 @@ API request body should contain JSON payload with `"file": '...'` encoded as bas
 
 [DOCX content variables example file](https://www.docuseal.com/examples/demo_template.docx)
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require('@docuseal/api');
@@ -226,7 +222,7 @@ const submission = await docuseal.createSubmissionFromDocx({
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from '@docuseal/api';
@@ -264,7 +260,7 @@ const submission = await docuseal.createSubmissionFromDocx({
 });
 ```
 
-Python
+#### Python
 
 ```
 import base64
@@ -304,7 +300,7 @@ submission = docuseal.create_submission_from_docx({
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require 'base64'
@@ -343,7 +339,7 @@ submission = Docuseal.create_submission_from_docx(
 )
 ```
 
-Php
+#### Php
 
 ```
 $filePath = 'path/to/your/file.docx';
@@ -378,7 +374,7 @@ $submission = $docuseal->createSubmissionFromDocx([
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import java.io.IOException;
@@ -451,7 +447,7 @@ public class CreateSubmissionFromDocx {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -520,7 +516,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main

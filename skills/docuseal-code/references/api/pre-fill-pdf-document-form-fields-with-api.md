@@ -1,8 +1,5 @@
 # Pre-fill PDF document form fields with API
 
-1. [Pre-fill document data and send for signature](https://www.docuseal.com#pre-fill-document-data-and-send-for-signature)
-2. [Automatically sign documents via API](https://www.docuseal.com#automatically_sign_documents_via_api)
-
 **Prerequisites:**
 
 **Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
@@ -19,7 +16,7 @@
 
 Upon a successful request, specified submitters of the document will receive an email invitation to click on the link to fill and sign the document.
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require("@docuseal/api");
@@ -49,7 +46,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from "@docuseal/api";
@@ -79,7 +76,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -110,7 +107,7 @@ submission = docuseal.create_submission({
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -141,7 +138,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -169,7 +166,7 @@ $submission = $docuseal->createSubmission([
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -246,7 +243,7 @@ public class DocusealSubmission {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -305,7 +302,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -357,7 +354,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl -X POST https://api.docuseal.com/submissions \
@@ -390,7 +387,7 @@ Upon a successful request, all signing parties will receive an email with a sign
 
 [REST API Reference](https://www.docuseal.com/docs/api#update-a-submitter)
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require("@docuseal/api");
@@ -414,7 +411,7 @@ const submitter = await docuseal.updateSubmitter(500001, {
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from "@docuseal/api";
@@ -438,7 +435,7 @@ const submitter = await docuseal.updateSubmitter(500001, {
 });
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -463,7 +460,7 @@ submitter = docuseal.update_submitter(500001, {
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -488,7 +485,7 @@ submitter = Docuseal.update_submitter(500001, {
 })
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -510,7 +507,7 @@ $docuseal->updateSubmitter(500001, [
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -578,7 +575,7 @@ public class DocusealSubmitterUpdate {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -646,7 +643,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -690,7 +687,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl -X PUT https://api.docuseal.com/submitters/500001 \

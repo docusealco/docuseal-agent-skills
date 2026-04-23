@@ -1,8 +1,5 @@
 # Use embedded text field tags in the PDF to create a fillable form
 
-1. [Embedded PDF field text tags](https://www.docuseal.com#embedded-pdf-field-text-tags)
-2. [Send PDF to the API](https://www.docuseal.com#send-pdf-to-the-api)
-
 **Prerequisites:**
 
 **Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
@@ -72,7 +69,7 @@ API request body should contain JSON payload with `"file": '...'` encoded as bas
 
 [PDF text tags example file](https://www.docuseal.com/examples/fieldtags.pdf)
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require('@docuseal/api');
@@ -100,7 +97,7 @@ const submission = await docuseal.createSubmissionFromPdf({
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from '@docuseal/api';
@@ -128,7 +125,7 @@ const submission = await docuseal.createTemplateFromPdf({
 });
 ```
 
-Python
+#### Python
 
 ```
 import base64
@@ -158,7 +155,7 @@ submission = docuseal.create_submission_from_pdf({
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require 'base64'
@@ -187,7 +184,7 @@ submission = Docuseal.create_submission_from_pdf(
 )
 ```
 
-Php
+#### Php
 
 ```
 $filePath = 'path/to/your/file.pdf';
@@ -212,7 +209,7 @@ $submission = $docuseal->createSubmissionFromPdf([
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import java.io.IOException;
@@ -266,7 +263,7 @@ public class CreateSubmissionFromPdf {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -315,7 +312,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main

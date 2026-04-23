@@ -1,10 +1,5 @@
 # Create PDF document fillable form with HTML
 
-1. [HTML field tags](https://www.docuseal.com#html-field-tags)
-2. [Creating HTML layout](https://www.docuseal.com#creating-html-layout)
-3. [Adding header and footer](https://www.docuseal.com#adding-header-and-footer)
-4. [Send HTML to the API](https://www.docuseal.com#send-html-to-the-api)
-
 **Prerequisites:**
 
 **Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
@@ -258,7 +253,7 @@ API request body should contain JSON payload with `"html": '...'` string value.
 
 [Style document page with CSS](https://www.docuseal.com/blog/css-print-page-style)
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require('@docuseal/api');
@@ -288,7 +283,7 @@ const submission = await docuseal.createSubmissionFromHtml({
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from '@docuseal/api';
@@ -318,7 +313,7 @@ const submission = await docuseal.createSubmissionFromHtml({
 });
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -350,7 +345,7 @@ submission = docuseal.create_submission_from_html({
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -382,7 +377,7 @@ submission = Docuseal.create_submission_from_html({
 })
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -411,7 +406,7 @@ $submission = $docuseal->createSubmissionFromHtml([
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -480,7 +475,7 @@ public class DocusealSubmissionFromHtml {
                     System.out.println("Submission created:");
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -545,7 +540,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -597,7 +592,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl --request POST \

@@ -14,7 +14,7 @@ JWT (JSON Web Token) serves as a secure means to authorize your individual SaaS 
 
 Ensure you never expose API\_KEY on your client side, only generated and signed JWT should be passed to your front-end app.
 
-Javascript
+#### Javascript
 
 ```
 const jwt = require('jsonwebtoken');
@@ -30,7 +30,7 @@ const token = jwt.sign({
 }, API_KEY);
 ```
 
-Typescript
+#### Typescript
 
 ```
 import jwt from 'jsonwebtoken';
@@ -56,7 +56,7 @@ const payload: JwtPayload = {
 const token = jwt.sign(payload, API_KEY);
 ```
 
-Php
+#### Php
 
 ```
 use Firebase\JWT\JWT;
@@ -74,7 +74,7 @@ $payload = [
 $token = JWT::encode($payload, $apiToken, 'HS256'); // Encode the payload into a JWT
 ```
 
-Python
+#### Python
 
 ```
 import jwt
@@ -93,7 +93,7 @@ payload = {
 token = jwt.encode(payload, api_key, algorithm='HS256') # Encode the payload into a JWT
 ```
 
-Ruby
+#### Ruby
 
 ```
 require 'jwt'
@@ -111,7 +111,7 @@ payload = {
 token = JWT.encode(payload, api_key) # Encode the payload into a JWT
 ```
 
-Java
+#### Java
 
 ```
 import com.auth0.jwt.JWT;
@@ -138,7 +138,7 @@ public class JwtGenerator {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -190,7 +190,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main

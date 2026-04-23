@@ -16,7 +16,7 @@ Upon a successful request, the API will respond with an array of submitters. Eac
 
 Pass the `embed_src` value directly to the `src` prop of the `<DocusealForm />` component, or construct the URL from the `slug` key (e.g. `https://docuseal.com/s/${slug}`). Either value links the embedded form in your React app to the specific submitter created through the DocuSeal API.
 
-Nodejs
+#### Nodejs
 
 ```
 import express from 'express';
@@ -52,7 +52,7 @@ app.listen(3000, () => {
 });
 ```
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require("@docuseal/api");
@@ -75,7 +75,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from "@docuseal/api";
@@ -98,7 +98,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -122,7 +122,7 @@ submission = docuseal.create_submission({
 })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -146,7 +146,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -167,7 +167,7 @@ $submission = $docuseal->createSubmission([
 ]);
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -226,7 +226,7 @@ public class DocusealSubmission {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -279,7 +279,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -316,7 +316,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl -X POST https://api.docuseal.com/submissions \

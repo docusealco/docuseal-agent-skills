@@ -1,9 +1,5 @@
 # Download Signed Documents
 
-1. [Setup webhooks](https://www.docuseal.com#setup-webhooks)
-2. [Download documents via API](https://www.docuseal.com#download-documents-via-api)
-3. [Document URL expiration](https://www.docuseal.com#document-url-expiration)
-
 ## Setup webhooks
 
 Navigate to [https://console.docuseal.com/webhooks](https://console.docuseal.com/webhooks) to set up the webhooks. Configure the endpoint URL of your backend API where you'll handle the received webhook data. Ensure this endpoint is secured with a token to authenticate incoming requests. Here's an example of how you might structure this:   
@@ -101,7 +97,7 @@ Documents can be downloaded from DocuSeal using the following API request:
 
 [REST API Reference](https://www.docuseal.com/docs/api#form-webhook)
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require("@docuseal/api");
@@ -111,7 +107,7 @@ docuseal.configure({ key: "API_KEY", url: "https://api.docuseal.com" });
 const { data, pagination } = await docuseal.listSubmitters({ external_id: 'customer_123' });
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from "@docuseal/api";
@@ -121,7 +117,7 @@ docuseal.configure({ key: "API_KEY", url: "https://api.docuseal.com" });
 const { data, pagination } = await docuseal.listSubmitters({ external_id: 'customer_123' });
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -132,7 +128,7 @@ docuseal.url = "https://api.docuseal.com"
 docuseal.list_submitters({ "external_id": "customer_123" })
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -143,7 +139,7 @@ Docuseal.url = "https://api.docuseal.com"
 Docuseal.list_submitters({ external_id: 'customer_123' })
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -151,7 +147,7 @@ $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
 $docuseal->listSubmitters(['external_id' => 'customer_123']);
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -199,7 +195,7 @@ public class DocusealSubmittersFetch {
 }
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System;
@@ -238,7 +234,7 @@ class Program
 }
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -273,7 +269,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl --request GET \
@@ -295,7 +291,7 @@ Instead, always call the API to get a fresh document URL right before you need t
 
 Save the `submission_id` or `submitter_id` in your database instead of the URL. When you need to download or display the document, make an API call with the stored ID to retrieve a fresh, valid URL.
 
-Javascript
+#### Javascript
 
 ```
 const docuseal = require("@docuseal/api");
@@ -307,7 +303,7 @@ const resp = await docuseal.getSubmissionDocuments(submissionId);
 const documentUrl = resp.documents[0].url;
 ```
 
-Typescript
+#### Typescript
 
 ```
 import docuseal from "@docuseal/api";
@@ -319,7 +315,7 @@ const resp = await docuseal.getSubmissionDocuments(submissionId);
 const documentUrl = resp.documents[0].url;
 ```
 
-Python
+#### Python
 
 ```
 from docuseal import docuseal
@@ -332,7 +328,7 @@ resp = docuseal.get_submission_documents(submission_id)
 document_url = resp["documents"][0]["url"]
 ```
 
-Ruby
+#### Ruby
 
 ```
 require "docuseal"
@@ -345,7 +341,7 @@ resp = Docuseal.get_submission_documents(submission_id)
 document_url = resp["documents"][0]["url"]
 ```
 
-Php
+#### Php
 
 ```
 $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
@@ -355,7 +351,7 @@ $resp = $docuseal->getSubmissionDocuments($submissionId);
 $documentUrl = $resp['documents'][0]['url'];
 ```
 
-Java
+#### Java
 
 ```
 import okhttp3.*;
@@ -376,7 +372,7 @@ String documentUrl = resp.getJSONArray("documents")
         .getJSONObject(0).getString("url");
 ```
 
-Csharp
+#### Csharp
 
 ```
 using System.Net.Http;
@@ -394,7 +390,7 @@ var documentUrl = resp.GetProperty("documents")[0]
     .GetProperty("url").GetString();
 ```
 
-Go
+#### Go
 
 ```
 package main
@@ -420,7 +416,7 @@ func main() {
 }
 ```
 
-Curl
+#### Curl
 
 ```
 curl --request GET \
