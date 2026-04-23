@@ -17,7 +17,7 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `reply_to` | `string` | no | Specify Reply-To address to use in the notification emails. |
 | `expire_at` | `string` | no | Specify the expiration date and time after which the submission becomes unavailable for signature. Example: `2024-09-01 12:00:00 UTC` |
 | `variables` | `object` | no | Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in dynamic template documents. Example: `{variable_name: "value"}` |
-| `message` | `object` | no |  |
+| `message` | `object` | no | - |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
 | `submitters` | `array[]` | yes | The list of submitters for the submission. |
@@ -36,7 +36,7 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `submitters[].order` | `integer` | no | The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array. |
 | `submitters[].require_phone_2fa` | `boolean` | no | Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents. Default: `false` |
 | `submitters[].require_email_2fa` | `boolean` | no | Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents. Default: `false` |
-| `submitters[].message` | `object` | no |  |
+| `submitters[].message` | `object` | no | - |
 | `submitters[].message.subject` | `string` | no | Custom signature request email subject for the submitter. |
 | `submitters[].message.body` | `string` | no | Custom signature request email body for the submitter. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
 | `submitters[].fields` | `array[]` | no | A list of configurations for template document form fields. |
@@ -46,10 +46,8 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `submitters[].fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `submitters[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `submitters[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `submitters[].fields[].validation` | `object` | no |  |
-
-| `submitters[].fields[].preferences` | `object` | no |  |
-
+| `submitters[].fields[].validation` | `object` | no | - |
+| `submitters[].fields[].preferences` | `object` | no | - |
 | `submitters[].roles` | `array[]` | no | A list of roles for the submitter. Use this param to merge multiple roles into one submitter. |
 
 ## Code Examples

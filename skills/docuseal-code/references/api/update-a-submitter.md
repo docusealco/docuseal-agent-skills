@@ -27,7 +27,7 @@ The API endpoint allows you to update submitter details, pre-fill or update fiel
 | `completed_redirect_url` | `string` | no | Submitter specific URL to redirect to after the submission completion. |
 | `require_phone_2fa` | `boolean` | no | Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents. Default: `false` |
 | `require_email_2fa` | `boolean` | no | Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents. Default: `false` |
-| `message` | `object` | no |  |
+| `message` | `object` | no | - |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
 | `fields` | `array[]` | no | A list of configurations for template document form fields. |
@@ -35,13 +35,13 @@ The API endpoint allows you to update submitter details, pre-fill or update fiel
 | `fields[].default_value` | `string / number / boolean / array` | no | Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields. Example: `Acme` |
 | `fields[].readonly` | `boolean` | no | Set `true` to make it impossible for the submitter to edit predefined field value. Default: `false` |
 | `fields[].required` | `boolean` | no | Set `true` to make the field required. |
-| `fields[].validation` | `object` | no |  |
+| `fields[].validation` | `object` | no | - |
 | `fields[].validation.pattern` | `string` | no | HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification. Example: `[A-Z]{4}` |
 | `fields[].validation.message` | `string` | no | A custom error message to display on validation failure. |
 | `fields[].validation.min` | `number / string` | no | Minimum allowed number value or date depending on field type. |
 | `fields[].validation.max` | `number / string` | no | Maximum allowed number value or date depending on field type. |
 | `fields[].validation.step` | `number` | no | Increment step for number field. Pass 1 to accept only integers, or 0.01 to accept decimal currency. |
-| `fields[].preferences` | `object` | no |  |
+| `fields[].preferences` | `object` | no | - |
 | `fields[].preferences.font_size` | `integer` | no | Font size of the field value in pixels. Example: `12` |
 | `fields[].preferences.font_type` | `string` | no | Font type of the field value. Values: `bold`, `italic`, `bold_italic`. |
 | `fields[].preferences.font` | `string` | no | Font family of the field value. Values: `Times`, `Helvetica`, `Courier`. |
@@ -49,10 +49,7 @@ The API endpoint allows you to update submitter details, pre-fill or update fiel
 | `fields[].preferences.background` | `string` | no | Field box background color. Values: `black`, `white`, `blue`. |
 | `fields[].preferences.align` | `string` | no | Horizontal alignment of the field text value. Default: `left` Values: `left`, `center`, `right`. |
 | `fields[].preferences.valign` | `string` | no | Vertical alignment of the field text value. Default: `center` Values: `top`, `center`, `bottom`. |
-| `fields[].preferences.format` | `string` | no | The data format for different field types.  
-- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).  
-- Signature field: accepts drawn, typed, drawn\_or\_typed (default), or upload.  
-- Number field: accepts currency formats such as usd, eur, gbp. Example: `DD/MM/YYYY` |
+| `fields[].preferences.format` | `string` | no | The data format for different field types. - Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY). - Signature field: accepts drawn, typed, drawn\_or\_typed (default), or upload. - Number field: accepts currency formats such as usd, eur, gbp. Example: `DD/MM/YYYY` |
 | `fields[].preferences.price` | `number` | no | Price value of the payment field. Only for payment fields. Example: `99.99` |
 | `fields[].preferences.currency` | `string` | no | Currency value of the payment field. Only for payment fields. Default: `USD` Values: `USD`, `EUR`, `GBP`, `CAD`, `AUD`. |
 | `fields[].preferences.mask` | `integer / boolean` | no | Set `true` to make sensitive data masked on the document. Default: `false` |

@@ -11,7 +11,7 @@ This API endpoint allows you to create submissions for a document template and s
 | `template_id` | `integer` | yes | The unique identifier of the template. Example: `1000001` |
 | `emails` | `string` | yes | A comma-separated list of email addresses to send the submission to. Example: `hi@docuseal.com, example@docuseal.com` |
 | `send_email` | `boolean` | no | Set `false` to disable signature request emails sending. Default: `true` |
-| `message` | `object` | no |  |
+| `message` | `object` | no | - |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
 

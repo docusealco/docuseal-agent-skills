@@ -59,17 +59,17 @@ export class AppComponent implements OnInit {
 | `withTitle` | `boolean` | no | `true` | Set `false` to remove document title from the builder. |
 | `withSendButton` | `boolean` | no | `true` | Show the "Send" button. |
 | `withUploadButton` | `boolean` | no | `true` | Show the "Upload" button. |
-| `withAddPageButton` | `boolean` | no | `false` | Show the "Add Blank Page" button. |
+| `withAddPageButton` | `boolean` | no | — | Show the "Add Blank Page" button. |
 | `withSignYourselfButton` | `boolean` | no | `true` | Show the "Sign Yourself" button. |
 | `withDocumentsList` | `boolean` | no | `true` | Set `false` to not show the documents list on the left. Documents list is displayed by default. |
-| `withDynamicDocuments` | `boolean` | no | `false` | Set `true` to allow converting DOCX files to editable dynamic documents. |
+| `withDynamicDocuments` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `withFieldsList` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
-| `withFieldsDetection` | `boolean` | no | `false` | Display a button to automatically detect and add fields to the document with AI. |
-| `withFieldPlaceholder` | `boolean` | no | `false` | Set `true` to display field name placeholders instead of the field type icons. |
+| `withFieldsDetection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `withFieldPlaceholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `withSignatureId` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
-| `onlyDefinedFields` | `boolean` | no | `false` | Allow to add fields only defined in the `fields` prop. |
-| `preview` | `boolean` | no | `false` | Show template in preview mode without ability to edit it. |
-| `inputMode` | `boolean` | no | `false` | Open template in data input mode to prefill fields with default values. |
+| `onlyDefinedFields` | `boolean` | no | — | Allow to add fields only defined in the `fields` prop. |
+| `preview` | `boolean` | no | — | Show template in preview mode without ability to edit it. |
+| `inputMode` | `boolean` | no | — | Open template in data input mode to prefill fields with default values. |
 | `autosave` | `boolean` | no | `true` | Set `false` to disable form changes autosaving. |
 | `language` | `string` | no | `en` | UI language, 'en', 'es', 'de', 'fr', 'pt', 'nl', 'he', 'ar' languages are available. |
 | `i18n` | `object` | no | `{}` | Object that contains i18n keys to replace the default UI text with custom values. See [template\_builder/i18n.js](https://github.com/docusealco/docuseal/blob/master/app/javascript/template_builder/i18n.js) for available i18n keys. |

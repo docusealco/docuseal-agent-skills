@@ -21,15 +21,7 @@ This API endpoint allows you to create a one-off submission request document usi
 | `template_ids` | `array[]` | no | An optional array of template IDs to use in the submission along with the provided documents. This can be used to create multi-document submissions when some of the required documents exist within templates. |
 | `documents` | `array[]` | yes | The list of documents built from HTML. Can be used to create a submission with multiple documents. |
 | `documents[].name` | `string` | no | Document name. Random uuid will be assigned when not specified. Example: `Test Document` |
-| `documents[].html` | `string` | yes | HTML document content with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the
-<text-field
-  name="Industry"
-  role="First Party"
-  required="false"
-  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
-</text-field>
-and typesetting industry</p>
-` |
+| `documents[].html` | `string` | yes | HTML document content with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the <text-field name="Industry" role="First Party" required="false" style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px"> </text-field> and typesetting industry</p> ` |
 | `documents[].html_header` | `string` | no | HTML document content of the header to be displayed on every page. |
 | `documents[].html_footer` | `string` | no | HTML document content of the footer to be displayed on every page. |
 | `documents[].size` | `string` | no | Page size. Letter 8.5 x 11 will be assigned when not specified. Example: `A4` Default: `Letter` Values: `Letter`, `Legal`, `Tabloid`, `Ledger`, `A0`, `A1`, `A2`, `A3`, `A4`, `A5`, `A6`. |
@@ -58,12 +50,10 @@ and typesetting industry</p>
 | `submitters[].fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `submitters[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `submitters[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
-| `submitters[].fields[].validation` | `object` | no |  |
-
-| `submitters[].fields[].preferences` | `object` | no |  |
-
+| `submitters[].fields[].validation` | `object` | no | - |
+| `submitters[].fields[].preferences` | `object` | no | - |
 | `submitters[].roles` | `array[]` | no | A list of roles for the submitter. Use this param to merge multiple roles into one submitter. |
-| `message` | `object` | no |  |
+| `message` | `object` | no | - |
 | `message.subject` | `string` | no | Custom signature request email subject. |
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 | `merge_documents` | `boolean` | no | Set `true` to merge the documents into a single PDF file. Default: `false` |

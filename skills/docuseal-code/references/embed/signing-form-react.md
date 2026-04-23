@@ -38,17 +38,17 @@ export function App() {
 | `name` | `string` | no | — | Name of the signer. |
 | `role` | `string` | no | — | The role name or title of the signer. Example: `First Party` |
 | `token` | `object` | no | — | JSON Web Token (JWT HS256) with a payload signed using the API key. **JWT can be generated only on the backend.**. See nested properties below. |
-| `preview` | `boolean` | no | `false` | Show form in preview mode without ability to submit it. Completed documents embedded in preview mode require `token` authentication. |
+| `preview` | `boolean` | no | — | Show form in preview mode without ability to submit it. Completed documents embedded in preview mode require `token` authentication. |
 | `expand` | `boolean` | no | `true` | Expand form on open. |
-| `minimize` | `boolean` | no | `false` | Set to `true` to always minimize form fields. Requires to click on the field to expand the form. |
-| `orderAsOnPage` | `boolean` | no | `false` | Order form fields based on their position on the pages. |
+| `minimize` | `boolean` | no | — | Set to `true` to always minimize form fields. Requires to click on the field to expand the form. |
+| `orderAsOnPage` | `boolean` | no | — | Order form fields based on their position on the pages. |
 | `logo` | `string` | no | — | Public logo image URL to use in the signing form. |
 | `language` | `string` | no | — | UI language: en, es, it, de, fr, nl, pl, uk, cs, pt, he, ar, kr, ja languages are available. By default the form is displayed in the user browser language automatically. |
 | `i18n` | `object` | no | `{}` | Object that contains i18n keys to replace the default UI text with custom values. See [submission\_form/i18n.js](https://github.com/docusealco/docuseal/blob/master/app/javascript/submission_form/i18n.js) for available i18n keys. |
 | `goToLast` | `boolean` | no | `true` | Navigate to the last unfinished step. |
 | `withFieldNames` | `boolean` | no | `true` | Set `false` to hide field name. Hiding field names can be useful for when they are not in the human readable format. Field names are displayed by default. |
-| `withFieldPlaceholder` | `boolean` | no | `false` | Set `true` to display field name placeholders instead of the field type icons. |
-| `skipFields` | `boolean` | no | `false` | Allow skipping form fields. |
+| `withFieldPlaceholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
+| `skipFields` | `boolean` | no | — | Allow skipping form fields. |
 | `autoscrollFields` | `boolean` | no | `true` | Set `false` to disable auto-scrolling to the next document field. |
 | `sendCopyEmail` | `boolean` | no | — | Set `false` to disable automatic email sending with signed documents to the signers. Emails with signed documents are sent to the signers by default. |
 | `backgroundColor` | `string` | no | — | Form background color. Only HEX color codes are supported. Example: `#d9d9d9` |
@@ -56,11 +56,11 @@ export function App() {
 | `completedMessage` | `object` | no | — | Message displayed after the form completion. See nested properties below. |
 | `completedButton` | `object` | no | — | Customizable button after form completion. See nested properties below. |
 | `withTitle` | `boolean` | no | `true` | Set `false` to remove the document title from the form. |
-| `withDecline` | `boolean` | no | `false` | Set `true` to display the decline button in the form. |
+| `withDecline` | `boolean` | no | — | Set `true` to display the decline button in the form. |
 | `withDownloadButton` | `boolean` | no | `true` | Set `false` to remove the signed document download button from the completed form card. |
 | `withSendCopyButton` | `boolean` | no | `true` | Set `false` to remove the signed document send email button from the completed form card. |
-| `withCompleteButton` | `boolean` | no | `false` | Set `true` to display the complete button in the form header. |
-| `onlyRequiredFields` | `boolean` | no | `false` | Set to `true` to display only required fields in the step-by-step form, hiding all optional fields. |
+| `withCompleteButton` | `boolean` | no | — | Set `true` to display the complete button in the form header. |
+| `onlyRequiredFields` | `boolean` | no | — | Set to `true` to display only required fields in the step-by-step form, hiding all optional fields. |
 | `allowToResubmit` | `boolean` | no | `true` | Set `false` to disallow user to re-submit the form. |
 | `allowTypedSignature` | `boolean` | no | `true` | Set `false` to disallow users to type their signature. |
 | `signature` | `string` | no | — | Allows pre-filling signature fields. The value can be a base64 encoded data:image/ string, a public URL to an image, or plain text that will be rendered as a typed signature using a standard font. |

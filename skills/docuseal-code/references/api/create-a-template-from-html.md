@@ -10,15 +10,7 @@ The API endpoint provides the functionality to seamlessly generate a PDF documen
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `html` | `string` | yes | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the
-<text-field
-  name="Industry"
-  role="First Party"
-  required="false"
-  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
-</text-field>
-and typesetting industry</p>
-` |
+| `html` | `string` | yes | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the <text-field name="Industry" role="First Party" required="false" style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px"> </text-field> and typesetting industry</p> ` |
 | `html_header` | `string` | no | HTML template of the header to be displayed on every page. |
 | `html_footer` | `string` | no | HTML template of the footer to be displayed on every page. |
 | `name` | `string` | no | Template name. Random uuid will be assigned when not specified. Example: `Test Template` |
@@ -27,15 +19,7 @@ and typesetting industry</p>
 | `folder_name` | `string` | no | The folder's name in which the template should be created. |
 | `shared_link` | `boolean` | no | Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template. Default: `true` |
 | `documents` | `array[]` | no | The list of documents built from HTML. Can be used to create a template with multiple documents. Leave `documents` param empty when using a top-level `html` param for a template with a single document. |
-| `documents[].html` | `string` | yes | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the
-<text-field
-  name="Industry"
-  role="First Party"
-  required="false"
-  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
-</text-field>
-and typesetting industry</p>
-` |
+| `documents[].html` | `string` | yes | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the <text-field name="Industry" role="First Party" required="false" style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px"> </text-field> and typesetting industry</p> ` |
 | `documents[].name` | `string` | no | Document name. Random uuid will be assigned when not specified. Example: `Test Document` |
 
 ## Code Examples
