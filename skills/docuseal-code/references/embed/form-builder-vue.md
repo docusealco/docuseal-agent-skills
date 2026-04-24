@@ -53,6 +53,7 @@ export default {
 | `with-send-button` | `boolean` | no | `true` | Show the "Recipients" button. |
 | `roles` | `array` | no | — | Submitter role names to be used by default in the form. |
 | `field-types` | `array` (enum) | no | — | Field type names to be used in the form builder. All field types are used by default. Values: `heading`, `text`, `signature`, `initials`, `date`, `datenow`, `number`, `image`, `checkbox`, `multiple`, `file`, `radio`, `select`, `cells`, `stamp`, `payment`, `phone`, `verification`, `kba`, `strikethrough`. |
+| `date-formats` | `array` | no | — | A list of formats to be used for the date field. Formats may include date ('YYYY', 'MM', 'DD'), time ('HH', 'hh', 'mm', 'ss', 'A') and timezone ('z') parts. The first format in the list is used as the default. Example: `["MM/DD/YYYY", "YYYY-MM-DD HH:mm:ss z"]` |
 | `draw-field-type` | `string` | no | `text` | Field type to be used by default with the field drawing tool. Example: `signature` |
 | `fields` | `array` | no | — | An array of default custom field properties with `name` to be added to the document. See nested properties below. |
 | `submitters` | `array` | no | — | An array of default submitters with `role` name to be added to the document. See nested properties below. |
@@ -66,6 +67,7 @@ export default {
 | `with-dynamic-documents` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `with-fields-list` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
 | `with-fields-detection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `with-custom-fields-tab` | `boolean` | no | — | Set `true` to display a separate "Custom" fields tab in the fields list. Custom fields can be configured using the `:fields` or `:required-fields` prop. |
 | `with-field-placeholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `with-signature-id` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
 | `autosave` | `boolean` | no | `true` | Set `false` to disable form changes autosaving. |

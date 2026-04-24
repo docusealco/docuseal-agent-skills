@@ -323,6 +323,21 @@ Full working dark theme. Covers every overridable selector in `<docuseal-builder
   color: #ffffff;
 }
 
+/* Custom fields tab displayed when with-custom-fields-tab parameter is enabled */
+.custom-fields-tabs {
+  background-color: #364153;
+}
+
+.custom-fields-tab {
+  color: #ffffff;
+  border: 0;
+}
+
+.custom-fields-tab.tab-active {
+  background-color: #700DE7;
+  color: #ffffff;
+}
+
 /* Grid of fields available for adding or dragging into the template */
 .fields-grid {
   background-color: #101828;

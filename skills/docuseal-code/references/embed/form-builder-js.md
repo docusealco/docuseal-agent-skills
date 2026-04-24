@@ -34,6 +34,7 @@ This component allows you to seamlessly integrate an entire document creation an
 | `data-submitters` | `array` | no | — | A list of default submitters with `role` name to be added to the document. Should contain an array of field properties as a JSON encoded string. Example: `[{ "email": "example@company.com", "name": "John Doe", "phone": "+1234567890", "role": "Customer" }]` See nested properties below. |
 | `data-required-fields` | `array` | no | — | A list of required default custom fields with `name` that should be added to the document. Should contain an array of field properties as a JSON encoded string. Example: `[{ "name": "FIELD_1", "type": "date", "role": "Customer", "default_value": "2021-01-01" }]` See nested properties below. |
 | `data-field-types` | `string` (enum) | no | — | Comma separated field type names to be used in the form builder. All field types are used by default. Example: `text,date` Values: `heading`, `text`, `signature`, `initials`, `date`, `datenow`, `number`, `image`, `checkbox`, `multiple`, `file`, `radio`, `select`, `cells`, `stamp`, `payment`, `phone`, `verification`, `kba`, `strikethrough`. |
+| `data-date-formats` | `string` | no | — | Comma separated list of formats to be used for the date field. Formats may include date ('YYYY', 'MM', 'DD'), time ('HH', 'hh', 'mm', 'ss', 'A') and timezone ('z') parts. The first format in the list is used as the default. Example: `MM/DD/YYYY,YYYY-MM-DD HH:mm:ss z` |
 | `data-draw-field-type` | `string` | no | `text` | Field type to be used by default with the field drawing tool. Example: `signature` |
 | `data-custom-button-title` | `string` | no | — | Custom button title. This button will be displayed on the top right corner of the form builder. |
 | `data-custom-button-url` | `string` | no | — | Custom button URL. Only absolute URLs are supported. |
@@ -48,6 +49,7 @@ This component allows you to seamlessly integrate an entire document creation an
 | `data-with-dynamic-documents` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `data-with-fields-list` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
 | `data-with-fields-detection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `data-with-custom-fields-tab` | `boolean` | no | — | Set `true` to display a separate "Custom" fields tab in the fields list. Custom fields can be configured using the `data-fields` or `data-required-fields` attribute. |
 | `data-with-field-placeholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `data-with-signature-id` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
 | `data-preview` | `boolean` | no | — | Show template in preview mode without ability to edit it. |

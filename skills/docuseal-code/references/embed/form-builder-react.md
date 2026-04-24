@@ -42,6 +42,7 @@ const App = () => {
 | `customButton` | `object` | no | — | Custom button will be displayed on the top right corner of the form builder. See nested properties below. |
 | `roles` | `array` | no | — | Submitter role names to be used by default in the form. |
 | `fieldTypes` | `array` (enum) | no | — | Field type names to be used in the form builder. All field types are used by default. Values: `heading`, `text`, `signature`, `initials`, `date`, `datenow`, `number`, `image`, `checkbox`, `multiple`, `file`, `radio`, `select`, `cells`, `stamp`, `payment`, `phone`, `verification`, `kba`, `strikethrough`. |
+| `dateFormats` | `array` | no | — | A list of formats to be used for the date field. Formats may include date ('YYYY', 'MM', 'DD'), time ('HH', 'hh', 'mm', 'ss', 'A') and timezone ('z') parts. The first format in the list is used as the default. Example: `["MM/DD/YYYY", "YYYY-MM-DD HH:mm:ss z"]` |
 | `drawFieldType` | `string` | no | `text` | Field type to be used by default with the field drawing tool. Example: `signature` |
 | `fields` | `array` | no | — | An array of default custom field properties with `name` to be added to the document. See nested properties below. |
 | `submitters` | `array` | no | — | An array of default submitters with `role` name to be added to the document. See nested properties below. |
@@ -56,6 +57,7 @@ const App = () => {
 | `withDynamicDocuments` | `boolean` | no | — | Set `true` to allow converting DOCX files to editable dynamic documents. |
 | `withFieldsList` | `boolean` | no | `true` | Set `false` to not show the fields list on the right. Fields list is displayed by default. |
 | `withFieldsDetection` | `boolean` | no | — | Display a button to automatically detect and add fields to the document with AI. |
+| `withCustomFieldsTab` | `boolean` | no | — | Set `true` to display a separate "Custom" fields tab in the fields list. Custom fields can be configured using the `fields` or `requiredFields` prop. |
 | `withFieldPlaceholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `withSignatureId` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
 | `onlyDefinedFields` | `boolean` | no | — | Allow to add fields only defined in the `fields` prop. |
