@@ -32,7 +32,7 @@ Platform-specific manifests:
 
 ## Prerequisites (docuseal-cli)
 
-1. Install the [DocuSeal CLI](https://github.com/docuseal/docuseal-cli): `npm install -g docuseal`
+1. Install the [DocuSeal CLI](https://github.com/docusealco/docuseal-cli): `npm install -g docuseal`
 2. Set your API key:
 ```bash
 export DOCUSEAL_API_KEY="your-api-key"       # Required. Get yours at https://console.docuseal.com/api
