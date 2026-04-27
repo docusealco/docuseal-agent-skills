@@ -24,6 +24,8 @@ The main section of the Template Builder contains all the elements required for 
 - `.field-remove-button`
 - `.fields-grid`
 - `.fields-grid-item`
+- `.custom-fields-tabs`
+- `.custom-fields-tab`
 - `.draw-field-container`
 - `.roles-dropdown-label-mobile`
 - `.draw-field-container-mobile`
@@ -385,6 +387,21 @@ export function App() {
   border-radius: 0.25rem;
   background-color: #1E2839 !important;
   border: none;
+  color: #ffffff;
+}
+
+/* Custom fields tab displayed when with-custom-fields-tab parameter is enabled */
+.custom-fields-tabs {
+  background-color: #364153;
+}
+
+.custom-fields-tab {
+  color: #ffffff;
+  border: 0;
+}
+
+.custom-fields-tab.tab-active {
+  background-color: #700DE7;
   color: #ffffff;
 }
 
