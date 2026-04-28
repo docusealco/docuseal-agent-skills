@@ -34,7 +34,7 @@ This component enables seamless integration of a signing form within any section
 | `data-email` | `string` | no | — | Email address of the signer. Additional email form step will be displayed if the email attribute is not specified. |
 | `data-name` | `string` | no | — | Name of the signer. |
 | `data-role` | `string` | no | — | The role name or title of the signer. Example: `First Party` |
-| `data-token` | `object` | no | — | JSON Web Token (JWT HS256) with a payload signed using the API key. **JWT can be generated only on the backend.**. See nested properties below. |
+| `data-token` | `object` | no | — | JSON Web Token (JWT HS256) with a payload signed using the API key. **JWT can be generated only on the backend**. See nested properties below. |
 | `data-preview` | `boolean` | no | — | Show form in preview mode without ability to submit it. Completed documents embedded in preview mode require `data-token` authentication. |
 | `data-expand` | `boolean` | no | `true` | Expand form on open. |
 | `data-minimize` | `boolean` | no | — | Set to `true` to always minimize form fields. Requires to click on the field to expand the form. |
