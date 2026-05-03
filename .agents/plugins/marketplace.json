@@ -5,22 +5,10 @@
   },
   "plugins": [
     {
-      "name": "docuseal-cli",
+      "name": "docuseal",
       "source": {
         "source": "local",
-        "path": "./skills/docuseal-cli"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "docuseal-code",
-      "source": {
-        "source": "local",
-        "path": "./skills/docuseal-code"
+        "path": "./"
       },
       "policy": {
         "installation": "AVAILABLE",

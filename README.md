@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DocuSeal](https://img.shields.io/badge/DocuSeal-CLI-blue)](https://www.docuseal.com)
 
-A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https://www.docuseal.com) e-signature platform -- create templates from PDF/DOCX/HTML, send documents for signing, track submissions, and manage submitters.
+A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https://www.docuseal.com) e-signature platform - create templates from PDF/DOCX/HTML, send documents for signing, track submissions, and manage submitters.
 
 ## Available Skills
 
