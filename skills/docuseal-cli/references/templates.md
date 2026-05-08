@@ -93,7 +93,7 @@ See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax i
 | `documents[N][name]` | Document name |
 | `documents[N][file]` | Local file path or URL |
 | `documents[N][fields][M][name]` | Field name |
-| `documents[N][fields][M][type]` | text, signature, initials, date, number, image, checkbox, multiple, file, radio, select, cells, stamp, payment, phone |
+| `documents[N][fields][M][type]` | text, signature, initials, date, number, image, checkbox, multiple, file, radio, select, cells, stamp, payment, phone, verification, kba |
 | `documents[N][fields][M][role]` | Signer role name |
 | `documents[N][fields][M][required]` | Required (true/false) |
 | `documents[N][fields][M][title]` | Display title |
