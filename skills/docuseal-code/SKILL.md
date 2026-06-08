@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.0"
+  version: "1.0.1"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
 ---
@@ -56,6 +56,8 @@ After loading the main component reference, follow a link from its `## Guides` s
 - EU Cloud / self-hosted `host` configuration — Form Builder → [references/embed/form-builder-hosts.md](references/embed/form-builder-hosts.md)
 - Custom CSS theming — Signing Form (dark theme reference) → [references/embed/signing-form-custom-css.md](references/embed/signing-form-custom-css.md)
 - Custom CSS theming — Form Builder (dark theme reference) → [references/embed/form-builder-custom-css.md](references/embed/form-builder-custom-css.md)
+- Signing Form security recommendations → [references/embed/signing-form-security-recommendations.md](references/embed/signing-form-security-recommendations.md)
+- Form Builder security recommendations → [references/embed/form-builder-security-recommendations.md](references/embed/form-builder-security-recommendations.md)
 
 ### Packages
 
@@ -80,6 +82,9 @@ After loading the main component reference, follow a link from its `## Guides` s
 | 6 | **camelCase props in HTML** | The web component uses `data-*` kebab-case attributes. Only React/Vue/Angular use camelCase props. |
 | 7 | **Expecting a native mobile SDK** | None exists. Embed via WebView — see [signing-form-mobile-integration.md](references/embed/signing-form-mobile-integration.md). |
 | 8 | **Passing `customCss` as a stylesheet link** | `customCss` / `data-custom-css` takes a CSS string, not a URL. See [signing-form-custom-css.md](references/embed/signing-form-custom-css.md) / [form-builder-custom-css.md](references/embed/form-builder-custom-css.md). |
+| 9 | **Embedding signing forms behind enumerable URLs** | DocuSeal slugs are random, but an embedding page like `https://yourapp.com/contracts/123/sign` lets an attacker iterate integer IDs to reach other users' signing forms. Put the DocuSeal slug or a UUID in your URL, or require auth on the embedding page. See [signing-form-security-recommendations.md](references/embed/signing-form-security-recommendations.md). |
+| 10 | **Exposing the Form Builder without auth** | The page that renders `<docuseal-builder>` must be gated by your app's authentication. The JWT-issuing endpoint must verify the requesting user owns the template referenced by `external_id`. Otherwise any logged-in user can edit any template. See [form-builder-security-recommendations.md](references/embed/form-builder-security-recommendations.md). |
+| 11 | **Acting on client-side `completed` events** | Browser events can be forged. Drive state changes from `form.completed` webhooks with HMAC verification, not from `<docuseal-form>` JavaScript callbacks. See [signing-form-security-recommendations.md](references/embed/signing-form-security-recommendations.md). |
 
 ## REST API
 
@@ -172,4 +177,5 @@ Configure webhook URL: https://console.docuseal.com/webhooks
 5. **JWT needed?** Always for Form Builder — load [references/embed/form-builder-jwt-token.md](references/embed/form-builder-jwt-token.md). For Signing Form only when using `data-token` (preview/completed mode) — load [references/embed/signing-form-completed-preview-jwt-token.md](references/embed/signing-form-completed-preview-jwt-token.md).
 6. **Not on `docuseal.com`?** Load [references/embed/signing-form-hosts.md](references/embed/signing-form-hosts.md) or [references/embed/form-builder-hosts.md](references/embed/form-builder-hosts.md) depending on the component.
 7. **Custom theme?** Load [references/embed/signing-form-custom-css.md](references/embed/signing-form-custom-css.md) or [references/embed/form-builder-custom-css.md](references/embed/form-builder-custom-css.md) depending on the component.
-8. **CLI commands?** Load the sibling `docuseal-cli` skill from this same repo.
+8. **Auth, URL handling, webhook verification, or any security-sensitive embedding?** Load [references/embed/signing-form-security-recommendations.md](references/embed/signing-form-security-recommendations.md) or [references/embed/form-builder-security-recommendations.md](references/embed/form-builder-security-recommendations.md) depending on the component.
+9. **CLI commands?** Load the sibling `docuseal-cli` skill from this same repo.

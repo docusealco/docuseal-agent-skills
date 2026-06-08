@@ -118,4 +118,5 @@ Step-by-step walkthroughs. Load individually to keep context small:
 - EU Cloud / self-hosted host config: [signing-form-hosts.md](signing-form-hosts.md)
 - Custom CSS theming: [signing-form-custom-css.md](signing-form-custom-css.md)
 - JWT token generation: [signing-form-completed-preview-jwt-token.md](signing-form-completed-preview-jwt-token.md)
+- Security recommendations: [signing-form-security-recommendations.md](signing-form-security-recommendations.md)
 - Mobile (WebView) embedding: [signing-form-mobile-integration.md](signing-form-mobile-integration.md)

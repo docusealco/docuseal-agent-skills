@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
 | `withCustomFieldsTab` | `boolean` | no | — | Set `true` to display a separate "Custom" fields tab in the fields list. Custom fields can be configured using the `fields` or `requiredFields` prop. |
 | `withFieldPlaceholder` | `boolean` | no | — | Set `true` to display field name placeholders instead of the field type icons. |
 | `withSignatureId` | `boolean` | no | — | Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default. |
+| `withRevisions` | `boolean` | no | — | Set `true` to save revisions and display a dropdown next to the Save button that provides access to the template revisions history. |
 | `onlyDefinedFields` | `boolean` | no | — | Allow to add fields only defined in the `fields` prop. |
 | `preview` | `boolean` | no | — | Show template in preview mode without ability to edit it. |
 | `inputMode` | `boolean` | no | — | Open template in data input mode to prefill fields with default values. |
@@ -187,3 +188,4 @@ Step-by-step walkthroughs. Load individually to keep context small:
 - EU Cloud / self-hosted host config: [form-builder-hosts.md](form-builder-hosts.md)
 - Custom CSS theming: [form-builder-custom-css.md](form-builder-custom-css.md)
 - JWT token generation: [form-builder-jwt-token.md](form-builder-jwt-token.md)
+- Security recommendations: [form-builder-security-recommendations.md](form-builder-security-recommendations.md)
