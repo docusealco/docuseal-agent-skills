@@ -8,7 +8,7 @@ The page that embeds `<docuseal-builder>` must be protected by your application'
 
 - Render the builder only on routes that require a logged-in session.
 - Do not expose it on public or unauthenticated routes.
-- Apply tenant and role checks before serving the page.
+- Apply tenant and role checks before serving the builder.
 
 ## JWT issuance is the authorization checkpoint
 
@@ -26,7 +26,7 @@ See [form-builder-jwt-token.md](form-builder-jwt-token.md) for backend code exam
 
 ## Keep the API key server-side
 
-The JWT signing secret is your DocuSeal API key. Never embed it in browser code, mobile bundles, or public repositories. If it leaks, rotate it at https://console.docuseal.com/api - every previously-issued JWT becomes invalid after rotation.
+The JWT signing secret is your DocuSeal API key. Never embed it in browser code, mobile bundles, or public repositories. If it leaks, rotate it at https://console.docuseal.com/api - every previously issued JWT becomes invalid after rotation.
 
 ## Use `integration_email` per end-user
 
@@ -35,6 +35,14 @@ The JWT signing secret is your DocuSeal API key. Never embed it in browser code,
 - Use a stable, unique `integration_email` per end-user of your application.
 - Never reuse the same `integration_email` across different end-users.
 - When you look up a template server-side before signing the JWT, pair the owning end-user with the `external_id` or `template_id` you place in the payload. A JWT for end-user A must never carry end-user B's template reference.
+
+## Set a token expiration with `exp`
+
+Add an `exp` claim (a Unix timestamp) to the JWT payload so an issued token cannot be used indefinitely. A token that leaks (browser history, logs, a shared screen) stops working once it expires, which bounds the window in which a stolen token can edit the template.
+
+- Set `exp` to a short lifetime that still covers a realistic builder session. Up to 24 hours is a reasonable upper bound; shorter is better.
+- Because you sign a fresh token per builder session, a short `exp` does not disrupt legitimate users.
+- The token expiring does not interrupt an active session that has already loaded; it prevents the same token from being replayed later to open a new one.
 
 ## Issue a fresh token per builder session
 

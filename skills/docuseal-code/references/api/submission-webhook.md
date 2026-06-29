@@ -10,13 +10,15 @@ Get submission creation, completion, expiration, and archiving notifications usi
 ## Event Types
 
 - `submission.created`
+- `submission.completed`
+- `submission.expired`
 - `submission.archived`
 
 ## Payload Properties
 
 | Property | Type | Description |
 |---|---|---|
-| `event_type` | `string` | The event type. Values: `submission.created`, `submission.archived`. |
+| `event_type` | `string` | The event type. Values: `submission.created`, `submission.completed`, `submission.expired`, `submission.archived`. |
 | `timestamp` | `string` | The event timestamp. |
 | `data` | `object` | Submitted data object. |
 
@@ -56,9 +58,6 @@ Get submission creation, completion, expiration, and archiving notifications usi
         "external_id": null,
         "metadata": {},
         "status": "awaiting",
-        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "ip": "156.195.105.196",
-        "decline_reason": null,
         "values": [],
         "documents": [],
         "preferences": {},
