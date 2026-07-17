@@ -83,49 +83,26 @@ $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
 $docuseal->archiveTemplate(1000001);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001"
-
-	req, _ := http.NewRequest("DELETE", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+_, err := ds.ArchiveTemplate(context.Background(), 1000001)
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/1000001");
-var request = new RestRequest("", Method.Delete);
-request.AddHeader("X-Auth-Token", "API_KEY");
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+await client.ArchiveTemplateAsync(1000001);
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.delete("https://api.docuseal.com/templates/1000001")
-  .header("X-Auth-Token", "API_KEY")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+client.archiveTemplate(1000001);
 ```
 
 ## Response Example

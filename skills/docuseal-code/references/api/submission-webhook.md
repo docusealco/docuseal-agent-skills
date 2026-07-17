@@ -20,7 +20,7 @@ Get submission creation, completion, expiration, and archiving notifications usi
 |---|---|---|
 | `event_type` | `string` | The event type. Values: `submission.created`, `submission.completed`, `submission.expired`, `submission.archived`. |
 | `timestamp` | `string` | The event timestamp. |
-| `data` | `object` | Submitted data object. |
+| `data` | `object` | - |
 
 ## Payload Example
 

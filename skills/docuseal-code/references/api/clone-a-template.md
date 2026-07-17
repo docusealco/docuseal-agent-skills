@@ -106,57 +106,33 @@ $docuseal->cloneTemplate(1000001, [
   'name' => 'Cloned Template'
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001/clone"
-
-	payload := strings.NewReader("{\"name\":\"Cloned Template\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.CloneTemplate(context.Background(), 1000001, &docuseal.CloneTemplateParams{
+	Name: "Cloned Template",
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/1000001/clone");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"name\":\"Cloned Template\"}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.CloneTemplateAsync(1000001, new CloneTemplateParams
+{
+    Name = "Cloned Template"
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/templates/1000001/clone")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"name\":\"Cloned Template\"}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.cloneTemplate(1000001, CloneTemplateParams.builder()
+    .name("Cloned Template")
+    .build());
 ```
 
 ## Response Example

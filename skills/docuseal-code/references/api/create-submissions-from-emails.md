@@ -13,7 +13,7 @@ This API endpoint allows you to create submissions for a document template and s
 | `send_email` | `boolean` | no | Set `false` to disable signature request emails sending. Default: `true` |
 | `message` | `object` | no | Custom signature request email message. |
 | `message.subject` | `string` | no | Custom signature request email subject. |
-| `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
+| `message.body` | `string` | no | Custom signature request email body. Can include variables such as {{template.name}}, {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 
 ## Code Examples
 
@@ -108,58 +108,6 @@ $docuseal->createSubmissionFromEmails([
   'template_id' => 1000001,
   'emails' => 'hi@docuseal.com, example@docuseal.com'
 ]);
-```
-### Go
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions/emails"
-
-	payload := strings.NewReader("{\"template_id\":1000001,\"emails\":\"hi@docuseal.com, example@docuseal.com\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-### C#
-
-```csharp
-var client = new RestClient("https://api.docuseal.com/submissions/emails");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"template_id\":1000001,\"emails\":\"hi@docuseal.com, example@docuseal.com\"}", ParameterType.RequestBody);
-var response = client.Execute(request);
-```
-### Java
-
-```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/submissions/emails")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"template_id\":1000001,\"emails\":\"hi@docuseal.com, example@docuseal.com\"}")
-  .asString();
 ```
 
 ## Response Example

@@ -169,189 +169,90 @@ $submission = $docuseal->createSubmission([
 #### Java
 
 ```
-import okhttp3.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.io.IOException;
-
-public class DocusealSubmission {
-
-    private static final String API_KEY = "YOUR_API_KEY";
-
-    public static void main(String[] args) {
-        OkHttpClient client = new OkHttpClient();
-
-        JSONObject data = new JSONObject();
-        data.put("template_id", 1000001);
-        data.put("order", "preserved");
-
-        JSONArray submitters = new JSONArray();
-
-        JSONObject submitter = new JSONObject();
-        submitter.put("email", "john.doe@example.com");
-
-        JSONArray fields = new JSONArray();
-
-        JSONObject firstNameField = new JSONObject();
-        firstNameField.put("name", "First name");
-        firstNameField.put("default_value", "John");
-        firstNameField.put("readonly", true);
-        fields.put(firstNameField);
-
-        JSONObject lastNameField = new JSONObject();
-        lastNameField.put("name", "Last name");
-        lastNameField.put("default_value", "Doe");
-        lastNameField.put("readonly", true);
-        fields.put(lastNameField);
-
-        submitter.put("fields", fields);
-        submitters.put(submitter);
-
-        data.put("submitters", submitters);
-
-        RequestBody body = RequestBody.create(
-                data.toString(),
-                MediaType.parse("application/json")
-        );
-
-        Request request = new Request.Builder()
-                .url("https://api.docuseal.com/submissions")
-                .post(body)
-                .addHeader("X-Auth-Token", API_KEY)
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    JSONArray result = new JSONArray(responseData);
-                    System.out.println(result.getJSONObject(0).getString("slug"));
-                } else {
-                    System.err.println("Error: " + response.code() + " " + response.message());
-                }
-            }
-        });
-    }
-}
+var submission = client.createSubmission(CreateSubmissionParams.builder()
+    .templateId(1000001)
+    .submitters(List.of(
+      CreateSubmissionSubmitterParams.builder()
+        .email("john.doe@example.com")
+        .fields(List.of(
+          CreateSubmissionSubmitterFieldParams.builder()
+            .name("First name")
+            .value("John")
+            .readonly(true)
+            .build(),
+          CreateSubmissionSubmitterFieldParams.builder()
+            .name("Last name")
+            .value("Doe")
+            .readonly(true)
+            .build()))
+        .build()))
+    .order(SubmittersOrder.PRESERVED)
+    .build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
+var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
 {
-    private static readonly string API_KEY = "YOUR_API_KEY";
-
-    static async Task Main(string[] args)
-    {
-        using (var client = new HttpClient())
+    TemplateId = 1000001,
+    Order = SubmittersOrder.Preserved,
+    Submitters = [
+        new CreateSubmissionSubmitterParams
         {
-            var url = "https://api.docuseal.com/submissions";
-
-            var data = new
-            {
-                template_id = 1000001,
-                order = "preserved",
-                submitters = new[]
+            Email = "john.doe@example.com",
+            Fields = [
+                new CreateSubmissionSubmitterFieldParams
                 {
-                    new {
-                        email = "john.doe@example.com",
-                        fields = new[]
-                        {
-                            new { name = "First name", default_value = "John", @readonly = true },
-                            new { name = "Last name", default_value = "Doe", @readonly = true }
-                        }
-                    }
-                }
-            };
-
-            var json = JsonConvert.SerializeObject(data);
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            content.Headers.Add("X-Auth-Token", API_KEY);
-
-            var response = await client.PostAsync(url, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                var result = JArray.Parse(responseString);
-                Console.WriteLine(result[0]["slug"]);
-            }
-            else
-            {
-                Console.WriteLine($"Error: {response.StatusCode}");
-            }
-        }
-    }
-}
+                    Name = "First name",
+                    Value = "John",
+                    Readonly = true
+                },
+                new CreateSubmissionSubmitterFieldParams
+                {
+                    Name = "Last name",
+                    Value = "Doe",
+                    Readonly = true
+                },
+            ]
+        },
+    ]
+});
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "fmt"
-  "log"
-  "github.com/go-resty/resty/v2"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-func main() {
-  client := resty.New()
-
-    body := map[string]interface{}{
-      "template_id": 1000001,
-      "order": "preserved",
-      "submitters": []map[string]interface{}{
-        {
-          "email": "john.doe@example.com",
-          "fields": []map[string]interface{}{
-            {
-              "name": "First name",
-              "default_value": "John",
-              "readonly": true,
-            },
-            {
-              "name": "Last name",
-              "default_value": "Doe",
-              "readonly": true,
-            },
-          },
-        },
-      },
-    }
-
-  resp, err := client.R().
-    SetHeader("X-Auth-Token", "YOUR_API_KEY").
-    SetHeader("Content-Type", "application/json").
-    SetResult([]map[string]interface{}{}).
-    SetBody(body).
-    Post("https://api.docuseal.com/submissions")
-
-  if err != nil {
-    log.Fatalf("Request failed: %v", err)
-  }
-
-  result := *resp.Result().(*[]map[string]interface{})
-  fmt.Println(result[0]["slug"])
-}
+submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSubmissionParams{
+	TemplateID: 1000001,
+	Order: "preserved",
+	Submitters: []*docuseal.CreateSubmissionSubmitterParams{
+		{
+			Email: "john.doe@example.com",
+			Fields: []*docuseal.CreateSubmissionSubmitterFieldParams{
+				{
+					Name: "First name",
+					Value: "John",
+					Readonly: docuseal.Bool(true),
+				},
+				{
+					Name: "Last name",
+					Value: "Doe",
+					Readonly: docuseal.Bool(true),
+				},
+			},
+		},
+	},
+})
 ```
 
 #### Curl
@@ -510,181 +411,72 @@ $docuseal->updateSubmitter(500001, [
 #### Java
 
 ```
-import okhttp3.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.io.IOException;
-
-public class DocusealSubmitterUpdate {
-
-    private static final String API_KEY = "YOUR_API_KEY";
-
-    public static void main(String[] args) {
-
-        OkHttpClient client = new OkHttpClient();
-
-        JSONObject data = new JSONObject();
-        data.put("completed", true);
-
-        JSONArray fields = new JSONArray();
-
-        JSONObject fullNameField = new JSONObject();
-        fullNameField.put("name", "Full Name");
-        fullNameField.put("default_value", "John Doe");
-        fullNameField.put("readonly", true);
-        fields.put(fullNameField);
-
-        JSONObject signatureField = new JSONObject();
-        signatureField.put("name", "Signature");
-        signatureField.put("default_value", "https://your-company.com/signature.png");
-        signatureField.put("readonly", true);
-        fields.put(signatureField);
-
-        data.put("fields", fields);
-
-        RequestBody body = RequestBody.create(
-                data.toString(),
-                MediaType.parse("application/json")
-        );
-
-        Request request = new Request.Builder()
-                .url("https://api.docuseal.com/submitters/500001")
-                .put(body)
-                .addHeader("X-Auth-Token", API_KEY)
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    System.out.println("Response: " + responseData);
-                } else {
-                    System.err.println("Error: " + response.code() + " " + response.message());
-                }
-            }
-        });
-    }
-}
+var submitter = client.updateSubmitter(500001, UpdateSubmitterParams.builder()
+    .completed(true)
+    .fields(List.of(
+      UpdateSubmitterFieldParams.builder()
+        .name("Full Name")
+        .value("John Doe")
+        .readonly(true)
+        .build(),
+      UpdateSubmitterFieldParams.builder()
+        .name("Signature")
+        .value("https://your-company.com/signature.png")
+        .readonly(true)
+        .build()))
+    .build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
+var submitter = await client.UpdateSubmitterAsync(500001, new UpdateSubmitterParams
 {
-    private static readonly string API_KEY = "YOUR_API_KEY";
-
-    static async Task Main(string[] args)
-    {
-        using (var client = new HttpClient())
+    Completed = true,
+    Fields = [
+        new UpdateSubmitterFieldParams
         {
-            var url = "https://api.docuseal.com/submitters/500001";
-
-            var data = new
-            {
-                completed = true,
-                fields = new[]
-                {
-                    new
-                    {
-                        name = "Full Name",
-                        default_value = "John Doe",
-                        @readonly = true
-                    },
-                    new
-                    {
-                        name = "Signature",
-                        default_value = "https://your-company.com/signature.png",
-                        @readonly = true
-                    }
-                }
-            };
-
-            var json = JsonConvert.SerializeObject(data);
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            var request = new HttpRequestMessage(HttpMethod.Put, url)
-            {
-                Content = content
-            };
-
-            request.Headers.Add("X-Auth-Token", API_KEY);
-
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                var result = JObject.Parse(responseString);
-                Console.WriteLine("Response: " + result.ToString());
-            }
-            else
-            {
-                Console.WriteLine($"Error: {response.StatusCode} {response.ReasonPhrase}");
-            }
-        }
-    }
-}
+            Name = "Full Name",
+            Value = "John Doe",
+            Readonly = true
+        },
+        new UpdateSubmitterFieldParams
+        {
+            Name = "Signature",
+            Value = "https://your-company.com/signature.png",
+            Readonly = true
+        },
+    ]
+});
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "fmt"
-  "log"
-  "github.com/go-resty/resty/v2"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-func main() {
-  client := resty.New()
-
-  body := map[string]interface{}{
-    "completed": true,
-    "fields": []map[string]interface{}{
-      {
-        "name": "Full Name",
-        "default_value": "John Doe",
-        "readonly": true,
-      },
-      {
-        "name": "Signature",
-        "default_value": "https://your-company.com/signature.png",
-        "readonly": true,
-      },
-    },
-  }
-
-  resp, err := client.R().
-    SetHeader("X-Auth-Token", "YOUR_API_KEY").
-    SetHeader("Content-Type", "application/json").
-    SetBody(body).
-    Put("https://api.docuseal.com/submitters/500001")
-
-  if err != nil {
-    log.Fatalf("Request failed: %v", err)
-  }
-
-  fmt.Println("Response:", resp.String())
-}
+submitter, err := ds.UpdateSubmitter(context.Background(), 500001, &docuseal.UpdateSubmitterParams{
+	Completed: docuseal.Bool(true),
+	Fields: []*docuseal.UpdateSubmitterFieldParams{
+		{
+			Name: "Full Name",
+			Value: "John Doe",
+			Readonly: docuseal.Bool(true),
+		},
+		{
+			Name: "Signature",
+			Value: "https://your-company.com/signature.png",
+			Readonly: docuseal.Bool(true),
+		},
+	},
+})
 ```
 
 #### Curl

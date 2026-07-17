@@ -247,57 +247,93 @@ $docuseal->createTemplateFromPdf([
   ]
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/pdf"
-
-	payload := strings.NewReader("{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.CreateTemplateFromPdf(context.Background(), &docuseal.CreateTemplateFromPdfParams{
+	Name: "Test PDF",
+	Documents: []*docuseal.CreateTemplateFromPdfDocumentParams{
+		{
+			Name: "string",
+			File: "base64",
+			Fields: []*docuseal.CreateTemplateDocumentFieldParams{
+				{
+					Name: "string",
+					Areas: []*docuseal.CreateTemplateDocumentFieldAreaParams{
+						{
+							X: 0,
+							Y: 0,
+							W: 0,
+							H: 0,
+							Page: 1,
+						},
+					},
+				},
+			},
+		},
+	},
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/pdf");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.CreateTemplateFromPdfAsync(new CreateTemplateFromPdfParams
+{
+    Name = "Test PDF",
+    Documents = [
+        new CreateTemplateFromPdfDocumentParams
+        {
+            Name = "string",
+            File = "base64",
+            Fields = [
+                new CreateTemplateDocumentFieldParams
+                {
+                    Name = "string",
+                    Areas = [
+                        new CreateTemplateDocumentFieldAreaParams
+                        {
+                            X = 0,
+                            Y = 0,
+                            W = 0,
+                            H = 0,
+                            Page = 1
+                        },
+                    ]
+                },
+            ]
+        },
+    ]
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/templates/pdf")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"name\":\"Test PDF\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\",\"fields\":[{\"name\":\"string\",\"areas\":[{\"x\":0,\"y\":0,\"w\":0,\"h\":0,\"page\":1}]}]}]}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.createTemplateFromPdf(CreateTemplateFromPdfParams.builder()
+    .documents(List.of(
+      CreateTemplateFromPdfDocumentParams.builder()
+        .name("string")
+        .file("base64")
+        .fields(List.of(
+          CreateTemplateDocumentFieldParams.builder()
+            .name("string")
+            .areas(List.of(
+              CreateTemplateDocumentFieldAreaParams.builder()
+                .x(0)
+                .y(0)
+                .w(0)
+                .h(0)
+                .page(1)
+                .build()))
+            .build()))
+        .build()))
+    .name("Test PDF")
+    .build());
 ```
 
 ## Response Example

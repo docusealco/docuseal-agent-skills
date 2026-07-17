@@ -212,193 +212,76 @@ $submission = $docuseal->createSubmissionFromPdf([
 #### Java
 
 ```
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Base64;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+var fileData = Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("path/to/your/file.pdf")));
 
-public class CreateSubmissionFromPdf {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String filePath = "path/to/your/file.pdf";
-        String apiKey = "API_KEY";
-        String apiUrl = "https://api.docuseal.com/submissions/pdf";
-
-        byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
-        String encodedFile = Base64.getEncoder().encodeToString(fileBytes);
-
-        String jsonBody = String.format("""
-        {
-            "name": "Rental Agreement",
-            "documents": [
-                {
-                    "name": "rental-agreement",
-                    "file": "%s"
-                }
-            ],
-            "submitters": [
-                {
-                    "role": "First Party",
-                    "email": "john.doe@example.com"
-                }
-            ]
-        }
-        """, encodedFile);
-
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(apiUrl))
-            .header("X-Auth-Token", apiKey)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-            .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-    }
-}
+var submission = client.createSubmissionFromPdf(CreateSubmissionFromPdfParams.builder()
+    .documents(List.of(
+      CreateSubmissionFromPdfDocumentParams.builder()
+        .name("rental-agreement")
+        .file(fileData)
+        .build()))
+    .submitters(List.of(
+      CreateSubmissionSubmitterParams.builder()
+        .email("john.doe@example.com")
+        .role("First Party")
+        .build()))
+    .name("Rental Agreement")
+    .build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
+var fileData = Convert.ToBase64String(File.ReadAllBytes("path/to/your/file.pdf"));
+
+var submission = await client.CreateSubmissionFromPdfAsync(new CreateSubmissionFromPdfParams
 {
-    static async Task Main(string[] args)
-    {
-        string filePath = "path/to/your/file.pdf";
-        string apiKey = "API_KEY";
-        string apiUrl = "https://api.docuseal.com/submissions/pdf";
-
-        byte[] fileBytes = File.ReadAllBytes(filePath);
-        string base64File = Convert.ToBase64String(fileBytes);
-
-        var json = $@"
-        {{
-            ""name"": ""Rental Agreement"",
-            ""documents"": [
-                {{
-                    ""name"": ""rental-agreement"",
-                    ""file"": ""{base64File}""
-                }}
-            ],
-            ""submitters"": [
-                {{
-                    ""role"": ""First Party"",
-                    ""email"": ""john.doe@example.com""
-                }}
-            ]
-        }}";
-
-        using var client = new HttpClient();
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        client.DefaultRequestHeaders.Add("X-Auth-Token", apiKey);
-
-        var response = await client.PostAsync(apiUrl, content);
-
-        string responseBody = await response.Content.ReadAsStringAsync();
-    }
-}
+    Name = "Rental Agreement",
+    Documents = [
+        new CreateSubmissionFromPdfDocumentParams
+        {
+            Name = "rental-agreement",
+            File = fileData
+        },
+    ],
+    Submitters = [
+        new CreateSubmissionSubmitterParams
+        {
+            Role = "First Party",
+            Email = "john.doe@example.com"
+        },
+    ]
+});
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "bytes"
-  "encoding/base64"
-  "encoding/json"
-  "fmt"
-  "io/ioutil"
-  "net/http"
-  "os"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-type Document struct {
-  Name string `json:"name"`
-  File string `json:"file"`
-}
+fileBytes, _ := os.ReadFile("path/to/your/file.pdf")
+fileData := base64.StdEncoding.EncodeToString(fileBytes)
 
-type Submitter struct {
-  Role string `json:"role"`
-  Email string `json:"email"`
-}
-
-type Payload struct {
-  Name string `json:"name"`
-  Documents []Document `json:"documents"`
-  Submitters []Submitter `json:"submitters"`
-}
-
-func main() {
-  filePath := "path/to/your/file.pdf"
-  apiKey := "API_KEY"
-  apiURL := "https://api.docuseal.com/submissions/pdf"
-
-  fileBytes, err := ioutil.ReadFile(filePath)
-  if err != nil {
-    fmt.Println("Error reading file:", err)
-    return
-  }
-
-  encoded := base64.StdEncoding.EncodeToString(fileBytes)
-
-  payload := Payload{
-    Name: "Rental Agreement",
-    Documents: []Document{
-      {
-        Name: "rental-agreement",
-        File: encoded,
-      },
-    },
-    Submitters: []Submitter{
-      {
-        Role: "First Party",
-        Email: "john.doe@example.com",
-      },
-    },
-  }
-
-  jsonData, err := json.Marshal(payload)
-  if err != nil {
-    fmt.Println("Error marshaling JSON:", err)
-    return
-  }
-
-  req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(jsonData))
-  if err != nil {
-    fmt.Println("Error creating request:", err)
-    return
-  }
-
-  req.Header.Set("Content-Type", "application/json")
-  req.Header.Set("X-Auth-Token", apiKey)
-
-  client := &http.Client{}
-  resp, err := client.Do(req)
-  if err != nil {
-    fmt.Println("Error sending request:", err)
-    return
-  }
-  defer resp.Body.Close()
-
-  respBody, err := ioutil.ReadAll(resp.Body)
-  if err != nil {
-    fmt.Println("Error reading response:", err)
-    return
-  }
-}
+submission, err := ds.CreateSubmissionFromPdf(context.Background(), &docuseal.CreateSubmissionFromPdfParams{
+	Name: "Rental Agreement",
+	Documents: []*docuseal.CreateSubmissionFromPdfDocumentParams{
+		{
+			Name: "rental-agreement",
+			File: fileData,
+		},
+	},
+	Submitters: []*docuseal.CreateSubmissionSubmitterParams{
+		{
+			Role: "First Party",
+			Email: "john.doe@example.com",
+		},
+	},
+})
 ```

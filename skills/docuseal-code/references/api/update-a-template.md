@@ -113,57 +113,36 @@ $docuseal->updateTemplate(1000001, [
   'folder_name' => 'New Folder'
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001"
-
-	payload := strings.NewReader("{\"name\":\"New Document Name\",\"folder_name\":\"New Folder\"}")
-
-	req, _ := http.NewRequest("PUT", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.UpdateTemplate(context.Background(), 1000001, &docuseal.UpdateTemplateParams{
+	Name: "New Document Name",
+	FolderName: "New Folder",
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/1000001");
-var request = new RestRequest("", Method.Put);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"name\":\"New Document Name\",\"folder_name\":\"New Folder\"}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.UpdateTemplateAsync(1000001, new UpdateTemplateParams
+{
+    Name = "New Document Name",
+    FolderName = "New Folder"
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.put("https://api.docuseal.com/templates/1000001")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"name\":\"New Document Name\",\"folder_name\":\"New Folder\"}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.updateTemplate(1000001, UpdateTemplateParams.builder()
+    .name("New Document Name")
+    .folderName("New Folder")
+    .build());
 ```
 
 ## Response Example

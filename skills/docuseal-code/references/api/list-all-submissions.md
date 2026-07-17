@@ -91,49 +91,26 @@ $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
 $docuseal->listSubmissions(['limit' => 10]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+submissions, err := ds.GetSubmissions(context.Background(), &docuseal.GetSubmissionsParams{Limit: docuseal.Int(10)})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/submissions");
-var request = new RestRequest("", Method.Get);
-request.AddHeader("X-Auth-Token", "API_KEY");
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var submissions = await client.GetSubmissionsAsync(new GetSubmissionsParams { Limit = 10 });
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.docuseal.com/submissions")
-  .header("X-Auth-Token", "API_KEY")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var submissions = client.getSubmissions(GetSubmissionsParams.builder().limit(10).build());
 ```
 
 ## Response Example

@@ -12,7 +12,8 @@ The API endpoint provides the ability to retrieve a list of available document t
 | `slug` | query | `string` | no | Filter templates by unique slug. |
 | `external_id` | query | `string` | no | The unique application-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external ID. |
 | `folder` | query | `string` | no | Filter templates by folder name. |
-| `archived` | query | `boolean` | no | Get only archived templates instead of active ones. |
+| `archived` | query | `boolean` | no | List only archived templates instead of active ones. |
+| `shared` | query | `boolean` | no | List templates shared with test mode. |
 | `limit` | query | `integer` | no | The number of templates to return. Default value is 10. Maximum value is 100. |
 | `after` | query | `integer` | no | The unique identifier of the template to start the list from. It allows you to receive only templates with an ID greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates. |
 | `before` | query | `integer` | no | The unique identifier of the template to end the list with. It allows you to receive only templates with an ID less than the specified value. |
@@ -90,49 +91,26 @@ $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
 $docuseal->listTemplates(['limit' => 10]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+templates, err := ds.GetTemplates(context.Background(), &docuseal.GetTemplatesParams{Limit: docuseal.Int(10)})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates");
-var request = new RestRequest("", Method.Get);
-request.AddHeader("X-Auth-Token", "API_KEY");
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var templates = await client.GetTemplatesAsync(new GetTemplatesParams { Limit = 10 });
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.docuseal.com/templates")
-  .header("X-Auth-Token", "API_KEY")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var templates = client.getTemplates(GetTemplatesParams.builder().limit(10).build());
 ```
 
 ## Response Example

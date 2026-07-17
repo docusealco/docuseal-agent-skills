@@ -377,280 +377,113 @@ $submission = $docuseal->createSubmissionFromDocx([
 #### Java
 
 ```
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Base64;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+var fileData = Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("path/to/your/file.docx")));
 
-public class CreateSubmissionFromDocx {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String filePath = "path/to/your/file.docx";
-        String apiKey = "API_KEY";
-        String apiUrl = "https://api.docuseal.com/submissions/docx";
-
-        byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
-        String encodedFile = Base64.getEncoder().encodeToString(fileBytes);
-
-        String jsonBody = String.format("""
-        {
-            "name": "Rental Agreement",
-            "variables": {
-                "signer_name": "John Doe",
-                "is_vip": true,
-                "items": ["Item A", "Item B", "Item C"],
-                "table_rows": [
-                    { "number": "1", "name": "Item A", "quantity": "2", "price": "50.00", "total": "100.00"},
-                    { "number": "2", "name": "Item B", "quantity": "1", "price": "150.00", "total": "150.00"}
-                ],
-                "html_paragraph": "<p><b style=\"color: #1976D2; text-decoration: underline;\">50 Dell XPS 15 Laptops</b> Monitors</p>"
-            },
-            "documents": [
-                {
-                    "name": "rental-agreement",
-                    "file": "%s"
-                }
-            ],
-            "submitters": [
-                {
-                    "role": "First Party",
-                    "email": "john.doe@example.com"
-                }
-            ]
-        }
-        """, encodedFile);
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(apiUrl))
-                .header("X-Auth-Token", apiKey)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            System.out.println("Response Status: " + response.statusCode());
-            System.out.println("Response Body: " + response.body());
-
-        } catch (Exception e) {
-            System.err.println("Error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-}
+var submission = client.createSubmissionFromDocx(CreateSubmissionFromDocxParams.builder()
+    .documents(List.of(
+      CreateSubmissionFromDocxDocumentParams.builder()
+        .name("rental-agreement")
+        .file(fileData)
+        .build()))
+    .submitters(List.of(
+      CreateSubmissionSubmitterParams.builder()
+        .email("john.doe@example.com")
+        .role("First Party")
+        .build()))
+    .name("Rental Agreement")
+    .variables(Map.<String, Object>of(
+      "signer_name", "John Doe",
+      "is_vip", true,
+      "items", List.of("Item A", "Item B", "Item C"),
+      "table_rows", List.of(
+        Map.of("number", "1", "name", "Item A", "quantity", "2", "price", "50.00", "total", "100.00"),
+        Map.of("number", "2", "name", "Item B", "quantity", "1", "price", "150.00", "total", "150.00")),
+      "html_paragraph", """
+<p><b style="color: #1976D2; text-decoration: underline;">50 Dell XPS 15 Laptops</b> Monitors</p>"""))
+    .build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
+var fileData = Convert.ToBase64String(File.ReadAllBytes("path/to/your/file.docx"));
+
+var submission = await client.CreateSubmissionFromDocxAsync(new CreateSubmissionFromDocxParams
 {
-    static async Task Main(string[] args)
+    Name = "Rental Agreement",
+    Variables = new Dictionary<string, object?>
     {
-        string filePath = "path/to/your/file.docx";
-        string apiKey = "API_KEY";
-        string apiUrl = "https://api.docuseal.com/submissions/docx";
-
-        byte[] fileBytes = File.ReadAllBytes(filePath);
-        string base64File = Convert.ToBase64String(fileBytes);
-
-        var json = $@"
-        {{
-            ""name"": ""Rental Agreement"",
-            ""variables"": {{
-                ""signer_name"": ""John Doe"",
-                ""is_vip"": true,
-                ""items"": [""Item A"", ""Item B"", ""Item C""],
-                ""table_rows"": [
-                    {{ ""number"": ""1"", ""name"": ""Item A"", ""quantity"": ""2"", ""price"": ""50.00"", ""total"": ""100.00""}},
-                    {{ ""number"": ""2"", ""name"": ""Item B"", ""quantity"": ""1"", ""price"": ""150.00"", ""total"": ""150.00""}}
-                ],
-                ""html_paragraph"": ""<p><b style=\"color: #1976D2; text-decoration: underline;\">50 Dell XPS 15 Laptops</b> Monitors</p>""
-            }},
-            ""documents"": [
-                {{
-                    ""name"": ""rental-agreement"",
-                    ""file"": ""{base64File}""
-                }}
-            ],
-            ""submitters"": [
-                {{
-                    ""role"": ""First Party"",
-                    ""email"": ""john.doe@example.com""
-                }}
-            ]
-        }}";
-
-        try
+        ["signer_name"] = "John Doe",
+        ["is_vip"] = true,
+        ["items"] = new[] { "Item A", "Item B", "Item C" },
+        ["table_rows"] = new[]
         {
-            using var client = new HttpClient();
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            client.DefaultRequestHeaders.Add("X-Auth-Token", apiKey);
-
-            var response = await client.PostAsync(apiUrl, content);
-
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            Console.WriteLine($"Response Status: {response.StatusCode}");
-            Console.WriteLine($"Response Body: {responseBody}");
-        }
-        catch (Exception ex)
+            new Dictionary<string, string>
+            {
+                ["number"] = "1", ["name"] = "Item A", ["quantity"] = "2", ["price"] = "50.00", ["total"] = "100.00"
+            },
+            new Dictionary<string, string>
+            {
+                ["number"] = "2", ["name"] = "Item B", ["quantity"] = "1", ["price"] = "150.00", ["total"] = "150.00"
+            },
+        },
+        ["html_paragraph"] = """<p><b style="color: #1976D2; text-decoration: underline;">50 Dell XPS 15 Laptops</b> Monitors</p>"""
+    },
+    Documents = [
+        new CreateSubmissionFromDocxDocumentParams
         {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
-}
+            Name = "rental-agreement",
+            File = fileData
+        },
+    ],
+    Submitters = [
+        new CreateSubmissionSubmitterParams
+        {
+            Role = "First Party",
+            Email = "john.doe@example.com"
+        },
+    ]
+});
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "bytes"
-  "encoding/base64"
-  "encoding/json"
-  "fmt"
-  "io/ioutil"
-  "net/http"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-type Product struct {
-  Name string `json:"name"`
-  Quantity int `json:"quantity"`
-}
+fileBytes, _ := os.ReadFile("path/to/your/file.docx")
+fileData := base64.StdEncoding.EncodeToString(fileBytes)
 
-type TableRow struct {
-  Number string `json:"number"`
-  Name string `json:"name"`
-  Quantity string `json:"quantity"`
-  Price string `json:"price"`
-  Total string `json:"total"`
-}
-
-type Variables struct {
-  SignerName string `json:"signer_name"`
-  IsVIP bool `json:"is_vip"`
-  Items []string `json:"items"`
-  TableRows []TableRow `json:"table_rows"`
-  HTMLParagraph string `json:"html_paragraph"`
-}
-
-type Document struct {
-  Name string `json:"name"`
-  File string `json:"file"`
-}
-
-type Submitter struct {
-  Role string `json:"role"`
-  Email string `json:"email"`
-}
-
-type Payload struct {
-  Name string `json:"name"`
-  Variables Variables `json:"variables"`
-  Documents []Document `json:"documents"`
-  Submitters []Submitter `json:"submitters"`
-}
-
-func main() {
-  filePath := "path/to/your/file.docx"
-  apiKey := "API_KEY"
-  apiURL := "https://api.docuseal.com/submissions/docx"
-
-  fileBytes, err := ioutil.ReadFile(filePath)
-  if err != nil {
-    fmt.Println("Error reading file:", err)
-    return
-  }
-
-  encoded := base64.StdEncoding.EncodeToString(fileBytes)
-
-  payload := Payload{
-    Name: "Rental Agreement",
-    Variables: Variables{
-      SignerName: "John Doe",
-      IsVIP: true,
-      Items: []string{"Item A", "Item B", "Item C"},
-      TableRows: []TableRow{
-        {
-          Number: "1",
-          Name: "Item A",
-          Quantity: "2",
-          Price: "50.00",
-          Total: "100.00",
-        },
-        {
-          Number: "2",
-          Name: "Item B",
-          Quantity: "1",
-          Price: "150.00",
-          Total: "150.00",
-        },
-      },
-      HTMLParagraph: "<p><b style="color: #1976D2; text-decoration: underline;">50 Dell XPS 15 Laptops</b> Monitors</p>",
-    },
-    Documents: []Document{
-      {
-        Name: "rental-agreement",
-        File: encoded,
-      },
-    },
-    Submitters: []Submitter{
-      {
-        Role: "First Party",
-        Email: "john.doe@example.com",
-      },
-    },
-  }
-
-  jsonData, err := json.Marshal(payload)
-  if err != nil {
-    fmt.Println("Error marshaling JSON:", err)
-    return
-  }
-
-  req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(jsonData))
-  if err != nil {
-    fmt.Println("Error creating request:", err)
-    return
-  }
-
-  req.Header.Set("Content-Type", "application/json")
-  req.Header.Set("X-Auth-Token", apiKey)
-
-  client := &http.Client{}
-  resp, err := client.Do(req)
-  if err != nil {
-    fmt.Println("Error sending request:", err)
-    return
-  }
-  defer resp.Body.Close()
-
-  respBody, err := ioutil.ReadAll(resp.Body)
-  if err != nil {
-    fmt.Println("Error reading response:", err)
-    return
-  }
-
-  fmt.Printf("Response Status: %s
-", resp.Status)
-  fmt.Printf("Response Body: %s
-", string(respBody))
-}
+submission, err := ds.CreateSubmissionFromDocx(context.Background(), &docuseal.CreateSubmissionFromDocxParams{
+	Name: "Rental Agreement",
+	Variables: map[string]any{
+		"signer_name": "John Doe",
+		"is_vip": true,
+		"items": []string{"Item A", "Item B", "Item C"},
+		"table_rows": []map[string]string{
+			{"number": "1", "name": "Item A", "quantity": "2", "price": "50.00", "total": "100.00"},
+			{"number": "2", "name": "Item B", "quantity": "1", "price": "150.00", "total": "150.00"},
+		},
+		"html_paragraph": `<p><b style="color: #1976D2; text-decoration: underline;">50 Dell XPS 15 Laptops</b> Monitors</p>`,
+	},
+	Documents: []*docuseal.CreateSubmissionFromDocxDocumentParams{
+		{
+			Name: "rental-agreement",
+			File: fileData,
+		},
+	},
+	Submitters: []*docuseal.CreateSubmissionSubmitterParams{
+		{
+			Role: "First Party",
+			Email: "john.doe@example.com",
+		},
+	},
+})
 ```

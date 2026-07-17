@@ -10,7 +10,7 @@ The API endpoint provides the functionality to seamlessly generate a PDF documen
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `html` | `string` | yes | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the <text-field name="Industry" role="First Party" required="false" style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px"> </text-field> and typesetting industry</p> ` |
+| `html` | `string` | no | HTML template with field tags. Example: `<p>Lorem Ipsum is simply dummy text of the <text-field name="Industry" role="First Party" required="false" style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px"> </text-field> and typesetting industry</p> ` |
 | `html_header` | `string` | no | HTML template of the header to be displayed on every page. |
 | `html_footer` | `string` | no | HTML template of the footer to be displayed on every page. |
 | `name` | `string` | no | Template name. Random uuid will be assigned when not specified. Example: `Test Template` |
@@ -165,57 +165,62 @@ and typesetting industry</p>
   'name' => 'Test Template'
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/html"
-
-	payload := strings.NewReader("{\"html\":\"<p>Lorem Ipsum is simply dummy text of the\\n<text-field\\n  name=\\\"Industry\\\"\\n  role=\\\"First Party\\\"\\n  required=\\\"false\\\"\\n  style=\\\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\\\">\\n</text-field>\\nand typesetting industry</p>\\n\",\"name\":\"Test Template\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.CreateTemplateFromHtml(context.Background(), &docuseal.CreateTemplateFromHtmlParams{
+	Html: `<p>Lorem Ipsum is simply dummy text of the
+<text-field
+  name="Industry"
+  role="First Party"
+  required="false"
+  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
+</text-field>
+and typesetting industry</p>
+`,
+	Name: "Test Template",
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/html");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"html\":\"<p>Lorem Ipsum is simply dummy text of the\\n<text-field\\n  name=\\\"Industry\\\"\\n  role=\\\"First Party\\\"\\n  required=\\\"false\\\"\\n  style=\\\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\\\">\\n</text-field>\\nand typesetting industry</p>\\n\",\"name\":\"Test Template\"}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.CreateTemplateFromHtmlAsync(new CreateTemplateFromHtmlParams
+{
+    Html = """
+<p>Lorem Ipsum is simply dummy text of the
+<text-field
+  name="Industry"
+  role="First Party"
+  required="false"
+  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
+</text-field>
+and typesetting industry</p>
+""",
+    Name = "Test Template"
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/templates/html")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"html\":\"<p>Lorem Ipsum is simply dummy text of the\\n<text-field\\n  name=\\\"Industry\\\"\\n  role=\\\"First Party\\\"\\n  required=\\\"false\\\"\\n  style=\\\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\\\">\\n</text-field>\\nand typesetting industry</p>\\n\",\"name\":\"Test Template\"}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.createTemplateFromHtml(CreateTemplateFromHtmlParams.builder()
+    .html("""
+<p>Lorem Ipsum is simply dummy text of the
+<text-field
+  name="Industry"
+  role="First Party"
+  required="false"
+  style="width: 80px; height: 16px; display: inline-block; margin-bottom: -4px">
+</text-field>
+and typesetting industry</p>
+""")
+    .name("Test Template")
+    .build());
 ```
 
 ## Response Example

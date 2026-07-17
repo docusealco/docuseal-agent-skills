@@ -409,187 +409,92 @@ $submission = $docuseal->createSubmissionFromHtml([
 #### Java
 
 ```
-import okhttp3.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.io.IOException;
+var html = "<!DOCTYPE html>...";
+var htmlHeader = "<!DOCTYPE html>...";
+var htmlFooter = "<!DOCTYPE html>...";
 
-public class DocusealSubmissionFromHtml {
-
-    private static final String API_KEY = "API_KEY";
-    private static final String API_URL = "https://api.docuseal.com/submissions/html";
-
-    public static void main(String[] args) {
-        OkHttpClient client = new OkHttpClient();
-
-        String html = "<!DOCTYPE html>...";
-        String htmlHeader = "<!DOCTYPE html>...";
-        String htmlFooter = "<!DOCTYPE html>...";
-
-        JSONObject document = new JSONObject();
-        document.put("name", "rental-agreement");
-        document.put("html", html);
-        document.put("html_header", htmlHeader);
-        document.put("html_footer", htmlFooter);
-        document.put("size", "A4");
-
-        JSONArray documents = new JSONArray();
-        documents.put(document);
-
-        JSONObject submitter = new JSONObject();
-        submitter.put("role", "First Party");
-        submitter.put("email", "john.doe@example.com");
-
-        JSONArray submitters = new JSONArray();
-        submitters.put(submitter);
-
-        JSONObject requestBodyJson = new JSONObject();
-        requestBodyJson.put("name", "Rental Agreement");
-        requestBodyJson.put("documents", documents);
-        requestBodyJson.put("submitters", submitters);
-
-        RequestBody body = RequestBody.create(
-            requestBodyJson.toString(),
-            MediaType.parse("application/json")
-        );
-
-        Request request = new Request.Builder()
-            .url(API_URL)
-            .post(body)
-            .addHeader("X-Auth-Token", API_KEY)
-            .addHeader("Content-Type", "application/json")
-            .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.err.println("Request failed: " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseBody = response.body().string();
-                    JSONObject result = new JSONObject(responseBody);
-                    System.out.println("Submission created:");
+var submission = client.createSubmissionFromHtml(CreateSubmissionFromHtmlParams.builder()
+    .documents(List.of(
+      CreateSubmissionFromHtmlDocumentParams.builder()
+        .html(html)
+        .name("rental-agreement")
+        .htmlHeader(htmlHeader)
+        .htmlFooter(htmlFooter)
+        .size(PageSize.A4)
+        .build()))
+    .submitters(List.of(
+      CreateSubmissionSubmitterParams.builder()
+        .email("john.doe@example.com")
+        .role("First Party")
+        .build()))
+    .name("Rental Agreement")
+    .build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
+var html = "<!DOCTYPE html>...";
+var htmlHeader = "<!DOCTYPE html>...";
+var htmlFooter = "<!DOCTYPE html>...";
+
+var submission = await client.CreateSubmissionFromHtmlAsync(new CreateSubmissionFromHtmlParams
 {
-    private static readonly string API_KEY = "API_KEY";
-
-    static async Task Main(string[] args)
-    {
-        using (var client = new HttpClient())
+    Name = "Rental Agreement",
+    Documents = [
+        new CreateSubmissionFromHtmlDocumentParams
         {
-            var url = "https://api.docuseal.com/submissions/html";
-
-            var data = new
-            {
-                name = "Rental Agreement",
-                documents = new[]
-                {
-                    new {
-                        name = "rental-agreement",
-                        html = "<!DOCTYPE html>...",
-                        html_header = "<!DOCTYPE html>...",
-                        html_footer = "<!DOCTYPE html>...",
-                        size = "A4"
-                    }
-                },
-                submitters = new[]
-                {
-                    new {
-                        role = "First Party",
-                        email = "john.doe@example.com"
-                    }
-                }
-            };
-
-            var json = JsonConvert.SerializeObject(data);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            client.DefaultRequestHeaders.Add("X-Auth-Token", API_KEY);
-
-            var response = await client.PostAsync(url, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                var result = JObject.Parse(responseString);
-                Console.WriteLine(result.ToString());
-            }
-            else
-            {
-                Console.WriteLine($"Error: {response.StatusCode} {response.ReasonPhrase}");
-            }
-        }
-    }
-}
+            Name = "rental-agreement",
+            Html = html,
+            HtmlHeader = htmlHeader,
+            HtmlFooter = htmlFooter,
+            Size = PageSize.A4
+        },
+    ],
+    Submitters = [
+        new CreateSubmissionSubmitterParams
+        {
+            Role = "First Party",
+            Email = "john.doe@example.com"
+        },
+    ]
+});
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "fmt"
-  "log"
-  "github.com/go-resty/resty/v2"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-func main() {
-  client := resty.New()
+html := "<!DOCTYPE html>..."
+htmlHeader := "<!DOCTYPE html>..."
+htmlFooter := "<!DOCTYPE html>..."
 
-  body := map[string]interface{}{
-    "name": "Rental Agreement",
-    "documents": []map[string]interface{}{
-      {
-        "name": "rental-agreement",
-        "html": "<!DOCTYPE html>...",
-        "html_header": "<!DOCTYPE html>...",
-        "html_footer": "<!DOCTYPE html>...",
-        "size": "A4",
-      },
-    },
-    "submitters": []map[string]interface{}{
-      {
-        "role": "First Party",
-        "email": "john.doe@example.com",
-      },
-    },
-  }
-
-  resp, err := client.R().
-    SetHeader("X-Auth-Token", "API_KEY").
-    SetHeader("Content-Type", "application/json").
-    SetBody(body).
-    Post("https://api.docuseal.com/submissions/html")
-
-  if err != nil {
-    log.Fatalf("Request failed: %v", err)
-  }
-
-  if resp.IsSuccess() {
-    fmt.Println(resp.String())
-  } else {
-    fmt.Printf("Error: %d %s
-", resp.StatusCode(), resp.Status())
-  }
-}
+submission, err := ds.CreateSubmissionFromHtml(context.Background(), &docuseal.CreateSubmissionFromHtmlParams{
+	Name: "Rental Agreement",
+	Documents: []*docuseal.CreateSubmissionFromHtmlDocumentParams{
+		{
+			Name: "rental-agreement",
+			Html: html,
+			HtmlHeader: htmlHeader,
+			HtmlFooter: htmlFooter,
+			Size: "A4",
+		},
+	},
+	Submitters: []*docuseal.CreateSubmissionSubmitterParams{
+		{
+			Role: "First Party",
+			Email: "john.doe@example.com",
+		},
+	},
+})
 ```
 
 #### Curl

@@ -22,7 +22,7 @@ During the form filling and signing process, 4 types of events may occur and are
 |---|---|---|
 | `event_type` | `string` | The event type. Values: `form.viewed`, `form.started`, `form.completed`, `form.declined`. |
 | `timestamp` | `string` | The event timestamp. |
-| `data` | `object` | Submitted data object. |
+| `data` | `object` | Submitted form data object. |
 
 ## Payload Example
 

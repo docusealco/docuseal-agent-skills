@@ -138,57 +138,45 @@ $docuseal->updateTemplateDocuments(1000001, [
   ]
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/1000001/documents"
-
-	payload := strings.NewReader("{\"documents\":[{\"file\":\"string\"}]}")
-
-	req, _ := http.NewRequest("PUT", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.UpdateTemplateDocuments(context.Background(), 1000001, &docuseal.UpdateTemplateDocumentsParams{
+	Documents: []*docuseal.UpdateTemplateDocumentsDocumentParams{
+		{
+			File: "string",
+		},
+	},
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/1000001/documents");
-var request = new RestRequest("", Method.Put);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"documents\":[{\"file\":\"string\"}]}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.UpdateTemplateDocumentsAsync(1000001, new UpdateTemplateDocumentsParams
+{
+    Documents = [
+        new UpdateTemplateDocumentsDocumentParams
+        {
+            File = "string"
+        },
+    ]
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.put("https://api.docuseal.com/templates/1000001/documents")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"documents\":[{\"file\":\"string\"}]}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.updateTemplateDocuments(1000001, UpdateTemplateDocumentsParams.builder()
+    .documents(List.of(
+      UpdateTemplateDocumentsDocumentParams.builder()
+        .file("string")
+        .build()))
+    .build());
 ```
 
 ## Response Example

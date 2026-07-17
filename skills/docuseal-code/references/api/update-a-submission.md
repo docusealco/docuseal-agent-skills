@@ -1,7 +1,7 @@
-# Get a submission
+# Update a submission
 
-`GET /submissions/{id}`
-The API endpoint provides the functionality to retrieve information about a submission.
+`PUT /submissions/{id}`
+The API endpoint allows you to update a submission: change its name, expiration date, and archive or unarchive it.
 
 
 ## Parameters
@@ -10,19 +10,30 @@ The API endpoint provides the functionality to retrieve information about a subm
 |---|---|---|---|---|
 | `id` | path | `integer` | yes | The unique identifier of the submission. |
 
+## Request Body
+
+| Property | Type | Required | Description |
+|---|---|---|---|
+| `name` | `string` | no | The name of the submission. Example: `New Submission Name` |
+| `expire_at` | `string` | no | The date and time when the submission will expire and no longer be available. Pass `null` to remove the expiration. Example: `2024-09-01 12:00:00 UTC` |
+| `archived` | `boolean` | no | Set `true` to archive the submission or `false` to unarchive it. |
+
 ## Code Examples
 
 ### cURL
 
 ```curl
-curl --request GET \
+curl --request PUT \
   --url https://api.docuseal.com/submissions/1001 \
-  --header 'X-Auth-Token: API_KEY'
+  --header 'X-Auth-Token: API_KEY' \
+  --header 'content-type: application/json' \
+  --data '{"name":"New Submission Name","expire_at":"2024-09-01 12:00:00 UTC","archived":true}'
 ```
 ### CLI
 
 ```shell
-docuseal submissions retrieve 1001
+docuseal submissions update 1001 --name "New Submission Name" --expire-at "2024-09-01 12:00:00 UTC" \
+  -d "archived=true"
 ```
 ### Node.js (fetch)
 
@@ -30,10 +41,15 @@ docuseal submissions retrieve 1001
 const fetch = require("node-fetch");
 
 const resp = await fetch("https://api.docuseal.com/submissions/1001", {
-  method: "GET",
+  method: "PUT",
   headers: {
     "X-Auth-Token": "API_KEY"
-  }
+  },
+  body: JSON.stringify({
+    name: "New Submission Name",
+    expire_at: "2024-09-01 12:00:00 UTC",
+    archived: true
+  })
 });
 
 const submission = await resp.json();
@@ -45,7 +61,11 @@ const docuseal = require("@docuseal/api");
 
 docuseal.configure({ key: "API_KEY", url: "https://api.docuseal.com" });
 
-const submission = await docuseal.getSubmission(1001);
+const submission = await docuseal.updateSubmission(1001, {
+  name: "New Submission Name",
+  expire_at: "2024-09-01 12:00:00 UTC",
+  archived: true
+});
 ```
 ### TypeScript SDK
 
@@ -54,7 +74,11 @@ import docuseal from "@docuseal/api";
 
 docuseal.configure({ key: "API_KEY", url: "https://api.docuseal.com" });
 
-const submission = await docuseal.getSubmission(1001);
+const submission = await docuseal.updateSubmission(1001, {
+  name: "New Submission Name",
+  expire_at: "2024-09-01 12:00:00 UTC",
+  archived: true
+});
 ```
 ### Python SDK
 
@@ -64,7 +88,11 @@ from docuseal import docuseal
 docuseal.key = "API_KEY"
 docuseal.url = "https://api.docuseal.com"
 
-docuseal.get_submission(1001)
+docuseal.update_submission(1001, {
+  "name": "New Submission Name",
+  "expire_at": "2024-09-01 12:00:00 UTC",
+  "archived": True
+})
 ```
 ### Ruby SDK
 
@@ -74,35 +102,56 @@ require "docuseal"
 Docuseal.key = ENV["DOCUSEAL_API_KEY"]
 Docuseal.url = "https://api.docuseal.com"
 
-Docuseal.get_submission(1001)
+Docuseal.update_submission(1001, {
+  name: "New Submission Name",
+  expire_at: "2024-09-01 12:00:00 UTC",
+  archived: true
+})
 ```
 ### PHP SDK
 
 ```php
 $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
-$docuseal->getSubmission(1001);
+$docuseal->updateSubmission(1001, [
+  'name' => 'New Submission Name',
+  'expire_at' => '2024-09-01 12:00:00 UTC',
+  'archived' => true
+]);
 ```
 ### Go SDK
 
 ```go
 ds := docuseal.NewClient("API_KEY")
 
-submission, err := ds.GetSubmission(context.Background(), 1001)
+submission, err := ds.UpdateSubmission(context.Background(), 1001, &docuseal.UpdateSubmissionParams{
+	Name: "New Submission Name",
+	ExpireAt: "2024-09-01 12:00:00 UTC",
+	Archived: docuseal.Bool(true),
+})
 ```
 ### C# SDK
 
 ```csharp
 var client = new DocusealClient("API_KEY");
 
-var submission = await client.GetSubmissionAsync(1001);
+var submission = await client.UpdateSubmissionAsync(1001, new UpdateSubmissionParams
+{
+    Name = "New Submission Name",
+    ExpireAt = "2024-09-01 12:00:00 UTC",
+    Archived = true
+});
 ```
 ### Java SDK
 
 ```java
 var client = DocusealClient.builder().apiKey("API_KEY").build();
 
-var submission = client.getSubmission(1001);
+var submission = client.updateSubmission(1001, UpdateSubmissionParams.builder()
+    .name("New Submission Name")
+    .expireAt("2024-09-01 12:00:00 UTC")
+    .archived(true)
+    .build());
 ```
 
 ## Response Example
@@ -168,15 +217,6 @@ var submission = client.getSubmission(1001);
     "last_name": "Smith",
     "email": "bob.smith@example.com"
   },
-  "submission_events": [
-    {
-      "id": 1,
-      "submitter_id": 2,
-      "event_type": "view_form",
-      "event_timestamp": "2023-12-14T15:47:24.566Z",
-      "data": {}
-    }
-  ],
   "documents": [
     {
       "name": "example",

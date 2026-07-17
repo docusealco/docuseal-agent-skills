@@ -18,7 +18,7 @@ Get template creation and update notifications using these events:
 |---|---|---|
 | `event_type` | `string` | The event type. Values: `template.created`, `template.updated`, `template.archived`. |
 | `timestamp` | `string` | The event timestamp. |
-| `data` | `object` | Submitted data object. |
+| `data` | `object` | - |
 
 ## Payload Example
 

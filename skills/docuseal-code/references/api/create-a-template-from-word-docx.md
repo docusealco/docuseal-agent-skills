@@ -156,57 +156,51 @@ $docuseal->createTemplateFromDocx([
   ]
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/docx"
-
-	payload := strings.NewReader("{\"name\":\"Test DOCX\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.CreateTemplateFromDocx(context.Background(), &docuseal.CreateTemplateFromDocxParams{
+	Name: "Test DOCX",
+	Documents: []*docuseal.CreateTemplateFromDocxDocumentParams{
+		{
+			Name: "string",
+			File: "base64",
+		},
+	},
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/docx");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"name\":\"Test DOCX\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}]}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.CreateTemplateFromDocxAsync(new CreateTemplateFromDocxParams
+{
+    Name = "Test DOCX",
+    Documents = [
+        new CreateTemplateFromDocxDocumentParams
+        {
+            Name = "string",
+            File = "base64"
+        },
+    ]
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/templates/docx")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"name\":\"Test DOCX\",\"documents\":[{\"name\":\"string\",\"file\":\"base64\"}]}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.createTemplateFromDocx(CreateTemplateFromDocxParams.builder()
+    .documents(List.of(
+      CreateTemplateFromDocxDocumentParams.builder()
+        .name("string")
+        .file("base64")
+        .build()))
+    .name("Test DOCX")
+    .build());
 ```
 
 ## Response Example

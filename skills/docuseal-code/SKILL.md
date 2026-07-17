@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.1"
+  version: "1.0.2"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
 ---
@@ -140,6 +140,7 @@ SDK usage examples are included in each endpoint reference file below (marked wi
   - `GET /submissions/{id}` — [Get a submission](references/api/get-a-submission.md)
   - `GET /submissions/{id}/documents` — [Get submission documents](references/api/get-submission-documents.md)
   - `DELETE /submissions/{id}` — [Archive a submission](references/api/archive-a-submission.md)
+  - `PUT /submissions/{id}` — [Update a submission](references/api/update-a-submission.md)
   - `POST /submissions/emails` — [Create submissions from emails](references/api/create-submissions-from-emails.md)
   - `POST /submissions/pdf` — [Create a submission from PDF](references/api/create-a-submission-from-pdf.md)
   - `POST /submissions/docx` — [Create a submission from DOCX](references/api/create-a-submission-from-docx.md)

@@ -32,7 +32,7 @@ The API endpoint allows you to update submitter details, pre-fill or update fiel
 | `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
 | `fields` | `array[]` | no | A list of configurations for template document form fields. |
 | `fields[].name` | `string` | yes | Document template field name. Example: `First Name` |
-| `fields[].default_value` | `string / number / boolean / array` | no | Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields. Example: `Acme` |
+| `fields[].default_value` | `string / integer / number / boolean / array` | no | Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields. Example: `Acme` |
 | `fields[].readonly` | `boolean` | no | Set `true` to make it impossible for the submitter to edit predefined field value. Default: `false` |
 | `fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `fields[].validation` | `object` | no | Field validation rules. |
@@ -45,13 +45,13 @@ The API endpoint allows you to update submitter details, pre-fill or update fiel
 | `fields[].preferences.font_size` | `integer` | no | Font size of the field value in pixels. Example: `12` |
 | `fields[].preferences.font_type` | `string` | no | Font type of the field value. Values: `bold`, `italic`, `bold_italic`. |
 | `fields[].preferences.font` | `string` | no | Font family of the field value. Values: `Times`, `Helvetica`, `Courier`. |
-| `fields[].preferences.color` | `string` | no | Font color of the field value. Default: `black` Values: `black`, `white`, `blue`. |
-| `fields[].preferences.background` | `string` | no | Field box background color. Values: `black`, `white`, `blue`. |
+| `fields[].preferences.color` | `string` | no | Font color of the field value. Example: `black` Default: `black` |
+| `fields[].preferences.background` | `string` | no | Field box background color. Example: `black` |
 | `fields[].preferences.align` | `string` | no | Horizontal alignment of the field text value. Default: `left` Values: `left`, `center`, `right`. |
 | `fields[].preferences.valign` | `string` | no | Vertical alignment of the field text value. Default: `center` Values: `top`, `center`, `bottom`. |
 | `fields[].preferences.format` | `string` | no | The data format for different field types. - Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY). - Signature field: accepts drawn, typed, drawn\_or\_typed (default), or upload. - Number field: accepts currency formats such as usd, eur, gbp. Example: `DD/MM/YYYY` |
 | `fields[].preferences.price` | `number` | no | Price value of the payment field. Only for payment fields. Example: `99.99` |
-| `fields[].preferences.currency` | `string` | no | Currency value of the payment field. Only for payment fields. Default: `USD` Values: `USD`, `EUR`, `GBP`, `CAD`, `AUD`. |
+| `fields[].preferences.currency` | `string` | no | Currency value of the payment field. Only for payment fields. Default: `USD` Values: `USD`, `EUR`, `GBP`, `CAD`, `AUD`, `CHF`, `SEK`. |
 | `fields[].preferences.mask` | `integer / boolean` | no | Set `true` to make sensitive data masked on the document. Default: `false` |
 | `fields[].preferences.reasons` | `array[]` | no | An array of signature reasons to choose from. |
 
@@ -182,57 +182,51 @@ $docuseal->updateSubmitter(500001, [
   ]
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submitters/500001"
-
-	payload := strings.NewReader("{\"email\":\"john.doe@example.com\",\"fields\":[{\"name\":\"First Name\",\"default_value\":\"Acme\"}]}")
-
-	req, _ := http.NewRequest("PUT", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+submitter, err := ds.UpdateSubmitter(context.Background(), 500001, &docuseal.UpdateSubmitterParams{
+	Email: "john.doe@example.com",
+	Fields: []*docuseal.UpdateSubmitterFieldParams{
+		{
+			Name: "First Name",
+			Value: "Acme",
+		},
+	},
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/submitters/500001");
-var request = new RestRequest("", Method.Put);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"email\":\"john.doe@example.com\",\"fields\":[{\"name\":\"First Name\",\"default_value\":\"Acme\"}]}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var submitter = await client.UpdateSubmitterAsync(500001, new UpdateSubmitterParams
+{
+    Email = "john.doe@example.com",
+    Fields = [
+        new UpdateSubmitterFieldParams
+        {
+            Name = "First Name",
+            Value = "Acme"
+        },
+    ]
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.put("https://api.docuseal.com/submitters/500001")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"email\":\"john.doe@example.com\",\"fields\":[{\"name\":\"First Name\",\"default_value\":\"Acme\"}]}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var submitter = client.updateSubmitter(500001, UpdateSubmitterParams.builder()
+    .email("john.doe@example.com")
+    .fields(List.of(
+      UpdateSubmitterFieldParams.builder()
+        .name("First Name")
+        .value("Acme")
+        .build()))
+    .build());
 ```
 
 ## Response Example

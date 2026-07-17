@@ -8,7 +8,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.6"
+  version: "1.0.7"
   homepage: https://www.docuseal.com
   source: https://github.com/docusealco/docuseal-cli
   openclaw:
@@ -47,7 +47,7 @@ Set environment variables:
 | Command Group | What it does |
 |---|---|
 | `templates` | list, retrieve, update, archive, create-pdf, create-docx, create-html, clone, merge, update-documents |
-| `submissions` | list, retrieve, archive, create, send-emails, create-pdf, create-docx, create-html, documents |
+| `submissions` | list, retrieve, update, archive, create, send-emails, create-pdf, create-docx, create-html, documents |
 | `submitters` | list, retrieve, update |
 
 Read the matching reference file for detailed flags and examples.

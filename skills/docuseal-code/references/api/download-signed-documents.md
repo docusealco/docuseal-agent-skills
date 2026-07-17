@@ -150,123 +150,28 @@ $docuseal->listSubmitters(['external_id' => 'customer_123']);
 #### Java
 
 ```
-import okhttp3.*;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-import java.io.IOException;
-
-public class DocusealSubmittersFetch {
-
-    private static final String API_KEY = "YOUR_API_KEY";
-
-    public static void main(String[] args) {
-
-        OkHttpClient client = new OkHttpClient();
-
-        HttpUrl url = HttpUrl.parse("https://api.docuseal.com/submitters")
-                .newBuilder()
-                .addQueryParameter("external_id", "customer_123")
-                .build();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("X-Auth-Token", API_KEY)
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    System.out.println("Submitters:");
-                    System.out.println(responseData);
-                } else {
-                    System.err.println("Error: " + response.code() + " " + response.message());
-                }
-            }
-        });
-    }
-}
+var submitters = client.getSubmitters(GetSubmittersParams.builder().externalId("customer_123").build());
 ```
 
 #### Csharp
 
 ```
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-class Program
-{
-    private static readonly string API_KEY = "YOUR_API_KEY";
-
-    static async Task Main(string[] args)
-    {
-        using (var client = new HttpClient())
-        {
-            var externalId = "customer_123";
-            var url = $"https://api.docuseal.com/submitters?external_id={externalId}";
-
-            client.DefaultRequestHeaders.Add("X-Auth-Token", API_KEY);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var response = await client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Submitters:");
-                Console.WriteLine(responseString);
-            }
-            else
-            {
-                Console.WriteLine($"Error: {response.StatusCode} {response.ReasonPhrase}");
-            }
-        }
-    }
-}
+var submitters = await client.GetSubmittersAsync(new GetSubmittersParams { ExternalId = "customer_123" });
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "fmt"
-  "log"
-  "github.com/go-resty/resty/v2"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-func main() {
-  client := resty.New()
-
-  externalID := "customer_123"
-
-  resp, err := client.R().
-    SetHeader("X-Auth-Token", "YOUR_API_KEY").
-    SetHeader("Content-Type", "application/json").
-    Get("https://api.docuseal.com/submitters?external_id=" + externalID)
-
-  if err != nil {
-    log.Fatalf("Request failed: %v", err)
-  }
-
-  if resp.IsSuccess() {
-    fmt.Println("Submitters:")
-    fmt.Println(resp.String())
-  } else {
-    fmt.Printf("Error: %d %s
-", resp.StatusCode(), resp.Status())
-  }
-}
+submitters, err := ds.GetSubmitters(context.Background(), &docuseal.GetSubmittersParams{ExternalID: "customer_123"})
 ```
 
 #### Curl
@@ -354,66 +259,34 @@ $documentUrl = $resp['documents'][0]['url'];
 #### Java
 
 ```
-import okhttp3.*;
-import org.json.*;
+var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
 
-OkHttpClient client = new OkHttpClient();
+var resp = client.getSubmissionDocuments(submissionId);
 
-Request request = new Request.Builder()
-        .url("https://api.docuseal.com/submissions/" + submissionId + "/documents")
-        .get()
-        .addHeader("X-Auth-Token", "API_KEY")
-        .build();
-
-Response response = client.newCall(request).execute();
-JSONObject resp = new JSONObject(response.body().string());
-
-String documentUrl = resp.getJSONArray("documents")
-        .getJSONObject(0).getString("url");
+var documentUrl = resp.getDocuments().get(0).getUrl();
 ```
 
 #### Csharp
 
 ```
-using System.Net.Http;
-using System.Text.Json;
+var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
 
-var client = new HttpClient();
-client.DefaultRequestHeaders.Add("X-Auth-Token", "API_KEY");
+var resp = await client.GetSubmissionDocumentsAsync(submissionId, new GetSubmissionDocumentsParams());
 
-var response = await client.GetAsync(
-    $"https://api.docuseal.com/submissions/{submissionId}/documents");
-var json = await response.Content.ReadAsStringAsync();
-var resp = JsonDocument.Parse(json).RootElement;
-
-var documentUrl = resp.GetProperty("documents")[0]
-    .GetProperty("url").GetString();
+var documentUrl = resp.Documents.First().Url;
 ```
 
 #### Go
 
 ```
-package main
-
-import (
-  "fmt"
-  "log"
-  "github.com/go-resty/resty/v2"
+ds := docuseal.NewClient(
+	"API_KEY",
+	docuseal.WithBaseURL("https://api.docuseal.com"),
 )
 
-func main() {
-  client := resty.New()
+resp, err := ds.GetSubmissionDocuments(context.Background(), submissionID, nil)
 
-  resp, err := client.R().
-    SetHeader("X-Auth-Token", "API_KEY").
-    Get(fmt.Sprintf("https://api.docuseal.com/submissions/%d/documents", submissionID))
-
-  if err != nil {
-    log.Fatalf("Request failed: %v", err)
-  }
-
-  fmt.Println(resp.String())
-}
+documentURL := resp.Documents[0].URL
 ```
 
 #### Curl

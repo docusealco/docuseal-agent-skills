@@ -84,49 +84,26 @@ $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
 $docuseal->getSubmissionDocuments(1001);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions/1001/documents"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+submission, err := ds.GetSubmissionDocuments(context.Background(), 1001, nil)
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/submissions/1001/documents");
-var request = new RestRequest("", Method.Get);
-request.AddHeader("X-Auth-Token", "API_KEY");
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var submission = await client.GetSubmissionDocumentsAsync(1001, new GetSubmissionDocumentsParams());
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.docuseal.com/submissions/1001/documents")
-  .header("X-Auth-Token", "API_KEY")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var submission = client.getSubmissionDocuments(1001);
 ```
 
 ## Response Example

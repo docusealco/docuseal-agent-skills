@@ -131,57 +131,36 @@ $docuseal->mergeTemplates([
   'name' => 'Merged Template'
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/templates/merge"
-
-	payload := strings.NewReader("{\"template_ids\":[321,432],\"name\":\"Merged Template\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+template, err := ds.MergeTemplate(context.Background(), &docuseal.MergeTemplateParams{
+	TemplateIDs: []int{321, 432},
+	Name: "Merged Template",
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/templates/merge");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"template_ids\":[321,432],\"name\":\"Merged Template\"}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var template = await client.MergeTemplateAsync(new MergeTemplateParams
+{
+    TemplateIds = [321, 432],
+    Name = "Merged Template"
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/templates/merge")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"template_ids\":[321,432],\"name\":\"Merged Template\"}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var template = client.mergeTemplate(MergeTemplateParams.builder()
+    .templateIds(List.of(321, 432))
+    .name("Merged Template")
+    .build());
 ```
 
 ## Response Example

@@ -83,49 +83,26 @@ $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
 
 $docuseal->getSubmitter(500001);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submitters/500001"
-
-	req, _ := http.NewRequest("GET", url, nil)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+submitter, err := ds.GetSubmitter(context.Background(), 500001)
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/submitters/500001");
-var request = new RestRequest("", Method.Get);
-request.AddHeader("X-Auth-Token", "API_KEY");
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var submitter = await client.GetSubmitterAsync(500001);
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.docuseal.com/submitters/500001")
-  .header("X-Auth-Token", "API_KEY")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var submitter = client.getSubmitter(500001);
 ```
 
 ## Response Example

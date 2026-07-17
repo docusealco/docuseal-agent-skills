@@ -11,7 +11,7 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `template_id` | `integer` | yes | The unique identifier of the template. Document template forms can be created via the Web UI, [PDF and DOCX API](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form), or [HTML API](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api). Example: `1000001` |
 | `send_email` | `boolean` | no | Set `false` to disable signature request emails sending. Default: `true` |
 | `send_sms` | `boolean` | no | Set `true` to send signature request via phone number and SMS. Default: `false` |
-| `order` | `string` | no | Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party. Default: `preserved` Values: `preserved`, `random`. |
+| `order` | `string` | no | Pass 'random' to send signature request emails to all parties right away. The order is 'preserved' by default so the second party will receive a signature request email only after the document is signed by the first party. Default: `preserved` Values: `random`, `preserved`. |
 | `completed_redirect_url` | `string` | no | Specify URL to redirect to after the submission completion. |
 | `bcc_completed` | `string` | no | Specify BCC address to send signed documents to after the completion. |
 | `reply_to` | `string` | no | Specify Reply-To address to use in the notification emails. |
@@ -19,7 +19,7 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `variables` | `object` | no | Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in dynamic template documents. Example: `{variable_name: "value"}` |
 | `message` | `object` | no | Custom signature request email message. |
 | `message.subject` | `string` | no | Custom signature request email subject. |
-| `message.body` | `string` | no | Custom signature request email body. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
+| `message.body` | `string` | no | Custom signature request email body. Can include variables such as {{template.name}}, {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 | `submitters` | `array[]` | yes | The list of submitters for the submission. |
 | `submitters[].name` | `string` | no | The name of the submitter. |
 | `submitters[].role` | `string` | no | The role name or title of the submitter. Example: `First Party` |
@@ -36,12 +36,13 @@ This API endpoint allows you to create signature requests (submissions) for a do
 | `submitters[].order` | `integer` | no | The order of the submitter in the workflow (e.g., 0 for the first signer, 1 for the second, etc.). Use the same order number to create order groups. By default, submitters are ordered as in the submitters array. |
 | `submitters[].require_phone_2fa` | `boolean` | no | Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents. Default: `false` |
 | `submitters[].require_email_2fa` | `boolean` | no | Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents. Default: `false` |
+| `submitters[].invite_by` | `string` | no | Set the role name of the previous party that should invite this party via email. |
 | `submitters[].message` | `object` | no | Custom signature request email message for the submitter. |
 | `submitters[].message.subject` | `string` | no | Custom signature request email subject for the submitter. |
-| `submitters[].message.body` | `string` | no | Custom signature request email body for the submitter. Can include the following variables: {{template.name}}, {{submitter.link}}, {{account.name}}. |
+| `submitters[].message.body` | `string` | no | Custom signature request email body for the submitter. Can include variables such as {{template.name}}, {{submission.name}}, {{submitter.link}}, {{account.name}}. |
 | `submitters[].fields` | `array[]` | no | A list of configurations for template document form fields. |
 | `submitters[].fields[].name` | `string` | yes | Document template field name. Example: `First Name` |
-| `submitters[].fields[].default_value` | `string / number / boolean / array` | no | Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields. Example: `Acme` |
+| `submitters[].fields[].default_value` | `string / integer / number / boolean / array` | no | Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields. Example: `Acme` |
 | `submitters[].fields[].readonly` | `boolean` | no | Set `true` to make it impossible for the submitter to edit predefined field value. Default: `false` |
 | `submitters[].fields[].required` | `boolean` | no | Set `true` to make the field required. |
 | `submitters[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
@@ -182,57 +183,54 @@ $docuseal->createSubmission([
   ]
 ]);
 ```
-### Go
+### Go SDK
 
 ```go
-package main
+ds := docuseal.NewClient("API_KEY")
 
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io"
-)
-
-func main() {
-
-	url := "https://api.docuseal.com/submissions"
-
-	payload := strings.NewReader("{\"template_id\":1000001,\"send_email\":true,\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("X-Auth-Token", "API_KEY")
-	req.Header.Add("content-type", "application/json")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
+submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSubmissionParams{
+	TemplateID: 1000001,
+	SendEmail: docuseal.Bool(true),
+	Submitters: []*docuseal.CreateSubmissionSubmitterParams{
+		{
+			Role: "First Party",
+			Email: "john.doe@example.com",
+		},
+	},
+})
 ```
-### C#
+### C# SDK
 
 ```csharp
-var client = new RestClient("https://api.docuseal.com/submissions");
-var request = new RestRequest("", Method.Post);
-request.AddHeader("X-Auth-Token", "API_KEY");
-request.AddHeader("content-type", "application/json");
-request.AddParameter("application/json", "{\"template_id\":1000001,\"send_email\":true,\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}", ParameterType.RequestBody);
-var response = client.Execute(request);
+var client = new DocusealClient("API_KEY");
+
+var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
+{
+    TemplateId = 1000001,
+    SendEmail = true,
+    Submitters = [
+        new CreateSubmissionSubmitterParams
+        {
+            Role = "First Party",
+            Email = "john.doe@example.com"
+        },
+    ]
+});
 ```
-### Java
+### Java SDK
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.docuseal.com/submissions")
-  .header("X-Auth-Token", "API_KEY")
-  .header("content-type", "application/json")
-  .body("{\"template_id\":1000001,\"send_email\":true,\"submitters\":[{\"role\":\"First Party\",\"email\":\"john.doe@example.com\"}]}")
-  .asString();
+var client = DocusealClient.builder().apiKey("API_KEY").build();
+
+var submission = client.createSubmission(CreateSubmissionParams.builder()
+    .templateId(1000001)
+    .submitters(List.of(
+      CreateSubmissionSubmitterParams.builder()
+        .role("First Party")
+        .email("john.doe@example.com")
+        .build()))
+    .sendEmail(true)
+    .build());
 ```
 
 ## Response Example
