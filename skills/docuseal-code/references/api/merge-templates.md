@@ -134,7 +134,7 @@ $docuseal->mergeTemplates([
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.MergeTemplate(context.Background(), &docuseal.MergeTemplateParams{
 	TemplateIDs: []int{321, 432},
@@ -144,7 +144,7 @@ template, err := ds.MergeTemplate(context.Background(), &docuseal.MergeTemplateP
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.MergeTemplateAsync(new MergeTemplateParams
 {
@@ -155,7 +155,7 @@ var template = await client.MergeTemplateAsync(new MergeTemplateParams
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.mergeTemplate(MergeTemplateParams.builder()
     .templateIds(List.of(321, 432))

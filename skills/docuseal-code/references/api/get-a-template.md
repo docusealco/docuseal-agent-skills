@@ -86,21 +86,21 @@ $docuseal->getTemplate(1000001);
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.GetTemplate(context.Background(), 1000001)
 ```
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.GetTemplateAsync(1000001);
 ```
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.getTemplate(1000001);
 ```

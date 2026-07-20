@@ -250,7 +250,7 @@ $docuseal->createTemplateFromPdf([
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.CreateTemplateFromPdf(context.Background(), &docuseal.CreateTemplateFromPdfParams{
 	Name: "Test PDF",
@@ -279,7 +279,7 @@ template, err := ds.CreateTemplateFromPdf(context.Background(), &docuseal.Create
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.CreateTemplateFromPdfAsync(new CreateTemplateFromPdfParams
 {
@@ -312,7 +312,7 @@ var template = await client.CreateTemplateFromPdfAsync(new CreateTemplateFromPdf
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.createTemplateFromPdf(CreateTemplateFromPdfParams.builder()
     .documents(List.of(

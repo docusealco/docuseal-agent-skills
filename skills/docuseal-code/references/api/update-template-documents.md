@@ -141,7 +141,7 @@ $docuseal->updateTemplateDocuments(1000001, [
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.UpdateTemplateDocuments(context.Background(), 1000001, &docuseal.UpdateTemplateDocumentsParams{
 	Documents: []*docuseal.UpdateTemplateDocumentsDocumentParams{
@@ -154,7 +154,7 @@ template, err := ds.UpdateTemplateDocuments(context.Background(), 1000001, &docu
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.UpdateTemplateDocumentsAsync(1000001, new UpdateTemplateDocumentsParams
 {
@@ -169,7 +169,7 @@ var template = await client.UpdateTemplateDocumentsAsync(1000001, new UpdateTemp
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.updateTemplateDocuments(1000001, UpdateTemplateDocumentsParams.builder()
     .documents(List.of(

@@ -122,7 +122,7 @@ $docuseal->updateSubmission(1001, [
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submission, err := ds.UpdateSubmission(context.Background(), 1001, &docuseal.UpdateSubmissionParams{
 	Name: "New Submission Name",
@@ -133,7 +133,7 @@ submission, err := ds.UpdateSubmission(context.Background(), 1001, &docuseal.Upd
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.UpdateSubmissionAsync(1001, new UpdateSubmissionParams
 {
@@ -145,7 +145,7 @@ var submission = await client.UpdateSubmissionAsync(1001, new UpdateSubmissionPa
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.updateSubmission(1001, UpdateSubmissionParams.builder()
     .name("New Submission Name")

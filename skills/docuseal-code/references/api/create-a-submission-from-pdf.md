@@ -326,7 +326,7 @@ $docuseal->createSubmissionFromPdf([
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submission, err := ds.CreateSubmissionFromPdf(context.Background(), &docuseal.CreateSubmissionFromPdfParams{
 	Name: "Test Submission Document",
@@ -361,7 +361,7 @@ submission, err := ds.CreateSubmissionFromPdf(context.Background(), &docuseal.Cr
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.CreateSubmissionFromPdfAsync(new CreateSubmissionFromPdfParams
 {
@@ -401,7 +401,7 @@ var submission = await client.CreateSubmissionFromPdfAsync(new CreateSubmissionF
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.createSubmissionFromPdf(CreateSubmissionFromPdfParams.builder()
     .documents(List.of(

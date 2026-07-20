@@ -94,21 +94,21 @@ $docuseal->listSubmitters(['limit' => 10]);
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submitters, err := ds.GetSubmitters(context.Background(), &docuseal.GetSubmittersParams{Limit: docuseal.Int(10)})
 ```
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitters = await client.GetSubmittersAsync(new GetSubmittersParams { Limit = 10 });
 ```
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitters = client.getSubmitters(GetSubmittersParams.builder().limit(10).build());
 ```

@@ -109,7 +109,7 @@ $docuseal->cloneTemplate(1000001, [
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.CloneTemplate(context.Background(), 1000001, &docuseal.CloneTemplateParams{
 	Name: "Cloned Template",
@@ -118,7 +118,7 @@ template, err := ds.CloneTemplate(context.Background(), 1000001, &docuseal.Clone
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.CloneTemplateAsync(1000001, new CloneTemplateParams
 {
@@ -128,7 +128,7 @@ var template = await client.CloneTemplateAsync(1000001, new CloneTemplateParams
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.cloneTemplate(1000001, CloneTemplateParams.builder()
     .name("Cloned Template")

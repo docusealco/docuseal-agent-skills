@@ -87,21 +87,21 @@ $docuseal->getSubmissionDocuments(1001);
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submission, err := ds.GetSubmissionDocuments(context.Background(), 1001, nil)
 ```
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
-var submission = await client.GetSubmissionDocumentsAsync(1001, new GetSubmissionDocumentsParams());
+var submission = await client.GetSubmissionDocumentsAsync(1001);
 ```
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.getSubmissionDocuments(1001);
 ```

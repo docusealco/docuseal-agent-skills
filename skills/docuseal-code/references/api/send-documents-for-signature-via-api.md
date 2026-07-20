@@ -134,7 +134,7 @@ $submission = $docuseal->createSubmission([
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.createSubmission(CreateSubmissionParams.builder()
     .templateId(1000001)
@@ -154,7 +154,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
 {
@@ -381,7 +381,7 @@ $submission = $docuseal->createSubmission([
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.createSubmission(CreateSubmissionParams.builder()
     .templateId(1000001)
@@ -404,7 +404,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
 {

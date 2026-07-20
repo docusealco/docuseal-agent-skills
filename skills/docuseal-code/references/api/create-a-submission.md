@@ -186,7 +186,7 @@ $docuseal->createSubmission([
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSubmissionParams{
 	TemplateID: 1000001,
@@ -202,7 +202,7 @@ submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSub
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
 {
@@ -220,7 +220,7 @@ var submission = await client.CreateSubmissionAsync(new CreateSubmissionParams
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.createSubmission(CreateSubmissionParams.builder()
     .templateId(1000001)

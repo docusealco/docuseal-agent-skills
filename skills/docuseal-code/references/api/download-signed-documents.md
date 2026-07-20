@@ -150,7 +150,7 @@ $docuseal->listSubmitters(['external_id' => 'customer_123']);
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitters = client.getSubmitters(GetSubmittersParams.builder().externalId("customer_123").build());
 ```
@@ -158,7 +158,7 @@ var submitters = client.getSubmitters(GetSubmittersParams.builder().externalId("
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitters = await client.GetSubmittersAsync(new GetSubmittersParams { ExternalId = "customer_123" });
 ```
@@ -259,7 +259,7 @@ $documentUrl = $resp['documents'][0]['url'];
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var resp = client.getSubmissionDocuments(submissionId);
 
@@ -269,7 +269,7 @@ var documentUrl = resp.getDocuments().get(0).getUrl();
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var resp = await client.GetSubmissionDocumentsAsync(submissionId, new GetSubmissionDocumentsParams());
 

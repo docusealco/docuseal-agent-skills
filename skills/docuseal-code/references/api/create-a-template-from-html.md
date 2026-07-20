@@ -168,7 +168,7 @@ and typesetting industry</p>
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.CreateTemplateFromHtml(context.Background(), &docuseal.CreateTemplateFromHtmlParams{
 	Html: `<p>Lorem Ipsum is simply dummy text of the
@@ -186,7 +186,7 @@ and typesetting industry</p>
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.CreateTemplateFromHtmlAsync(new CreateTemplateFromHtmlParams
 {
@@ -206,7 +206,7 @@ and typesetting industry</p>
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.createTemplateFromHtml(CreateTemplateFromHtmlParams.builder()
     .html("""

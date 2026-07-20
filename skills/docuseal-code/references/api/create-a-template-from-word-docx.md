@@ -159,7 +159,7 @@ $docuseal->createTemplateFromDocx([
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 template, err := ds.CreateTemplateFromDocx(context.Background(), &docuseal.CreateTemplateFromDocxParams{
 	Name: "Test DOCX",
@@ -174,7 +174,7 @@ template, err := ds.CreateTemplateFromDocx(context.Background(), &docuseal.Creat
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = await client.CreateTemplateFromDocxAsync(new CreateTemplateFromDocxParams
 {
@@ -191,7 +191,7 @@ var template = await client.CreateTemplateFromDocxAsync(new CreateTemplateFromDo
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var template = client.createTemplateFromDocx(CreateTemplateFromDocxParams.builder()
     .documents(List.of(

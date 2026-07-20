@@ -377,7 +377,7 @@ $submission = $docuseal->createSubmissionFromDocx([
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var fileData = Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("path/to/your/file.docx")));
 
@@ -408,7 +408,7 @@ var submission = client.createSubmissionFromDocx(CreateSubmissionFromDocxParams.
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var fileData = Convert.ToBase64String(File.ReadAllBytes("path/to/your/file.docx"));
 

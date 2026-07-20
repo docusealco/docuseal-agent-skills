@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.2"
+  version: "1.0.3"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
 ---

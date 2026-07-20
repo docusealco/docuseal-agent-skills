@@ -276,7 +276,7 @@ and typesetting industry</p>
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submission, err := ds.CreateSubmissionFromHtml(context.Background(), &docuseal.CreateSubmissionFromHtmlParams{
 	Name: "Test Submission Document",
@@ -305,7 +305,7 @@ and typesetting industry</p>
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = await client.CreateSubmissionFromHtmlAsync(new CreateSubmissionFromHtmlParams
 {
@@ -338,7 +338,7 @@ and typesetting industry</p>
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submission = client.createSubmissionFromHtml(CreateSubmissionFromHtmlParams.builder()
     .documents(List.of(

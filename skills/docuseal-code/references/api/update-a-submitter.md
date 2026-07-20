@@ -185,7 +185,7 @@ $docuseal->updateSubmitter(500001, [
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 submitter, err := ds.UpdateSubmitter(context.Background(), 500001, &docuseal.UpdateSubmitterParams{
 	Email: "john.doe@example.com",
@@ -200,7 +200,7 @@ submitter, err := ds.UpdateSubmitter(context.Background(), 500001, &docuseal.Upd
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitter = await client.UpdateSubmitterAsync(500001, new UpdateSubmitterParams
 {
@@ -217,7 +217,7 @@ var submitter = await client.UpdateSubmitterAsync(500001, new UpdateSubmitterPar
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var submitter = client.updateSubmitter(500001, UpdateSubmitterParams.builder()
     .email("john.doe@example.com")

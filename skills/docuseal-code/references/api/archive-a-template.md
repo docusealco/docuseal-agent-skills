@@ -86,21 +86,21 @@ $docuseal->archiveTemplate(1000001);
 ### Go SDK
 
 ```go
-ds := docuseal.NewClient("API_KEY")
+ds := docuseal.NewClient("API_KEY", docuseal.WithBaseURL("https://api.docuseal.com"))
 
 _, err := ds.ArchiveTemplate(context.Background(), 1000001)
 ```
 ### C# SDK
 
 ```csharp
-var client = new DocusealClient("API_KEY");
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 await client.ArchiveTemplateAsync(1000001);
 ```
 ### Java SDK
 
 ```java
-var client = DocusealClient.builder().apiKey("API_KEY").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 client.archiveTemplate(1000001);
 ```

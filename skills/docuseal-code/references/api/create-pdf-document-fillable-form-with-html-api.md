@@ -409,7 +409,7 @@ $submission = $docuseal->createSubmissionFromHtml([
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var html = "<!DOCTYPE html>...";
 var htmlHeader = "<!DOCTYPE html>...";
@@ -436,7 +436,7 @@ var submission = client.createSubmissionFromHtml(CreateSubmissionFromHtmlParams.
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var html = "<!DOCTYPE html>...";
 var htmlHeader = "<!DOCTYPE html>...";

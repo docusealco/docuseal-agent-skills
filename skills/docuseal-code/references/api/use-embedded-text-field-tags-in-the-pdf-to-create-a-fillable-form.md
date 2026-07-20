@@ -212,7 +212,7 @@ $submission = $docuseal->createSubmissionFromPdf([
 #### Java
 
 ```
-var client = DocusealClient.builder().apiKey("API_KEY").url("https://api.docuseal.com").build();
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var fileData = Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("path/to/your/file.pdf")));
 
@@ -234,7 +234,7 @@ var submission = client.createSubmissionFromPdf(CreateSubmissionFromPdfParams.bu
 #### Csharp
 
 ```
-var client = new DocusealClient("API_KEY", new ClientOptions { BaseUrl = "https://api.docuseal.com" });
+var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 
 var fileData = Convert.ToBase64String(File.ReadAllBytes("path/to/your/file.pdf"));
 
