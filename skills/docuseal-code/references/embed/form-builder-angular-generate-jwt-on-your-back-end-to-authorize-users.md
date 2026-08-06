@@ -1,20 +1,32 @@
 ## Generate JWT on your back-end to authorize users
 
-**Prerequisites:**
-
-**Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
+Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
 
 JWT (JSON Web Token) serves as a secure means to authorize your individual SaaS users with the DocuSeal document form builder. The token is generated with JWT payload parameters to grant access only for your specific SaaS user and only for a specific document:
 
-- `user_email`: Email address of the DocuSeal admin user that provided the API\_KEY for JWT signing. 
-- `integration_email`: Email address of your SaaS user that opens the document form builder. 
-- `external_id`: Unique string to tag the opened document within the DocuSeal platform and to be able to reopen the form using this unique key. 
-- `documents_urls[]`: An array with public and downloadable document URLs to be opened in the form builder. Pass empty array to allow users to upload their files. 
-- `template_id`: ID of the existing template to open in the form builder - leave empty if `documents_urls[]` is specified. Templates can be created via the [HTML API](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api) or [PDF export API](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form). 
+#### user_email
 
-Ensure you never expose API\_KEY on your client side, only generated and signed JWT should be passed to your front-end app.
+Email address of the DocuSeal admin user that provided the API_KEY for JWT signing.
 
-#### Javascript
+#### integration_email
+
+Email address of your SaaS user that opens the document form builder.
+
+#### external_id
+
+Unique string to tag the opened document within the DocuSeal platform and to be able to reopen the form using this unique key.
+
+#### documents_urls[]
+
+An array with public and downloadable document URLs to be opened in the form builder. Pass empty array to allow users to upload their files.
+
+#### template_id
+
+ID of the existing template to open in the form builder - leave empty if `documents_urls[]` is specified. Templates can be created via the [HTML API](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api) or [PDF export API](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form).
+
+Ensure you never expose API_KEY on your client side, only generated and signed JWT should be passed to your front-end app.
+
+#### Node.js
 
 ```
 const jwt = require('jsonwebtoken');
@@ -30,7 +42,7 @@ const token = jwt.sign({
 }, API_KEY);
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import jwt from 'jsonwebtoken';
@@ -56,7 +68,7 @@ const payload: JwtPayload = {
 const token = jwt.sign(payload, API_KEY);
 ```
 
-#### Php
+#### PHP
 
 ```
 use Firebase\JWT\JWT;
@@ -138,7 +150,7 @@ public class JwtGenerator {
 }
 ```
 
-#### Csharp
+#### C#
 
 ```
 using System;

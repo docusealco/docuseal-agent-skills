@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.3"
+  version: "1.0.4"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
 ---
@@ -130,7 +130,7 @@ SDK usage examples are included in each endpoint reference file below (marked wi
   - `PUT /templates/{id}/documents` — [Update template documents](references/api/update-template-documents.md)
   - `POST /templates/{id}/clone` — [Clone a template](references/api/clone-a-template.md)
   - `POST /templates/html` — [Create a template from HTML](references/api/create-a-template-from-html.md)
-  - `POST /templates/docx` — [Create a template from Word DOCX](references/api/create-a-template-from-word-docx.md)
+  - `POST /templates/docx` — [Create a template from DOCX](references/api/create-a-template-from-docx.md)
   - `POST /templates/pdf` — [Create a template from PDF](references/api/create-a-template-from-pdf.md)
   - `POST /templates/merge` — [Merge templates](references/api/merge-templates.md)
 

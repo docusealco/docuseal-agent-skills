@@ -1,22 +1,28 @@
 # Send documents for signature via API
 
-**Prerequisites:**
-
-**Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
-
-**Template ID:** Identify the template ID you want to use for the form.
-
 ## Send default document signing request email
 
-`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers along with the content type (`'application/json'`). Specify the `template_id` and submitter details:
+Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
 
-- `email`: pass email address of each individual party in the document signing process. 
-- `role`: specifies the designated role of each participant (e.g., 'Director', 'Contractor'). Pass role names defined in the template form. 
-- `order`: pass `'preserved'` order to send email only to the first signer party, second party will receive an email after the document is signed by the first party. Pass `'random'` to send emails to all parties right away to allow them to sign in random order. 
+Template ID: Identify the template ID you want to use for the form.
+
+`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers. Specify the `template_id` and submitter details:
+
+#### email
+
+Pass email address of each individual party in the document signing process.
+
+#### role
+
+Specifies the designated role of each participant (e.g., 'Director', 'Contractor'). Pass role names defined in the template form.
+
+#### order
+
+Pass `'preserved'` order to send email only to the first signer party, second party will receive an email after the document is signed by the first party. Pass `'random'` to send emails to all parties right away to allow them to sign in random order.
 
 Upon a successful request, specified submitters of the document will receive an email invitation to click on the link to fill and sign the document.
 
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -39,7 +45,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -110,7 +116,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -151,7 +157,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -199,7 +205,7 @@ submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSub
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl -X POST https://api.docuseal.com/submissions \
@@ -217,11 +223,16 @@ curl -X POST https://api.docuseal.com/submissions \
 
 ## Send custom document signing request email message
 
-`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers along with the content type (`'application/json'`).  
+`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers.  
  Specify the `message` and submitter details:
 
-- `subject`: Custom email message subject line. 
-- `body`: Custom email message body, can contain the following variables: 
+#### subject
+
+Custom email message subject line.
+
+#### body
+
+Custom email message body, can contain the following variables:
 
 | Variable | Description |
 | --- | --- |
@@ -244,11 +255,7 @@ curl -X POST https://api.docuseal.com/submissions \
 
 Upon a successful request, specified submitters of the document will receive an email invitation with a custom message.
 
-**Learn more:**
-
-[REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
-
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -274,7 +281,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -354,7 +361,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -401,7 +408,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -456,7 +463,7 @@ submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSub
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl -X POST https://api.docuseal.com/submissions \
@@ -474,3 +481,6 @@ curl -X POST https://api.docuseal.com/submissions \
     ]
   }'
 ```
+
+Learn more
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)

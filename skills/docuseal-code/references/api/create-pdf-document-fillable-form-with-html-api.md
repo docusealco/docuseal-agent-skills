@@ -1,41 +1,116 @@
 # Create PDF document fillable form with HTML
 
-**Prerequisites:**
-
-**Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
-
 ## HTML field tags
+
+Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
 
 HTML is a universal tool for building dynamic PDF forms with ease. Using custom tags like `<text-field>`, `<signature-field>`, and other 9 field types. These tags, coupled with the style attribute, enable developers to precisely define the width and height of form fields. For instance, utilizing HTML tags within your HTML structure grants you granular control over each element's positioning and dimensions. This level of customization ensures that the final form aligns perfectly with your design requirements.
 
 HTML field tags can contain the following attributes:
 
-- `name`: Name of the field in the template. 
-- `role`: signer role name. Specify different names in case the document contains multiple signing parties with their own set of fields. 
-- `default`: default field value to be used in the template. 
-- `required`: set false to make the field optional and skippable. true by default. 
-- `readonly`: set true to make it impossible for the signer to edit the pre-filled field value. false by default. 
-- `title`: field title shown instead of the field name in the signing interface. 
-- `description`: the field description displayed after the field name or title in the signing interface. 
-- `option`: option value for multi-select and radio field types. Fields with the same name are grouped into radio and multi-select groups with passed option values. 
-- `condition`: FieldName:value to show the field only if the condition is met for the value in other field. Pass only FieldName to set a condition for a non-empty field. 
-- `options`: comma separated list of options for select field type. 
-- `pattern`: HTML field validation pattern string based on [https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern) specification. 
-- `format`: the data format for date and signature fields. Possible values depend on the field type: 
-  - **date field** can be, for example: DD/MM/YYYY (Default: MM/DD/YYYY) 
-  - **signature field** can accept only: drawn, typed, drawn\_or\_typed, upload. (Default: drawn\_or\_typed ) 
-  - **number field** can accept: usd, eur, gbp currency formats. 
+#### name
 
-- `min`: Minimum allowed number value or date depending on field type. 
-- `max`: Maximum allowed number value or date depending on field type. 
-- `font`: font name to be used in the field. Can accept Times, Helvetica or Courier PDF default fonts to be used for the field font. 
-- `font-size`: font size of the text value. This attribute is optional, default font size will be calculated based on the field height by default. 
-- `font-type`: font type to be used in the field. Can accept bold, italic or bold\_italic font types to be used for the field value. 
-- `color`: blue or red color of the text value or signature. This attribute is optional, default black color is used when not specified. 
-- `align`: Horizontal alignment of the text value. This attribute is optional, with possible values being left, center, or right. Default is left when not specified. 
-- `valign`: Vertical alignment of the text value. This attribute is optional, with possible values being top, center, or bottom. Default is center when not specified. 
-- `mask`: set true to make sensitive data masked on the document. false by default. 
-- `method`: set "aes" or "qes" identity verification-field field method. 
+Name of the field in the template.
+
+#### role
+
+Signer role name. Specify different names in case the document contains multiple signing parties with their own set of fields.
+
+#### default
+
+Default field value to be used in the template.
+
+#### required
+
+Set `false` to make the field optional and skippable.
+
+Default `true`
+
+#### readonly
+
+Set `true` to make it impossible for the signer to edit the pre-filled field value.
+
+Default `false`
+
+#### title
+
+Field title shown instead of the field name in the signing interface.
+
+#### description
+
+The field description displayed after the field name or title in the signing interface.
+
+#### option
+
+Option value for `multi-select` and `radio` field types. Fields with the same `name` are grouped into radio and multi-select groups with passed option values.
+
+#### condition
+
+`FieldName:value` to show the field only if the condition is met for the value in other field. Pass only `FieldName` to set a condition for a non-empty field.
+
+#### options
+
+Comma separated list of options for `select` field type.
+
+#### pattern
+
+HTML field validation pattern string based on [https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern) specification.
+
+#### format
+
+The data format for date and signature fields. Possible values depend on the field type:
+
+- `date` field can be, for example: `DD/MM/YYYY` (default `MM/DD/YYYY`)
+- `signature` field can accept only `drawn`, `typed`, `drawn_or_typed`, `upload` (default `drawn_or_typed`)
+- `number` field can accept `usd`, `eur`, `gbp` currency formats
+
+#### min
+
+Minimum allowed number value or date depending on field type.
+
+#### max
+
+Maximum allowed number value or date depending on field type.
+
+#### font
+
+Font name to be used in the field. Can accept `Times`, `Helvetica` or `Courier` PDF default fonts.
+
+#### font-size
+
+Font size of the text value. This attribute is optional, default font size is calculated based on the field height.
+
+#### font-type
+
+Font type to be used in the field. Can accept `bold`, `italic` or `bold_italic` font types to be used for the field value.
+
+#### color
+
+`blue` or `red` color of the text value or signature. This attribute is optional.
+
+Default `black`
+
+#### align
+
+Horizontal alignment of the text value. This attribute is optional, with possible values being `left`, `center`, or `right`.
+
+Default `left`
+
+#### valign
+
+Vertical alignment of the text value. This attribute is optional, with possible values being `top`, `center`, or `bottom`.
+
+Default `center`
+
+#### mask
+
+Set `true` to make sensitive data masked on the document.
+
+Default `false`
+
+#### method
+
+Set `aes` or `qes` identity `verification-field` field method.
 
 
 ```
@@ -132,6 +207,7 @@ To begin crafting PDF document templates, start by creating a structured HTML, i
 
 Custom CSS, whether embedded inline or linked externally, can be used to refine the visual design of the document.
 
+#### HTML
 
 ```
 <!DOCTYPE html>
@@ -226,6 +302,7 @@ Additionally, it's possible to add headers and footers to every page using the `
 
 Use special html tags to add page number and total pages in the header or footer: `<span class="pageNumber"></span>`, `<span class="totalPages"></span>`.
 
+#### HTML
 
 ```
 <!DOCTYPE html>
@@ -247,13 +324,7 @@ Use `POST https://api.docuseal.com/submissions/html` API to create a one-off sub
 
 API request body should contain JSON payload with `"html": '...'` string value.
 
-**Learn more:**
-
-[REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-html)
-
-[Style document page with CSS](https://www.docuseal.com/blog/css-print-page-style)
-
-#### Javascript
+#### JS
 
 ```
 const docuseal = require('@docuseal/api');
@@ -283,7 +354,7 @@ const submission = await docuseal.createSubmissionFromHtml({
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from '@docuseal/api';
@@ -377,7 +448,7 @@ submission = Docuseal.create_submission_from_html({
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -433,7 +504,7 @@ var submission = client.createSubmissionFromHtml(CreateSubmissionFromHtmlParams.
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -497,7 +568,7 @@ submission, err := ds.CreateSubmissionFromHtml(context.Background(), &docuseal.C
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl --request POST \
@@ -506,3 +577,7 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{"name":"Rental Agreement","documents":[{"name":"rental-agreement","html":"<!DOCTYPE html>...","html_header":"<!DOCTYPE html>...","html_footer":"<!DOCTYPE html>...","size":"A4"}],"submitters":[{"role":"First Party","email":"john.doe@example.com"}]}'
 ```
+
+Learn more
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-html)
+- [Style document page with CSS](https://www.docuseal.com/blog/css-print-page-style)

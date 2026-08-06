@@ -1,4 +1,4 @@
-# Create a template from Word DOCX
+# Create a template from DOCX
 
 `POST /templates/docx`
 **Pro / Cloud Sandbox plan required.**
@@ -26,7 +26,7 @@ The API endpoint provides the functionality to create a fillable document templa
 | `documents[].fields[].title` | `string` | no | Field title displayed to the user instead of the name, shown on the signing form. Supports Markdown. |
 | `documents[].fields[].description` | `string` | no | Field description displayed on the signing form. Supports Markdown. |
 | `documents[].fields[].areas` | `array[]` | no | List of areas where the field is located in the document. |
-| `documents[].fields[].options` | `array[]` | no | An array of option values for 'select' field type. Example: `["Option A", "Option B"]` |
+| `documents[].fields[].options` | `array[]` | no | An array of option values for `select` field type. Example: `["Option A", "Option B"]` |
 | `documents[].fields[].validation` | `object` | no | Field validation rules. |
 | `documents[].fields[].preferences` | `object` | no | Field display preferences. |
 

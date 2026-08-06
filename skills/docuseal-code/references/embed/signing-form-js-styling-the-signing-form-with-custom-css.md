@@ -87,6 +87,7 @@ The Expired Form is displayed when the document's expiration date has passed, an
 - `.expired-form-template-info-container`
 - `.expired-form-template-description`
 
+#### HTML
 
 ```
 <script src="https://cdn.docuseal.com/js/form.js"></script>
@@ -101,6 +102,7 @@ The Expired Form is displayed when the document's expiration date has passed, an
 </docuseal-form>
 ```
 
+#### CSS
 
 ```
 /* DOCUSEAL SIGNING FORM DARK THEME */
@@ -561,12 +563,8 @@ The Expired Form is displayed when the document's expiration date has passed, an
 
  Default Theme Custom CSS Theme 
 
-**Learn more:**
-
-[Embed API Reference](signing-form-js.md)
-
-[REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
-
-[PHP Example Project](https://github.com/docusealco/docuseal-php-examples)
-
-[Embedded Demo App](https://embed.docuseal.tech/)
+Learn more
+- [Embed API Reference](signing-form-js.md)
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
+- [PHP Example Project](https://github.com/docusealco/docuseal-php-examples)
+- [Embedded Demo App](https://embed.docuseal.tech/)

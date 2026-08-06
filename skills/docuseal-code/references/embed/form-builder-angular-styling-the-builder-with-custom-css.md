@@ -1,10 +1,10 @@
 ## Styling the Builder with custom CSS
 
-The Template Builder consists of a main section that has both a desktop and a mobile version. Element classes that are displayed only in the mobile version have the -mobile suffix. Additionally, the builder includes a modal window for configuring recipients, which opens when the Send button is clicked. This modal window is displayed only if the with-send-button attribute is not set to false (by default, it is set to true).
+The Template Builder consists of a main section that has both a desktop and a mobile version. Element classes that are displayed only in the mobile version have the `-mobile` suffix. Additionally, the builder includes a modal window for configuring recipients, which opens when the Send button is clicked. This modal window is displayed only if the `with-send-button` attribute is not set to `false` (by default, it is set to `true`).
 
 Main UI
 
-The main section of the Template Builder contains all the elements required for creating and configuring a template. Customization of this section is essential. Elements that are displayed only in the mobile version have the -mobile suffix. CSS classes for this section:
+The main section of the Template Builder contains all the elements required for creating and configuring a template. Customization of this section is essential. Elements that are displayed only in the mobile version have the `-mobile` suffix. CSS classes for this section:
 
 - `.main-container`
 - `.title-container`
@@ -51,7 +51,7 @@ The base modal is a generic modal window that can be used for various purposes. 
 
 Recipients Modal
 
-The recipient configuration modal opens when the Send button is clicked. Its appearance slightly changes when there is more than one recipient. This modal is not displayed if the with-send-button attribute is set to false. CSS classes for this section:
+The recipient configuration modal opens when the Send button is clicked. Its appearance slightly changes when there is more than one recipient. This modal is not displayed if the `with-send-button` attribute is set to `false`. CSS classes for this section:
 
 - `.recipients-modal`
 - `.recipients-modal-title`
@@ -71,6 +71,7 @@ The recipient configuration modal opens when the Send button is clicked. Its app
 - `.recipients-modal-submission-remove-button`
 - `.recipients-modal-submission-submitter-email`
 
+#### Angular
 
 ```
 import { Component } from '@angular/core';
@@ -94,6 +95,7 @@ export class AppComponent {
 }
 ```
 
+#### CSS
 
 ```
 /* DOCUSEAL TEMPLATE BUILDER DARK THEME */
@@ -679,10 +681,7 @@ export class AppComponent {
 
  Default Theme Custom CSS Theme 
 
-**Learn more:**
-
-[Embed API Reference](form-builder-angular.md)
-
-[Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
-
-[Embedded Demo App](https://embed.docuseal.tech/)
+Learn more
+- [Embed API Reference](form-builder-angular.md)
+- [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
+- [Embedded Demo App](https://embed.docuseal.tech/)

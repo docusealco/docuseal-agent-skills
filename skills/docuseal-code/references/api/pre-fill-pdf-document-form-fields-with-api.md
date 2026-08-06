@@ -1,22 +1,28 @@
 # Pre-fill PDF document form fields with API
 
-**Prerequisites:**
-
-**Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
-
-**Template ID:** Identify the template ID you want to use for the form.
-
 ## Pre-fill document data and send for signature
+
+Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
+
+Template ID: Identify the template ID you want to use for the form.
 
 `POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers (`'X-Auth-Token'`). Specify the `template_id` and submitter details with `fields[]` list containing:
 
-- `name`: Name of the field in the template. 
-- `default_value`: The default value assigned to the field. Use base64 encoded string to pass images, signatures or files. Or pass a public downloadable URL with an image to prefill signature, image, initials fields. Pass text value if you want to pre-fill signature or initials with the font-generated text. 
-- `readonly`: Set `true` to make it impossible for the signer to edit the pre-filled field value. `false` by default. 
+#### name
+
+Name of the field in the template.
+
+#### default_value
+
+The default value assigned to the field. Use base64 encoded string to pass images, signatures or files. Or pass a public downloadable URL with an image to prefill signature, image, initials fields. Pass text value if you want to pre-fill signature or initials with the font-generated text.
+
+#### readonly
+
+Set `true` to make it impossible for the signer to edit the pre-filled field value. `false` by default.
 
 Upon a successful request, specified submitters of the document will receive an email invitation to click on the link to fill and sign the document.
 
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -46,7 +52,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -138,7 +144,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -192,7 +198,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -255,7 +261,7 @@ submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSub
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl -X POST https://api.docuseal.com/submissions \
@@ -284,11 +290,7 @@ API request body should contain JSON payload with `"completed": true` value to m
 
 Upon a successful request, all signing parties will receive an email with a signed document.
 
-**Learn more:**
-
-[REST API Reference](https://www.docuseal.com/docs/api#update-a-submitter)
-
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -312,7 +314,7 @@ const submitter = await docuseal.updateSubmitter(500001, {
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -386,7 +388,7 @@ submitter = Docuseal.update_submitter(500001, {
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -429,7 +431,7 @@ var submitter = client.updateSubmitter(500001, UpdateSubmitterParams.builder()
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -479,7 +481,7 @@ submitter, err := ds.UpdateSubmitter(context.Background(), 500001, &docuseal.Upd
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl -X PUT https://api.docuseal.com/submitters/500001 \
@@ -501,3 +503,6 @@ curl -X PUT https://api.docuseal.com/submitters/500001 \
     ]
   }'
 ```
+
+Learn more
+- [REST API Reference](https://www.docuseal.com/docs/api#update-a-submitter)

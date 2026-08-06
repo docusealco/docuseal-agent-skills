@@ -2,18 +2,21 @@
 
 Open your terminal or command prompt and navigate to your project directory. Then, run the following command to install the `@docuseal/angular` package
 
+
+```
+npm install @docuseal/angular --save
+```
+
 Once the installation is complete, you'll need to import the component in the relevant file where you intend to use DocuSeal. With the component imported, you can now use `<docuseal-builder>` within your Angular template wherever you want to integrate the DocuSeal document form builder functionality.
 
 Trigger the API call to your backend endpoint to retrieve a JSON Web Token (JWT) generated on the previous step. The `ngOnInit` method triggers the API request upon component mount, fetching the JWT asynchronously.
 
-**Learn more:**
+Learn more
+- [Embed API Reference](form-builder-angular.md)
+- [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
+- [Embedded Demo App](https://embed.docuseal.tech/)
 
-[Embed API Reference](form-builder-angular.md)
-
-[Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
-
-[Embedded Demo App](https://embed.docuseal.tech/)
-
+#### Angular
 
 ```
 import { Component, OnInit } from '@angular/core';

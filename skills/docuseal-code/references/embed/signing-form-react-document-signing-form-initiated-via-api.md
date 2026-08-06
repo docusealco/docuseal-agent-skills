@@ -1,22 +1,28 @@
 ## Document signing form initiated via API
 
-**Prerequisites:**
-
-**Sign Up and Obtain API Key:** Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
+Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
 
 The API can be used to initiate a signing session for a single-party form or for a multi-party form. For multi-party forms, the API returns a unique `embed_src` URL for each submitter, and each URL can be used to embed the signing form for the corresponding party.
 
-`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers along with the content type (`'application/json'`). Specify the `template_id` and submitter details:
+`POST` request to `https://api.docuseal.com/submissions`. Include the obtained API key in the headers. Specify the `template_id` and submitter details:
 
-- `send_email`: set to `false` to disable automated emails from the platform. 
-- `email`: pass email address of each individual party in the document signing process. 
-- `role`: specifies the designated role of each participant (e.g., 'Director', 'Contractor'). Pass role names defined in the template form. 
+#### send_email
+
+Set to `false` to disable automated emails from the platform.
+
+#### email
+
+Pass email address of each individual party in the document signing process.
+
+#### role
+
+Specifies the designated role of each participant (e.g., 'Director', 'Contractor'). Pass role names defined in the template form.
 
 Upon a successful request, the API will respond with an array of submitters. Each submitter contains an `embed_src` with the full signing form URL, as well as a `slug` key which can be appended to your DocuSeal host URL.
 
 Pass the `embed_src` value directly to the `src` prop of the `<DocusealForm />` component, or construct the URL from the `slug` key (e.g. `https://docuseal.com/s/${slug}`). Either value links the embedded form in your React app to the specific submitter created through the DocuSeal API.
 
-#### Nodejs
+#### Node
 
 ```
 import express from 'express';
@@ -52,7 +58,7 @@ app.listen(3000, () => {
 });
 ```
 
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -75,7 +81,7 @@ const submission = await docuseal.createSubmission({
 });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -146,7 +152,7 @@ submission = Docuseal.create_submission({
 })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -187,7 +193,7 @@ var submission = client.createSubmission(CreateSubmissionParams.builder()
     .build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -235,7 +241,7 @@ submission, err := ds.CreateSubmission(context.Background(), &docuseal.CreateSub
 })
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl -X POST https://api.docuseal.com/submissions \
@@ -251,6 +257,7 @@ curl -X POST https://api.docuseal.com/submissions \
   }'
 ```
 
+#### React
 
 ```
 import React, { useState, useEffect } from 'react';

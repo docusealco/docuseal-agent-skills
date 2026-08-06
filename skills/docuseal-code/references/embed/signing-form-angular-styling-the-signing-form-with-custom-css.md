@@ -87,6 +87,7 @@ The Expired Form is displayed when the document's expiration date has passed, an
 - `.expired-form-template-info-container`
 - `.expired-form-template-description`
 
+#### Angular
 
 ```
 import { Component } from '@angular/core';
@@ -111,6 +112,7 @@ export class AppComponent {
 }
 ```
 
+#### CSS
 
 ```
 /* DOCUSEAL SIGNING FORM DARK THEME */
@@ -571,12 +573,8 @@ export class AppComponent {
 
  Default Theme Custom CSS Theme 
 
-**Learn more:**
-
-[Embed API Reference](signing-form-angular.md)
-
-[REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
-
-[Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
-
-[Embedded Demo App](https://embed.docuseal.tech/)
+Learn more
+- [Embed API Reference](signing-form-angular.md)
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
+- [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
+- [Embedded Demo App](https://embed.docuseal.tech/)

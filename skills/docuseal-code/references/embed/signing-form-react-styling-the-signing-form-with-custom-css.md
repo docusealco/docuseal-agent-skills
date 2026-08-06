@@ -87,6 +87,7 @@ The Expired Form is displayed when the document's expiration date has passed, an
 - `.expired-form-template-info-container`
 - `.expired-form-template-description`
 
+#### React
 
 ```
 import React from "react"
@@ -107,6 +108,7 @@ export function App() {
 }
 ```
 
+#### CSS
 
 ```
 /* DOCUSEAL SIGNING FORM DARK THEME */
@@ -567,14 +569,9 @@ export function App() {
 
  Default Theme Custom CSS Theme 
 
-**Learn more:**
-
-[Embed API Reference](signing-form-react.md)
-
-[REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
-
-[React package on GitHub](https://github.com/docusealco/docuseal-react)
-
-[React Example Project](https://github.com/docusealco/docuseal-react-examples)
-
-[Embedded Demo App](https://embed.docuseal.tech/)
+Learn more
+- [Embed API Reference](signing-form-react.md)
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
+- [React package on GitHub](https://github.com/docusealco/docuseal-react)
+- [React Example Project](https://github.com/docusealco/docuseal-react-examples)
+- [Embedded Demo App](https://embed.docuseal.tech/)

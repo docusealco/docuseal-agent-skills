@@ -9,6 +9,7 @@ Once the document is signed by one of the parties the "form.completed" event is 
 
 Webhook payload includes the `"external_id"` value which works as a identifier for that specific signer. External ID can be specified via [REST API](https://www.docuseal.com/docs/api#create-a-submission) or [Embedded Form](https://www.docuseal.com/docs/embedded/form). This association allows you to maintain a clear mapping between signed documents and the individual signers in your database.
 
+#### JSON
 
 ```
 {
@@ -93,11 +94,7 @@ Documents can be downloaded from DocuSeal using the following API request:
 `GET https://api.docuseal.com/submitters?external_id=value`  
  This API responds with the `documents[]` array that contains downloadable PDF URLs. Submitters (aka Signers) can be filtered with the specified `external_id` to make it easier to map documents to records in your database.
 
-**Learn more:**
-
-[REST API Reference](https://www.docuseal.com/docs/api#form-webhook)
-
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -107,7 +104,7 @@ docuseal.configure({ key: "API_KEY", url: "https://api.docuseal.com" });
 const { data, pagination } = await docuseal.listSubmitters({ external_id: 'customer_123' });
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -139,7 +136,7 @@ Docuseal.url = "https://api.docuseal.com"
 Docuseal.list_submitters({ external_id: 'customer_123' })
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new DocusealApi('API_KEY', 'https://api.docuseal.com');
@@ -155,7 +152,7 @@ var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
 var submitters = client.getSubmitters(GetSubmittersParams.builder().externalId("customer_123").build());
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -174,7 +171,7 @@ ds := docuseal.NewClient(
 submitters, err := ds.GetSubmitters(context.Background(), &docuseal.GetSubmittersParams{ExternalID: "customer_123"})
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl --request GET \
@@ -196,7 +193,7 @@ Instead, always call the API to get a fresh document URL right before you need t
 
 Save the `submission_id` or `submitter_id` in your database instead of the URL. When you need to download or display the document, make an API call with the stored ID to retrieve a fresh, valid URL.
 
-#### Javascript
+#### JS
 
 ```
 const docuseal = require("@docuseal/api");
@@ -208,7 +205,7 @@ const resp = await docuseal.getSubmissionDocuments(submissionId);
 const documentUrl = resp.documents[0].url;
 ```
 
-#### Typescript
+#### TypeScript
 
 ```
 import docuseal from "@docuseal/api";
@@ -246,7 +243,7 @@ resp = Docuseal.get_submission_documents(submission_id)
 document_url = resp["documents"][0]["url"]
 ```
 
-#### Php
+#### PHP
 
 ```
 $docuseal = new \Docuseal\Api('API_KEY', 'https://api.docuseal.com');
@@ -266,7 +263,7 @@ var resp = client.getSubmissionDocuments(submissionId);
 var documentUrl = resp.getDocuments().get(0).getUrl();
 ```
 
-#### Csharp
+#### C#
 
 ```
 var client = new DocusealClient("API_KEY", "https://api.docuseal.com");
@@ -289,10 +286,13 @@ resp, err := ds.GetSubmissionDocuments(context.Background(), submissionID, nil)
 documentURL := resp.Documents[0].URL
 ```
 
-#### Curl
+#### cURL
 
 ```
 curl --request GET \
   --url https://api.docuseal.com/submissions/SUBMISSION_ID/documents \
   --header 'X-Auth-Token: API_KEY'
 ```
+
+Learn more
+- [REST API Reference](https://www.docuseal.com/docs/api#form-webhook)
