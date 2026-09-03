@@ -8,7 +8,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.7"
+  version: "1.0.8"
   homepage: https://www.docuseal.com
   source: https://github.com/docusealco/docuseal-cli
   openclaw:
@@ -27,6 +27,19 @@ metadata:
         bins:
           - docuseal
         label: Install DocuSeal CLI (npm)
+  hermes:
+    tags: [DocuSeal, E-signature, Documents, PDF, CLI]
+    related_skills: [docuseal-code]
+required_environment_variables:
+  - name: DOCUSEAL_API_KEY
+    prompt: DocuSeal API key (global, EU, or self-hosted account)
+    help: "Get it at https://console.docuseal.com/api (global), https://console.docuseal.eu/api (EU), or https://<your-domain>/api (self-hosted). Overrides the key saved by `docuseal configure` in ~/.config/docuseal/credentials.json."
+    required_for: authenticating the docuseal CLI
+  - name: DOCUSEAL_SERVER
+    prompt: DocuSeal server - global, europe, or self-hosted URL (leave empty for global)
+    help: "Optional. Use global (docuseal.com), europe (docuseal.eu), or https://<your-domain> for self-hosted. Overrides the server saved by `docuseal configure` in ~/.config/docuseal/credentials.json; the CLI falls back to global only when neither is set."
+    required_for: selecting the DocuSeal region or self-hosted server
+    optional: true
 ---
 
 ## Agent Protocol

@@ -669,7 +669,8 @@ The recipient configuration modal opens when the Send button is clicked. Its app
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](form-builder-js.md)
 - [React Example Project](https://github.com/docusealco/docuseal-react-examples/tree/master/expess-app)
 - [PHP Example Project](https://github.com/docusealco/docuseal-php-examples)

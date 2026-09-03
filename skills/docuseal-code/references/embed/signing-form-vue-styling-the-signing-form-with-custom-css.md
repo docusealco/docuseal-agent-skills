@@ -575,7 +575,8 @@ export default {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](signing-form-vue.md)
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
 - [Vue package on GitHub](https://github.com/docusealco/docuseal-vue)

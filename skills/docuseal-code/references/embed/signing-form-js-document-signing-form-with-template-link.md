@@ -13,7 +13,7 @@ To integrate a DocuSeal form, add the `<docuseal-form>` element to your webpage 
 
 #### data-src
 
-This attribute specifies the URL of the DocuSeal form that you want to embed. Each template form on DocuSeal has a unique URL with `slug` key. "Slug" key can be obtained via the `/templates` API or copied from the template page in the web UI.
+This attribute specifies the URL of the DocuSeal form that you want to embed. It accepts either a template form URL with a template `slug` key, which can be obtained via the `/templates` API or copied from the template page in the web UI, or a submitter `embed_src` URL returned by the `/submissions` API to embed the form for a specific signer.
 
 #### data-email
 

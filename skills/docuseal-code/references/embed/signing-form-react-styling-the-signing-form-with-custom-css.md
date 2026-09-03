@@ -569,7 +569,8 @@ export function App() {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](signing-form-react.md)
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
 - [React package on GitHub](https://github.com/docusealco/docuseal-react)

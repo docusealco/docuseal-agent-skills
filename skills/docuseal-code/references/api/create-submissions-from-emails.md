@@ -29,7 +29,7 @@ curl --request POST \
 ### CLI
 
 ```shell
-docuseal submissions create --template-id 1000001 --emails hi@docuseal.com, example@docuseal.com
+docuseal submissions send-emails --template-id 1000001 --emails hi@docuseal.com, example@docuseal.com
 ```
 ### Node.js (fetch)
 

@@ -63,7 +63,7 @@ In some cases, you may need more advanced text formatting, such as lists, bold t
 
 ### HTML paragraphs
 
-You can use HTML tags to create styled paragraphs with different formatting styles. Below is an example of an HTML variable value that generates a paragraph with styled text and colors:
+You can use HTML tags to create styled paragraphs with different formatting styles. An HTML variable value can also generate a paragraph with styled text and colors.
 
  Example: 
 
@@ -77,7 +77,7 @@ You can use HTML tags to create styled paragraphs with different formatting styl
 
 The ul, ol, and li tags can be used for lists and styled with inline CSS.
 
- Below is an example of an HTML variable value that generates a bulleted list with styled text and colors: 
+ An HTML variable value can generate a bulleted list with styled text and colors. 
 
  Example: 
 
@@ -528,6 +528,7 @@ submission, err := ds.CreateSubmissionFromDocx(context.Background(), &docuseal.C
 })
 ```
 
-Learn more
+### Learn more
+
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission-from-docx)
 - [DOCX content variables example file](https://www.docuseal.com/examples/demo_template.docx)

@@ -20,6 +20,21 @@ A collection of [Agent Skills](https://agentskills.io/) for the [DocuSeal](https
 npx skills add docusealco/docuseal-agent-skills
 ```
 
+### Hermes Agent
+
+```bash
+hermes skills install docusealco/docuseal-agent-skills/skills/docuseal-cli
+hermes skills install docusealco/docuseal-agent-skills/skills/docuseal-code
+```
+
+Or add the repository as a tap to discover skills with `hermes skills search docuseal`:
+
+```bash
+hermes skills tap add docusealco/docuseal-agent-skills
+```
+
+The `docuseal-cli` skill declares `DOCUSEAL_API_KEY` and `DOCUSEAL_SERVER` in its frontmatter, so Hermes prompts for them on first load and passes them through to the terminal sandbox.
+
 ## Plugins
 
 Platform-specific manifests:

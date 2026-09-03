@@ -573,7 +573,8 @@ export class AppComponent {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](signing-form-angular.md)
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
 - [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)

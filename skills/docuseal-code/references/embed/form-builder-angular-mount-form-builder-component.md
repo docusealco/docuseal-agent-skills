@@ -11,7 +11,8 @@ Once the installation is complete, you'll need to import the component in the re
 
 Trigger the API call to your backend endpoint to retrieve a JSON Web Token (JWT) generated on the previous step. The `ngOnInit` method triggers the API request upon component mount, fetching the JWT asynchronously.
 
-Learn more
+### Learn more
+
 - [Embed API Reference](form-builder-angular.md)
 - [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
 - [Embedded Demo App](https://embed.docuseal.tech/)

@@ -683,7 +683,8 @@ export default {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](form-builder-vue.md)
 - [Vue package on GitHub](https://github.com/docusealco/docuseal-vue)
 - [Embedded Demo App](https://embed.docuseal.tech/)

@@ -187,9 +187,9 @@ Document URLs returned by the API and webhooks are **temporary** and expire afte
 
 Instead, always call the API to get a fresh document URL right before you need to access the file:
 
-- `GET /submissions/{id}/documents` - get only the document URLs 
-- `GET /submissions/{id}` - get documents for the entire submission 
-- `GET /submitters/{id}` - get documents for a specific submitter 
+- `GET /submissions/{id}/documents` - get only the document URLs
+- `GET /submissions/{id}` - get documents for the entire submission
+- `GET /submitters/{id}` - get documents for a specific submitter
 
 Save the `submission_id` or `submitter_id` in your database instead of the URL. When you need to download or display the document, make an API call with the stored ID to retrieve a fresh, valid URL.
 
@@ -294,5 +294,6 @@ curl --request GET \
   --header 'X-Auth-Token: API_KEY'
 ```
 
-Learn more
+### Learn more
+
 - [REST API Reference](https://www.docuseal.com/docs/api#form-webhook)

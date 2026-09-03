@@ -72,7 +72,7 @@ from docuseal import docuseal
 docuseal.key = "API_KEY"
 docuseal.url = "https://api.docuseal.com"
 
-docuseal.list_submissions({ "limit": 10 })
+docuseal.list_templates({ "limit": 10 })
 ```
 ### Ruby SDK
 

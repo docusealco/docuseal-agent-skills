@@ -1,0 +1,15 @@
+{
+  "$schema": "https://www.skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "CLI & Automation",
+      "description": "Run DocuSeal e-signature workflows from the terminal, scripts, and CI/CD pipelines.",
+      "skills": ["docuseal-cli"]
+    },
+    {
+      "title": "Development Reference",
+      "description": "Embed DocuSeal UI components and integrate the REST API, webhooks, and SDKs.",
+      "skills": ["docuseal-code"]
+    }
+  ]
+}

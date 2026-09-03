@@ -363,6 +363,7 @@ submission, err := ds.CreateSubmissionFromPdf(context.Background(), &docuseal.Cr
 })
 ```
 
-Learn more
-- [REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-existing-pdf)
+### Learn more
+
+- [REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-pdf)
 - [PDF text tags example file](https://www.docuseal.com/examples/fieldtags.pdf)

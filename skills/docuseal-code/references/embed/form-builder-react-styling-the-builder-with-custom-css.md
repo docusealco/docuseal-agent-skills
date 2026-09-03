@@ -677,7 +677,8 @@ export function App() {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](form-builder-react.md)
 - [React package on GitHub](https://github.com/docusealco/docuseal-react)
 - [PHP Example Project](https://github.com/docusealco/docuseal-react-examples/tree/master/expess-app)

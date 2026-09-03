@@ -578,6 +578,7 @@ curl --request POST \
   --data '{"name":"Rental Agreement","documents":[{"name":"rental-agreement","html":"<!DOCTYPE html>...","html_header":"<!DOCTYPE html>...","html_footer":"<!DOCTYPE html>...","size":"A4"}],"submitters":[{"role":"First Party","email":"john.doe@example.com"}]}'
 ```
 
-Learn more
+### Learn more
+
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-html)
 - [Style document page with CSS](https://www.docuseal.com/blog/css-print-page-style)

@@ -504,5 +504,6 @@ curl -X PUT https://api.docuseal.com/submitters/500001 \
   }'
 ```
 
-Learn more
+### Learn more
+
 - [REST API Reference](https://www.docuseal.com/docs/api#update-a-submitter)

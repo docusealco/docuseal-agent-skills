@@ -1,6 +1,6 @@
 # DocuSeal Form Builder — Vue
 
-This component allows you to seamlessly integrate an entire document creation and signing form anywhere on your website or application. It supports **JS+HTML** , **Vue** , **Angular** and **React**.
+This component allows you to embed the template builder anywhere on your website or application to upload a document, define signing parties, place fields and signatures, and prepare it for signing. It supports **JS** , **Vue** , **Angular** and **React**.
 
 ## Installation
 

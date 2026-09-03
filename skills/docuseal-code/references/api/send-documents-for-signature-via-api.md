@@ -482,5 +482,6 @@ curl -X POST https://api.docuseal.com/submissions \
   }'
 ```
 
-Learn more
+### Learn more
+
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)

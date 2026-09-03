@@ -563,7 +563,8 @@ The Expired Form is displayed when the document's expiration date has passed, an
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](signing-form-js.md)
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-submission)
 - [PHP Example Project](https://github.com/docusealco/docuseal-php-examples)

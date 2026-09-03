@@ -1,6 +1,6 @@
 # DocuSeal Signing Form — React
 
-This component enables seamless integration of a signing form within any section of your website or application. It offers compatibility with **JS+HTML** , **Vue** , **Angular** and **React** , providing you with versatile options for integration.
+This component allows you to embed a document signing form anywhere on your website or application, so signers fill in the fields and sign without leaving your product. It supports **JS+HTML** , **Vue** , **Angular** and **React**.
 
 ## Installation
 

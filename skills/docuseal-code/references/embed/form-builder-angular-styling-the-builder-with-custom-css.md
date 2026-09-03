@@ -681,7 +681,8 @@ export class AppComponent {
 
  Default Theme Custom CSS Theme 
 
-Learn more
+### Learn more
+
 - [Embed API Reference](form-builder-angular.md)
 - [Angular package on GitHub](https://github.com/docusealco/docuseal-angular)
 - [Embedded Demo App](https://embed.docuseal.tech/)

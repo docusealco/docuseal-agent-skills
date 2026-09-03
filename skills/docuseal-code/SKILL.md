@@ -10,9 +10,12 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.4"
+  version: "1.0.5"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
+  hermes:
+    tags: [DocuSeal, E-signature, API, Embed, Webhooks, SDK]
+    related_skills: [docuseal-cli]
 ---
 
 ## How References Are Organised
