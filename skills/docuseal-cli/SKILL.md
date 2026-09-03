@@ -28,8 +28,12 @@ metadata:
           - docuseal
         label: Install DocuSeal CLI (npm)
   hermes:
-    tags: [DocuSeal, E-signature, Documents, PDF, CLI]
-    related_skills: [docuseal-code]
+    tags:
+      - DocuSeal
+      - E-signature
+      - Documents
+      - PDF
+      - CLI
 required_environment_variables:
   - name: DOCUSEAL_API_KEY
     prompt: DocuSeal API key (global, EU, or self-hosted account)

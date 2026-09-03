@@ -4,6 +4,7 @@
     "name": "DocuSeal",
     "email": "support@docuseal.com"
   },
+  "description": "Agent Skills for DocuSeal e-signature: CLI automation and development reference for embeds, REST API, webhooks, and SDKs.",
   "plugins": [
     {
       "name": "docuseal",

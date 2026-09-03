@@ -24,7 +24,7 @@ An array with public and downloadable document URLs to be opened in the form bui
 
 ID of the existing template to open in the form builder - leave empty if `documents_urls[]` is specified. Templates can be created via the [HTML API](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api) or [PDF export API](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form).
 
-Ensure you never expose API_KEY on your client side, only generated and signed JWT should be passed to your front-end app.
+Ensure you never expose API_KEY on your client side; only the generated and signed JWT should be passed to your front-end app.
 
 #### Node.js
 

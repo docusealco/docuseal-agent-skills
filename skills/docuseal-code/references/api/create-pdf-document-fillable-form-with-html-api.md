@@ -4,7 +4,7 @@
 
 Prerequisites: Visit [DocuSeal API Console](https://console.docuseal.com/api) to obtain your API key.
 
-HTML is a universal tool for building dynamic PDF forms with ease. Using custom tags like `<text-field>`, `<signature-field>`, and other 9 field types. These tags, coupled with the style attribute, enable developers to precisely define the width and height of form fields. For instance, utilizing HTML tags within your HTML structure grants you granular control over each element's positioning and dimensions. This level of customization ensures that the final form aligns perfectly with your design requirements.
+HTML is a universal tool for building dynamic PDF forms with ease, using custom tags like `<text-field>`, `<signature-field>` and nine other field types. These tags, coupled with the style attribute, enable developers to precisely define the width and height of form fields. For instance, utilizing HTML tags within your HTML structure grants you granular control over each element's positioning and dimensions. This level of customization ensures that the final form aligns perfectly with your design requirements.
 
 HTML field tags can contain the following attributes:
 

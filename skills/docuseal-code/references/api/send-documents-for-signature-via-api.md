@@ -18,7 +18,7 @@ Specifies the designated role of each participant (e.g., 'Director', 'Contractor
 
 #### order
 
-Pass `'preserved'` order to send email only to the first signer party, second party will receive an email after the document is signed by the first party. Pass `'random'` to send emails to all parties right away to allow them to sign in random order.
+Pass `'preserved'` order to send email only to the first signer party; the second party will receive an email after the document is signed by the first party. Pass `'random'` to send emails to all parties right away to allow them to sign in random order.
 
 Upon a successful request, specified submitters of the document will receive an email invitation to click on the link to fill and sign the document.
 

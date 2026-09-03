@@ -7,7 +7,7 @@ Navigate to [https://console.docuseal.com/webhooks](https://console.docuseal.com
 
 Once the document is signed by one of the parties the "form.completed" event is triggered. DocuSeal will send a webhook payload containing a "documents" list which includes URLs with downloadable signed documents.
 
-Webhook payload includes the `"external_id"` value which works as a identifier for that specific signer. External ID can be specified via [REST API](https://www.docuseal.com/docs/api#create-a-submission) or [Embedded Form](https://www.docuseal.com/docs/embedded/form). This association allows you to maintain a clear mapping between signed documents and the individual signers in your database.
+Webhook payload includes the `"external_id"` value which works as an identifier for that specific signer. External ID can be specified via [REST API](https://www.docuseal.com/docs/api#create-a-submission) or [Embedded Form](https://www.docuseal.com/docs/embedded/form). This association allows you to maintain a clear mapping between signed documents and the individual signers in your database.
 
 #### JSON
 

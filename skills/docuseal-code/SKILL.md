@@ -14,8 +14,13 @@ metadata:
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
   hermes:
-    tags: [DocuSeal, E-signature, API, Embed, Webhooks, SDK]
-    related_skills: [docuseal-cli]
+    tags:
+      - DocuSeal
+      - E-signature
+      - API
+      - Embed
+      - Webhooks
+      - SDK
 ---
 
 ## How References Are Organised

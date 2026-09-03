@@ -187,11 +187,11 @@ Comma separated list of options for `select` and `radio` field types.
 
 #### width
 
-Absolute width of the field in pixels. This attribute is optional, text tag width will be used for the field width by default.
+Absolute width of the field in pixels. This attribute is optional; text tag width will be used for the field width by default.
 
 #### height
 
-Absolute height of the field in pixels. This attribute is optional, font size height will be used for the field height by default.
+Absolute height of the field in pixels. This attribute is optional; font size height will be used for the field height by default.
 
 #### format
 
