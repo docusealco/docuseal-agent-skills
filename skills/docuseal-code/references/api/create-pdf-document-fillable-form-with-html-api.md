@@ -582,3 +582,4 @@ curl --request POST \
 
 - [REST API Reference](https://www.docuseal.com/docs/api#create-a-template-from-html)
 - [Style document page with CSS](https://www.docuseal.com/blog/css-print-page-style)
+- [Creating fillable PDF document forms with HTML](https://www.docuseal.com/blog/creating-fillable-pdf-document-forms-with-html)

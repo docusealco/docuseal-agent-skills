@@ -88,3 +88,7 @@ Get submission creation, completion, expiration, and archiving notifications usi
   }
 }
 ```
+
+## Related Guides
+
+- [Use Webhooks](use-webhooks.md)

@@ -167,6 +167,7 @@ var submission = client.updateSubmission(1001, UpdateSubmissionParams.builder()
   "combined_document_url": null,
   "completed_at": "2023-12-14T15:49:21.701Z",
   "expire_at": null,
+  "variables": {},
   "created_at": "2023-12-10T15:48:17.166Z",
   "updated_at": "2023-12-10T15:49:21.895Z",
   "archived_at": null,

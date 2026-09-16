@@ -63,6 +63,6 @@ See [signing-form-completed-preview-jwt-token.md](signing-form-completed-preview
 Two ways to get that authoritative status:
 
 - Revalidate via the API. When a client event fires, call the respective endpoint (for example `GET /submissions/{id}` or `GET /submitters/{id}`) and act only on the status it returns.
-- Or use webhooks. Drive state changes from `form.completed` and `form.declined` webhook events, and verify the HMAC signature on every webhook.
+- Or use webhooks. Drive state changes from `form.completed` and `form.declined` webhook events, and verify the HMAC signature on every webhook. See [use-webhooks.md](../api/use-webhooks.md).
 
 Either way, treat client events as UI hints only.

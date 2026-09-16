@@ -128,6 +128,7 @@ var submissions = client.getSubmissions(GetSubmissionsParams.builder().limit(10)
       "audit_log_url": "https://docuseal.com/file/hash/example.pdf",
       "combined_document_url": null,
       "expire_at": null,
+      "variables": {},
       "completed_at": "2023-12-10T15:49:21.895Z",
       "created_at": "2023-12-10T15:48:17.166Z",
       "updated_at": "2023-12-10T15:49:21.895Z",

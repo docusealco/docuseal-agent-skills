@@ -108,3 +108,7 @@ Get template creation and update notifications using these events:
   }
 }
 ```
+
+## Related Guides
+
+- [Use Webhooks](use-webhooks.md)

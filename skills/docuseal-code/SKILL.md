@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: DocuSeal
-  version: "1.0.5"
+  version: "1.0.6"
   homepage: https://www.docuseal.com/docs
   source: https://github.com/docusealco/docuseal-agent-skills
   hermes:
@@ -168,6 +168,8 @@ SDK usage examples are included in each endpoint reference file below (marked wi
 - [Template Webhook](references/api/template-webhook.md)
 
 Configure webhook URL: https://console.docuseal.com/webhooks
+
+Setup, secrets, HMAC signature verification and local development → [references/api/use-webhooks.md](references/api/use-webhooks.md)
 
 ### Common API Patterns
 

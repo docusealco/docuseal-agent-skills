@@ -1,6 +1,6 @@
 # DocuSeal Signing Form — Angular
 
-This component allows you to embed a document signing form anywhere on your website or application, so signers fill in the fields and sign without leaving your product. It supports **JS+HTML** , **Vue** , **Angular** and **React**.
+This component allows you to embed a document signing form anywhere on your website or application, so signers fill in the fields and sign inside your product. It supports **JS+HTML** , **Vue** , **Angular** and **React**.
 
 ## Installation
 
