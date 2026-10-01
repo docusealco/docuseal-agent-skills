@@ -187,6 +187,8 @@ See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax i
 | Data param (`-d`) | Description |
 |---|---|
 | `template_ids[]` | Template ID to use alongside provided documents |
+| `documents[N][name]` | Document name |
+| `documents[N][file]` | Local file path, URL, or base64-encoded content |
 | `documents[N][position]` | Position in template |
 | `submitters[N][name]` | Full name |
 | `submitters[N][role]` | Role name |
@@ -252,6 +254,8 @@ See [PDF / DOCX Field Tags](field-tags.md) for embedded `{{...}}` field syntax. 
 |---|---|
 | `variables[key]` | Template variable |
 | `template_ids[]` | Template ID to use alongside provided documents |
+| `documents[N][name]` | Document name |
+| `documents[N][file]` | Local file path, URL, or base64-encoded content |
 | `documents[N][position]` | Position in template |
 
 Supports same `-d submitters[N]...` and `message` data params as `submissions create-pdf`.
