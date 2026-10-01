@@ -14,7 +14,7 @@ List all submissions.
 | `--archived` | Get only archived submissions |
 | `--active` | Get only active submissions |
 | `-l, --limit <value>` | Number of results (default 10, max 100) |
-| `-a, --after <value>` | Pagination cursor — pass `pagination.next` from previous response |
+| `--after <value>` | Pagination cursor — pass `pagination.next` from previous response |
 | `--before <value>` | Pagination end cursor |
 
 ```bash

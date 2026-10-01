@@ -13,7 +13,7 @@ List all submitters.
 | `--completed-after <value>` | Filter by completion date (after) |
 | `--completed-before <value>` | Filter by completion date (before) |
 | `-l, --limit <value>` | Number of results (default 10, max 100) |
-| `-a, --after <value>` | Pagination cursor — pass `pagination.next` from previous response |
+| `--after <value>` | Pagination cursor — pass `pagination.next` from previous response |
 | `--before <value>` | Pagination end cursor |
 
 ```bash
